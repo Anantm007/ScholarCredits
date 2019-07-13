@@ -261,23 +261,23 @@ router.post('/login',(req,res)=>{
         //         }
         //   });
         // });
-
-        router.get('/createchallenge',async(req,res,next)=>{
-            if(!req.session.username){
-                res.redirect('/dashboard');
-            }else{
-            try{
-                const data= await Register.findOne({'Email':req.session.username});
-                res.render('studentdashboard/create-challenge',{
-                    Student : data
-                });
-               }
-               catch(e)
-               {
-                   next(e);
-               }
-            }
-        });
+        //
+        // router.get('/createchallenge',async(req,res,next)=>{
+        //     if(!req.session.username){
+        //         res.redirect('/dashboard');
+        //     }else{
+        //     try{
+        //         const data= await Register.findOne({'Email':req.session.username});
+        //         res.render('studentdashboard/create-challenge',{
+        //             Student : data
+        //         });
+        //        }
+        //        catch(e)
+        //        {
+        //            next(e);
+        //        }
+        //     }
+        // });
 
 
         router.get('/mychallenges',async(req,res,next)=>{
@@ -378,36 +378,36 @@ router.post('/login',(req,res)=>{
         //         }
         //   });
         // });
-
-        router.post('/createchallenge',multer(multerConf).single('Example'),(req,res)=>{
-            Register.findOne({'Email' : req.session.username},(err,username)=>{
-                 req.body.Example ='./uploads/'+req.file.filename;
-                 req.body.Student = username.Name;
-                 req.body.Status ="Not Submitted";
-                 req.body.Participated = 'No';
-                 var dt = dateTime.create();
-                 var formatted = dt.format('Y-m-d');
-                 req.body.StartDate = formatted;
-                Challenge.create(req.body,(err,data)=>{
-                     if(data)
-                      {
-                          console.log(data);
-                        res.render('studentdashboard/create-challenge',{
-                             message : 'Created Successfuly',
-                             Student: username
-                         });
-
-                      }
-                      else{
-                        res.render('studentdashboard/create-challenge',{
-                            message : 'Not Created',
-                            Student : username
-                         });
-                      }
-                  })
-             });
-            });
-
+    //
+    //     router.post('/createchallenge',multer(multerConf).single('Example'),(req,res)=>{
+    //         Register.findOne({'Email' : req.session.username},(err,username)=>{
+    //              req.body.Example ='./uploads/'+req.file.filename;
+    //              req.body.Student = username.Name;
+    //              req.body.Status ="Not Submitted";
+    //              req.body.Participated = 'No';
+    //              var dt = dateTime.create();
+    //              var formatted = dt.format('Y-m-d');
+    //              req.body.StartDate = formatted;
+    //             Challenge.create(req.body,(err,data)=>{
+    //                  if(data)
+    //                   {
+    //                       console.log(data);
+    //                     res.render('studentdashboard/create-challenge',{
+    //                          message : 'Created Successfuly',
+    //                          Student: username
+    //                      });
+    //
+    //                   }
+    //                   else{
+    //                     res.render('studentdashboard/create-challenge',{
+    //                         message : 'Not Created',
+    //                         Student : username
+    //                      });
+    //                   }
+    //               })
+    //          });
+    //         });
+    //
            router.get('/submit',(req,res)=>{
             if(!req.session.username){
                 res.redirect('/dashboard');
