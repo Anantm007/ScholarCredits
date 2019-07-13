@@ -64,13 +64,13 @@
 			</div>
             <div class="page-content-wrapper">
                 <div class="page-content text center">
-					<h1 style="text-align: center">Not challenged yourself yet with an Open Badge?</h1>
-					<h2 style="text-align: center">Have A Look At Some challenge</h2>
+					<h1 style="text-align: center">Not Challengesd yourself yet with an Open Badge?</h1>
+					<h2 style="text-align: center">Have A Look At Some Challenges</h2>
 							<br>
-							<a  href="/Sallchallenges"><button class="btn btn-primary">View All challenge</button></a>
+							<a  href="/SallChallengess"><button class="btn btn-primary">View All Challenges</button></a>
 							<br><br>
 					<div class="row">
-							<% Challenge.forEach(function(challenge) { %>
+							<% Challenges.forEach(function(Challenges) { %>
 						<div class="col-md-4">
 
 <!-- Card Light -->
@@ -78,23 +78,23 @@
 
 		<!-- Card image -->
 		<div class="view overlay">
-				<% if(challenge.Category == 'A'){ %>
+				<% if(Challenges.Category == 'A'){ %>
 					<img class="card-img-top" src="categories/marketing.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'B') { %>
+					<% } else if(Challenges.Category == 'B') { %>
 					<img class="card-img-top" src="categories/analytics.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'C') { %>
+					<% } else if(Challenges.Category == 'C') { %>
 					<img class="card-img-top" src="categories/business.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'D') { %>
+					<% } else if(Challenges.Category == 'D') { %>
 					<img class="card-img-top" src="categories/sales.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'E') { %>
+					<% } else if(Challenges.Category == 'E') { %>
 					<img class="card-img-top" src="categories/communication.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'F') { %>
+					<% } else if(Challenges.Category == 'F') { %>
 					<img class="card-img-top" src="categories/web.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'G') { %>
+					<% } else if(Challenges.Category == 'G') { %>
 					<img class="card-img-top" src="categories/web.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'H') { %>
+					<% } else if(Challenges.Category == 'H') { %>
 					<img class="card-img-top" src="categories/business.jpg" height="240" width="230" alt="">
-					<% } else if(challenge.Category == 'I') { %>
+					<% } else if(Challenges.Category == 'I') { %>
 					<img class="card-img-top" src="categories/blockchain.jpg" height="240" width="230" alt="">
 					<% } %>
 
@@ -108,12 +108,12 @@
 	  
 		  <!-- Social shares button -->
 		  <!-- Title -->
-		  <h4 class="card-title"><%= challenge.Name %></h4>
+		  <h4 class="card-title"><%= Challenges.Name %></h4>
 		  <hr>
 		  <!-- Text -->
-		  <p class="card-text"><%= challenge.Description %></p>
+		  <p class="card-text"><%= Challenges.Description %></p>
 		  <!-- Link -->
-		  <a href="/Sdetails/<%= challenge.id %>" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
+		  <a href="/Sdetails/<%= Challenges.id %>" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
 	  
 		</div>
 	  
@@ -123,28 +123,28 @@
 						</div>
 						<% }); %>
 					<div class="col-md-12 text-center">
-			<!-- <% Challenge.forEach(function(challenge) { %>
-				<a href="/details/<%= challenge.id %>">
+			<!-- <% Challenges.forEach(function(Challenges) { %>
+				<a href="/details/<%= Challenges.id %>">
 			<div class="jumbotron" style="border:1px solid black">
 					<div class="row">
 				<div class="col-md-3">
-						<% if(challenge.Category == 'A'){ %>
+						<% if(Challenges.Category == 'A'){ %>
 							<img src="categories/marketing.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'B') { %>
+							<% } else if(Challenges.Category == 'B') { %>
 							<img src="categories/analytics.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'C') { %>
+							<% } else if(Challenges.Category == 'C') { %>
 							<img src="categories/business.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'D') { %>
+							<% } else if(Challenges.Category == 'D') { %>
 							<img src="categories/sales.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'E') { %>
+							<% } else if(Challenges.Category == 'E') { %>
 							<img src="categories/communication.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'F') { %>
+							<% } else if(Challenges.Category == 'F') { %>
 							<img src="categories/web.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'G') { %>
+							<% } else if(Challenges.Category == 'G') { %>
 							<img src="categories/web.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'H') { %>
+							<% } else if(Challenges.Category == 'H') { %>
 							<img src="categories/business.jpg" height="240" width="230" alt="">
-							<% } else if(challenge.Category == 'I') { %>
+							<% } else if(Challenges.Category == 'I') { %>
 							<img src="categories/blockchain.jpg" height="240" width="230" alt="">
 							<% } %>
 
@@ -152,15 +152,15 @@
 			    </div>
 				
 				<div class="col-md-9 text-left">
-					<button style="color:white;margin-top:20px;" type="button" class="btn btn-primary">Open Challenge</button>
-					<h2><%= challenge.Name %></h2>
-					<p style="word-wrap: break-word"><%= challenge.Description %></p>
+					<button style="color:white;margin-top:20px;" type="button" class="btn btn-primary">Open Challenges</button>
+					<h2><%= Challenges.Name %></h2>
+					<p style="word-wrap: break-word"><%= Challenges.Description %></p>
                  </div>
 				</div>
 				</div>
 			</a>
 			<% }); %> -->
-			<a href="/Sallchallenges"><h3>See More</h3></a>
+			<a href="/SallChallengess"><h3>See More</h3></a>
 				</div>
 				
 			</div>

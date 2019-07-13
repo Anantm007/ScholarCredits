@@ -61,15 +61,15 @@
 			<!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content text-center">
-					<h1>Submit A Challenge</h1>
+					<h1>Submit A Challenges</h1>
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
 						<form action="/submitchallenge" method="POST" enctype="multipart/form-data">
 								<div class="form-group">
-										<label for="sel1">Challenge Name:</label>
+										<label for="sel1">Challenges Name:</label>
 										<select class="form-control" name="Name" id="sel1" required>
-                                          <option value="">Select Challenge</option>
+                                          <option value="">Select Challenges</option>
                                           <% Challenges.forEach((challenge)=>{ %>
                                             <option value="<%= challenge.Name %>"><%= challenge.Name %></option>
                                           <% }) %>
