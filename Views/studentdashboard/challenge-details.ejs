@@ -547,39 +547,39 @@ overflow-x: hidden;
                  <div class="col-md-2"></div>
                   <div class="col-md-8 text-center" style="background:white;opacity:0.9;">
                    <br>
-                            <% if(Challenge.Category == 'A'){ %>
+                            <% if(Challenges.Category == 'A'){ %>
                                 <h1>Digital Marketing And Growth Hacking</h1>
-                                <% } else if(Challenge.Category == 'B') { %>
+                                <% } else if(Challenges.Category == 'B') { %>
                                     <h1>Data And Web Analytics</h1>
-                                    <% } else if(Challenge.Category == 'C') { %>
+                                    <% } else if(Challenges.Category == 'C') { %>
                                         <h1>Business Development And Strategy</h1>
-                                        <% } else if(Challenge.Category == 'D') { %>
+                                        <% } else if(Challenges.Category == 'D') { %>
                                             <h1>Operation And Sales</h1>
-                                            <% } else if(Challenge.Category == 'E') { %>
+                                            <% } else if(Challenges.Category == 'E') { %>
                                                 <h1>Content Creation and Communication</h1>
-                                                <% } else if(Challenge.Category == 'F') { %>
+                                                <% } else if(Challenges.Category == 'F') { %>
                                                     <h1>Web And Backend Development</h1>
-                                                    <% } else if(Challenge.Category == 'G') { %>
+                                                    <% } else if(Challenges.Category == 'G') { %>
                                                         <h1>Web And Frontend Development</h1>
-                                                        <% } else if(Challenge.Category == 'H') { %>
+                                                        <% } else if(Challenges.Category == 'H') { %>
                                                             <h1>Design And UX/UI</h1>
-                                                            <% } else if(Challenge.Category == 'I') { %>
+                                                            <% } else if(Challenges.Category == 'I') { %>
                                                                 <h1>Blockchain Marketing</h1>
                                                                 <% } %>
                                                                     <h2>
-                                                                        <%= Challenge.Name %>
+                                                                        <%= Challenges.Name %>
                                                                     </h2>
                                                                     <br>
                                                                     <h4>Work hours estimation:
-                                                                        <%= Challenge.Time %> hours</h4>
+                                                                        <%= Challenges.Time %> hours</h4>
                       
 
                                  <br><br>
                             <label>Help Resources</label>
                             <% if( Extension == '.png' || Extension == '.jpeg' || Extension == '.jpg'){ %>
-                            <div class="challenge-thumbnail" style="border:1px solid black;">
+                            <div class="Challenges-thumbnail" style="border:1px solid black;">
                                 <!-- Trigger the Modal -->
-                                <img id="myImg"  class="img-responsive" src=".<%= Challenge.Example %>" alt="Example">
+                                <img id="myImg"  class="img-responsive" src=".<%= Challenges.Example %>" alt="Example">
 
                                 <!-- The Modal -->
                                 <div id="myModal" class="modal">
@@ -597,16 +597,16 @@ overflow-x: hidden;
                             <% } else{ %>
                                 <br>
                                 <h5>Click to Download Example</h5>
-                                <a href=".<%= Challenge.Example %>" download><button class="btn btn-primary">Download Example</button></a>
+                                <a href=".<%= Challenges.Example %>" download><button class="btn btn-primary">Download Example</button></a>
                              <% } %>
                      
           
                      <br><br>
                 <h3>Badge Skills</h3>
-                <textarea class="form-control" rows="4" readonly><%= Challenge.Skills %></textarea><br><br>
+                <textarea class="form-control" rows="4" readonly><%= Challenges.Skills %></textarea><br><br>
                 <h3> Description</h3>
                 <p>
-                    <%= Challenge.Description %>
+                    <%= Challenges.Description %>
                 </p>
                 <br>
                 <h3>Objectives</h3>
@@ -614,23 +614,23 @@ overflow-x: hidden;
                 <ul>
                     
                     <li>
-                        <%= Challenge.Objective1 %>
+                        <%= Challenges.Objective1 %>
                     </li>
 
                     <li>
-                        <%= Challenge.Objective2 %>
+                        <%= Challenges.Objective2 %>
                     </li>
 
                     <li>
-                        <%= Challenge.Objective3 %>
+                        <%= Challenges.Objective3 %>
                     </li>
 
                     <li>
-                        <%= Challenge.Objective4 %>
+                        <%= Challenges.Objective4 %>
                     </li>
 
                     <li>
-                        <%= Challenge.Objective5 %>
+                        <%= Challenges.Objective5 %>
                     </li>
                 </ul>
             </div>
