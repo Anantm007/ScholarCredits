@@ -83,9 +83,9 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
                    var fullUrl = Url+'/'+'auth/'+req.body.Email+'/'+code;
                 let HelperOptions ={
 
-                    from : config.EmailCredentials.Name,
+                    // from : config.EmailCredentials.Name,
 
-                    //from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
+                    from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
                     to : req.body.Email,
                     subject : "Scholar Credits",
                     text : "Please Authenticate Your Profile By Clicking the link "+fullUrl
