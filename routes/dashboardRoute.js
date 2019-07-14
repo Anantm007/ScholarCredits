@@ -39,7 +39,7 @@ const multerConf = {
 };
 const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({
-    service : 'gmail',
+    service : 'Gmail',
     secure : false,
     port : 25,
     auth : {
