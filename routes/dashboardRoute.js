@@ -314,6 +314,8 @@ router.post('/login',(req,res)=>{
 
                 if(data)
                 {
+                    // console.log(data);
+                    // console.log(challenge);
                   res.render('studentdashboard/challenges',{
                       Student : data,
                       Challenge : challenge
@@ -322,6 +324,28 @@ router.post('/login',(req,res)=>{
           });
         });
     }});
+// ADD FOR TESTING PURPOSE
+    router.get('/allchallenges/:catagery',(req,res)=>{
+        const cat = req.params.catagery
+        // console.log(cat);
+        if(!req.session.username){
+            res.redirect('/dashboard');
+        }else{
+        Register.findOne({'Email' : req.session.username},(err,data)=>{
+            Challenge.find({'Category': cat},  (err,challenge)=>{
+
+            if(data)
+            {
+                // console.log(data);
+                // console.log(challenge);
+              res.render('studentdashboard/challenges',{
+                  Student : data,
+                  Challenge : challenge
+              });
+            }
+      });
+    });
+}});
 
     router.get('/details/:code',(req,res)=>{
         if(!req.session.username){
