@@ -7,7 +7,7 @@ const Challenge = require("../Models/challengemodel");
 
 
 router.get('/',async(req,res)=>{
-   const challenge = await Challenge.find().sort({'_id' : -1}).limit(4);
+   const challenge = await Challenge.find().sort({'_id' : -1}).limit(10);
    if(challenge){
     res.render('landing',{
         Challenge : challenge
