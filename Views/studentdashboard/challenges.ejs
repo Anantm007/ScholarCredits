@@ -72,7 +72,7 @@
 			 <div class="row">
 			   <% Challenge.forEach(function(challenge) { %>
 				<div class="col-md-4">
-
+				<% if(challenge.Type != 'private') { %>
 <!-- Card Light -->
 <div class="card">
 
@@ -111,6 +111,8 @@
   <h4 class="card-title"><%= challenge.Name %></h4>
   <hr>
   <!-- Text -->
+  <p class="card-text"><%= challenge.Type %></p>
+  <br>
   <p class="card-text"><%= challenge.Description %></p>
   <!-- Link -->
   <a href="/details/<%= challenge.id %>" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
@@ -119,7 +121,7 @@
 
 </div>
 <!-- Card Light -->
-		  
+<% } %>
 				</div>
 				<% }); %>      </div>          </div>
                                 </div>

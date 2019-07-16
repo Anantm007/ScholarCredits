@@ -182,6 +182,7 @@ router.post('/Slogin',(req,res)=>{
             }else{
             try{
                 const data= await Startup.findOne({'Email':req.session.username});
+                console.log(data);
                 res.render('startupdashboard/create-challenge',{
                     Student : data
                 });
@@ -225,7 +226,7 @@ router.post('/Slogin',(req,res)=>{
             }else{
                 Startup.findOne({'Email' : req.session.username},(err,data)=>{
                 Challenge.find((err,challenge)=>{
-
+                console.log(challenge);
                 if(data)
                 {
                   res.render('startupdashboard/challenges',{
@@ -236,6 +237,25 @@ router.post('/Slogin',(req,res)=>{
           });
         });
     }});
+    //user for the filtering the challenge catergory wise
+    router.get('/Sallchallenges/:catagery',(req,res)=>{
+        const cat = req.params.catagery
+        if(!req.session.username){
+            res.redirect('/Sdashboard');
+        }else{
+            Startup.findOne({'Email' : req.session.username},(err,data)=>{
+            Challenge.find({'Category': cat},(err,challenge)=>{
+
+            if(data)
+            {
+              res.render('startupdashboard/challenges',{
+                  Student : data,
+                  Challenge : challenge
+              });
+            }
+      });
+    });
+}});
 
     router.get('/Sdetails/:code',(req,res)=>{
         if(!req.session.username){
@@ -263,6 +283,7 @@ router.post('/Slogin',(req,res)=>{
                  req.body.Example ='./uploads/'+req.file.filename;
                  req.body.Student = username.Name;
                  req.body.Status ="Not Submitted";
+                 req.body.Type
                 Challenge.create(req.body,(err,data)=>{
                      if(data)
                       {

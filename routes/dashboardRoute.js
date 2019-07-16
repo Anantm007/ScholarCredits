@@ -312,10 +312,12 @@ router.post('/login',(req,res)=>{
             Register.findOne({'Email' : req.session.username},(err,data)=>{
                 Challenge.find((err,challenge)=>{
 
+                    // console.log(challenge.Name);
                 if(data)
                 {
                     // console.log(data);
                     // console.log(challenge);
+
                   res.render('studentdashboard/challenges',{
                       Student : data,
                       Challenge : challenge
@@ -333,7 +335,7 @@ router.post('/login',(req,res)=>{
         }else{
         Register.findOne({'Email' : req.session.username},(err,data)=>{
             Challenge.find({'Category': cat},  (err,challenge)=>{
-
+            console.log(challenge);
             if(data)
             {
                 // console.log(data);

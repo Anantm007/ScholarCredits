@@ -4,6 +4,7 @@ const schema = mongoose.Schema;
 const challengeSchema = new schema({
     Category : String,
     Subcategory : String,
+    Type:String,
     Name : String,
     Skills:String,
     Time : Number,
