@@ -112,11 +112,13 @@
                                     <img src="<%= student.ProfileImage %>" width="70" height="70" alt="ProfileImage" />
                                 </div>
                                 <div class="content">
-                                    <p><b><%= student.Name %></b> <br>
+									<a href="/Sidcard/<%= student.id %>">
+                                    <p><b><%= student.Name %></b> <br></a>
 									   <%= student.Email %><br>
 									   <%= student.Phone %><br>
 									   POI: <b style="color:black"><%= student.POI %></b>
 									</p>
+									
                                 </div>
                             </div>
                         </div>
