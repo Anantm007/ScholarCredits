@@ -534,11 +534,11 @@ router.post('/participate',async(req,res)=>{
                           if(user == null){
                           Startup.findOne({'Name': Name.Student},(err,user)=>{
 
-
+                                console.log(user);
                           Submission.findOne({'Name' : req.body.Name,'Username':username.Name},(err,sub)=>{
                               console.log(sub);
                         let HelperOptions ={
-                            from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
+                            from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
                             to : user.Email,
                             subject : "Edumonk Challenge",
                             text : sub.Username+" has completed your challenge"
@@ -849,7 +849,7 @@ router.get('/authenticate/:code/:user',(req,res)=>{
                 Submission.findOne({'UserEmail':req.params.user},(err,submission)=>{
                            Register.findOne({'Name': submission.Username},(err,student)=>{
                         var Credit = student.Credit;
-                        var ChallengeReward = challenge.Reward;
+                        var ChallengeReward = (challenge.Reward)/2;
                         var Credit = Credit + ChallengeReward;
                         Register.update({'Name': submission.Username},{'Credit':Credit},(err,result)=>{
                             if(err) throw err;
@@ -889,13 +889,13 @@ router.post('/rating/:code/:user',async(req,res)=>{
                 Submission.findOne({'UserEmail':req.params.user},(err,submission)=>{
                            Register.findOne({'Name': submission.Username},(err,student)=>{
                         var POI = parseInt(student.POI);
-                        var ChallengePOI = parseInt(req.body.rating);
+                        var ChallengePOI = (parseInt(req.body.rating))/2;
                         console.log(ChallengePOI);
                         var POI = POI + ChallengePOI;
                         Register.update({'Name': submission.Username},{'POI':POI},(err,result)=>{
                             if(err) throw err;
                             else{
-                                Submission.update({'UserEmail':req.params.user},{'isPOI':'Yes','POI':req.body.rating},(err,done)=>{
+                                Submission.update({'UserEmail':req.params.user},{'isPOI':'Yes','POI':ChallengePOI},(err,done)=>{
                                     if(err) throw err;
                                     else{
                                         console.log(done);

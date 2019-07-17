@@ -637,7 +637,7 @@ router.get('/Sparticipants/:code',(req,res)=>{
 }});
 
 
-router.get('/Ssolution/:code',(req,res)=>{
+router.get('/Ssubmittedchallenge/:code',(req,res)=>{
     if(!req.session.username){
         res.redirect('/Sdashboard');
     }else{
@@ -650,10 +650,17 @@ router.get('/Ssolution/:code',(req,res)=>{
             // for(i=0;i<=submission.length;i++){
                 submission.forEach(function(sub){
                     Register.findOne({'Name':sub.Username},(err,POI)=>{
+                        console.log("data is below");
+                        console.log(data);
+                        console.log("submission is below");
+                        console.log(submission);
+                        console.log("poi is below");
+                        console.log(POI);
                 if (err) throw err;
             else{
-                console.log(POI);
-            res.render('startupdashboard/solutions',{
+                // console.log(POI);
+                console.log("here is the data");
+            res.status(200).render('startupdashboard/solutions',{
               Student : data,
               Solutions : submission,
               POI : POI
