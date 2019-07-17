@@ -825,7 +825,7 @@ router.get('/Sidcard/:id',async(req,res,next)=>{
         const data = await Startup.findOne({'Email':req.session.username});
         // console.log(data);
         if(data){
-            const student = await Register.find({'_id':Id});
+            const student = await Register.findOne({'_id':Id});
             console.log(student);
             console.log(student.Name);
             if(student){
@@ -842,7 +842,7 @@ router.get('/Sidcard/:id',async(req,res,next)=>{
                     try{
                     const challenge = await Submission.find({'Username':student.Name});
                     console.log(challenge,interest,skill,education,project,objective);
-                    res.render('startupdashboard/idcard',{
+                    res.render('startupdashboard/eachStudent',{
                         Student : student,
                         Objective : objective,
                         Project : project,
