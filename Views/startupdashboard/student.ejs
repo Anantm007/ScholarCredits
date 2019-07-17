@@ -109,10 +109,10 @@
                             <div class="card">
                                 <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
                                 <div class="avatar">
-                                    <img src="<% if(student.ProfileImage){ %> <%= student.ProfileImage %> <% } else { %>  https://media.geeksforgeeks.org/auth/avatar.png <% } %>" width="70" height="70" alt="ProfileImage" />
+                                    <img src="/<%= student.ProfileImage %>" width="70" height="70" alt="ProfileImage" />
                                 </div>
                                 <div class="content" style="margin-top:15px">
-									<a href="/Sidcard/<%= student._id %>">
+									<a href="/Sidcard/<%= student._id %>" target="_blank">
                                     <p><b><%= student.Name %></b> <br></a>
 									   <%= student.Email %><br>
 									   <%= student.Phone %>
