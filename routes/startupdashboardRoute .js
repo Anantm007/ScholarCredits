@@ -825,7 +825,7 @@ router.get('/Sidcard/:id',async(req,res,next)=>{
         const data = await Startup.findOne({'Email':req.session.username});
         // console.log(data);
         if(data){
-            const student = await Register.find({'_id':Id});
+            const student = await Register.findOne({'_id':Id});
             console.log(student);
             console.log(student.Name);
             if(student){
