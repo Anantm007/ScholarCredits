@@ -368,6 +368,24 @@ router.post('/login',(req,res)=>{
       });
     });
 }});
+router.get('/viewchallenge/:code',(req,res)=>{
+    // if(!req.session.username){
+    //     res.redirect('/dashboard');
+    // }else{
+    // Register.findOne({'Email' : req.session.username},(err,data)=>{
+        Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
+        
+            var example = challenge.Example;
+            var extension = path.extname(example);
+          res.render('studentdashboard/view-challenge-details',{
+            //   Student : data,
+              Challenge : challenge,
+              Extension : extension
+          });
+        
+  });
+});
+// });
 
 
 
