@@ -300,13 +300,13 @@ router.get('/Startupcredits',(req,res)=>{
                  console.log(username.Credits);
                  username.Credits -= req.body.Reward;
 
-                 if(req.body.Reward > username.Credits)
-                 {
-                   res.send("Sorry insufficient credits");
-                 }
+//                  if(req.body.Reward > username.Credits)
+//                  {
+//                    res.send("Sorry insufficient credits");
+//                  }
 
-                 else
-                 {
+//                  else
+//                  {
                    console.log(req.body.Reward);
                    console.log(username.Credits);
                    Startup.findOneAndUpdate({'Email': req.session.username}, {'Credits': username.Credits}, (err)=> {
@@ -334,7 +334,7 @@ router.get('/Startupcredits',(req,res)=>{
                            });
                         }
                     })
-                 }
+              //   }
 
              });
 
