@@ -291,7 +291,7 @@ router.get('/Startupcredits',(req,res)=>{
 }});
 
 
-        router.post('/Screatechallenge',multer(multerConf).single('Example'),(req,res)=>{
+       router.post('/Screatechallenge',multer(multerConf).single('Example'),(req,res)=>{
             Startup.findOne({'Email' : req.session.username},(err,username)=>{
                  req.body.Example ='./uploads/'+req.file.filename;
                  req.body.Student = username.Name;
@@ -299,27 +299,45 @@ router.get('/Startupcredits',(req,res)=>{
                  req.body.Type
                  console.log(username.Credits);
                  username.Credits -= req.body.Reward;
-                 console.log(req.body.Reward);
-                 console.log(username.Credits);
-                 username.save((err) => console.log(err));
-                Challenge.create(req.body,(err,data)=>{
-                     if(data)
-                      {
-                          console.log(data);
-                        res.render('startupdashboard/create-challenge',{
-                             message : 'Created Successfuly',
-                             Student: username
-                         });
 
-                      }
-                      else{
-                        res.render('startupdashboard/create-challenge',{
-                            message : 'Not Created',
-                            Student : username
-                         });
-                      }
-                  })
+                 if(req.body.Reward > username.Credits)
+                 {
+                   res.send("Sorry insufficient credits");
+                 }
+
+                 else
+                 {
+                   console.log(req.body.Reward);
+                   console.log(username.Credits);
+                   Startup.findOneAndUpdate({'Email': req.session.username}, {'Credits': username.Credits}, (err)=> {
+                     if(err)
+                     console.log(err);
+
+                     else
+                     console.log("Credits now available " + username.Credits);
+                   });
+
+                  Challenge.create(req.body,(err,data)=>{
+                       if(data)
+                        {
+                            console.log(data);
+                          res.render('startupdashboard/create-challenge',{
+                               message : 'Created Successfuly',
+                               Student: username
+                           });
+
+                        }
+                        else{
+                          res.render('startupdashboard/create-challenge',{
+                              message : 'Not Created',
+                              Student : username
+                           });
+                        }
+                    })
+                 }
+
              });
+
             });
 
            router.get('/Ssubmit',(req,res)=>{
