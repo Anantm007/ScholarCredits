@@ -256,7 +256,20 @@ router.post('/Slogin',(req,res)=>{
       });
     });
 }});
-
+// this route for the startup credits
+router.get('/Startupcredits',(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }else{
+        Startup.findOne({'Email' : req.session.username},(err,data)=>{
+        if(data)
+        {
+          res.render('startupdashboard/rewardcredits',{
+            Student : data,
+          });
+        }
+  });
+}});
     router.get('/Sdetails/:code',(req,res)=>{
         if(!req.session.username){
             res.redirect('/Sdashboard');
@@ -288,6 +301,7 @@ router.post('/Slogin',(req,res)=>{
                  username.Credits -= req.body.Reward;
                  console.log(req.body.Reward);
                  console.log(username.Credits);
+                 username.save((err) => console.log(err));
                 Challenge.create(req.body,(err,data)=>{
                      if(data)
                       {
