@@ -19,7 +19,11 @@ const challengeSchema = new schema({
     Objective5 : String,
     Status : String,
     Participated : String,
-    StartDate : String
+    StartDate : String,
+    NumberOfSubmissions: {
+      type: Number,
+      default: 0
+    }
 
 });
 
