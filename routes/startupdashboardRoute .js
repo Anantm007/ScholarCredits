@@ -284,6 +284,10 @@ router.post('/Slogin',(req,res)=>{
                  req.body.Student = username.Name;
                  req.body.Status ="Not Submitted";
                  req.body.Type
+                 console.log(username.Credits);
+                 username.Credits -= req.body.Reward;
+                 console.log(req.body.Reward);
+                 console.log(username.Credits);
                 Challenge.create(req.body,(err,data)=>{
                      if(data)
                       {

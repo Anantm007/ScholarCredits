@@ -6,6 +6,7 @@ const startupSchema = new schema({
     ProfileImage : String,
     Email : { type : String , unique : true },
     Password : String,
+    Credits: { type: Number, default: 100 },
     CPassword : String,
     Phone : Number,
     Address : String,

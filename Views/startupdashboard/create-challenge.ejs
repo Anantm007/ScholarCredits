@@ -65,7 +65,24 @@
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">
+						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">									  
+						<div class="card row s6">
+							<h5>Challenge Type:</h5>
+							<div class="row">
+								<p>
+									<label>
+							        	<input name="Type" type="radio" value="public" checked />
+							        	<span>Public</span>
+									</label>
+								</p>
+								<p>
+									<label>
+								   	 	<input name="Type" type="radio" value="private"/>
+								    	<span>Private</span>
+									</label>
+								</p>
+							</div>
+						</div>
 								<!-- <div class="form-group">
 										<label for="sel1">Categories:</label>
 										<select class="form-control" name="Category" id="sel1" required>
@@ -112,7 +129,7 @@
 										</select>
 											</div>
 									</div>
-									<div class="input-field s6">
+									<!-- <div class="input-field s6">
 										<label >Challenge Type:</label>
 										<br>
 										<div class="input-field">
@@ -122,11 +139,8 @@
 											<option value="private">Private</option>
 										</select>
 										</div>
-									</div>	
-									  <!-- <div class="form-group">
-											<label >Challenge Name:</label>
-											<input type="text" name="Name" class="form-control" required >
-										</div> -->
+									</div>	 -->
+									  
 										<div class="input-field col s6">
 											<input  id="first_name" type="text" name="Name" class="validate" required>
 											<label for="first_name">Challenge Name:</label>
@@ -137,33 +151,19 @@
 											  <label for="textarea1">Skills Required:</label>
 											</div>
 										</div>
-										<!-- <div class="form-group">
-											<label >Skills Required:</label>
-											<textarea name="Skills" class="form-control" required ></textarea>
-										</div> -->
+										
 										<div class="input-field col s6">
 											<input  id="estimated_time" type="number" name="Time" class="validate" required>
 											<label for="estimated_time">Estimated Time:</label>
 											<small>In Hours</small>
 										</div>
-										<!-- <div class="form-group">
-												<label >Estimated Time:</label>
-												<input type="number" name="Time" class="form-control" required>
-												<small>In Hours</small>
-										</div> -->
+										
 										<div class="input-field col s6">
 											<input  id="reward" type="number" name="Reward" class="validate" required>
 											<label for="reward">Reward Credits:</label>
 											
 										</div>
-										<!-- <div class="form-group">
-												<label>Reward Credits:</label>
-												<input type="number" name="Reward" class="form-control" required>
-										</div> -->
-										<!-- <div class="form-group">
-												<label >Solution Template:</label>
-												<input type="file" name="Example" class="form-control" required>
-										</div> -->
+										
 										<div class="file-field input-field">
 											<div class="btn">
 											  <span>Solution Template:</span>
@@ -179,30 +179,6 @@
 											  <label for="textarea2">Description:</label>
 											</div>
 										</div>
-										<!-- <div class="form-group">
-											<label>Description:</label>
-											<textarea class="form-control" name="Description"></textarea required>
-										</div> -->
-										<!-- <div class="form-group">
-											<label>Objective1:</label>
-												<input type="text" class="form-control" name="Objective1" required>
-										</div>
-										<div class="form-group">
-												<label>Objective2:</label>
-													<input type="text" class="form-control" name="Objective2" required>
-											</div>
-											<div class="form-group">
-													<label>Objective3:</label>
-														<input type="text" class="form-control" name="Objective3" required>
-												</div>
-												<div class="form-group">
-														<label>Objective4:</label>
-															<input type="text" class="form-control" name="Objective4" required>
-													</div>
-													<div class="form-group">
-															<label>Objective5:</label>
-																<input type="text" class="form-control" name="Objective5" required>
-														</div> -->
 
 										<div class="input-field col s6">
 											<input  id="objective1" type="text" name="Objective1" class="validate" required>
