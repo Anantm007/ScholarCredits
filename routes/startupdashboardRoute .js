@@ -300,13 +300,20 @@ router.get('/Startupcredits',(req,res)=>{
                  console.log(username.Credits);
                  username.Credits -= req.body.Reward;
 
-//                  if(req.body.Reward > username.Credits)
-//                  {
-//                    res.send("Sorry insufficient credits");
-//                  }
+                 if(req.body.Reward > username.Credits)
+                 {
+                   Startup.findOne({'Email' : req.session.username},(err,data)=>{
+                   if(data)
+                   {
+                     res.render('startupdashboard/insufficient_credits',{
+                         Student : data
+                     });
+                   }
+             });
+                 }
 
-//                  else
-//                  {
+                 else
+                 {
                    console.log(req.body.Reward);
                    console.log(username.Credits);
                    Startup.findOneAndUpdate({'Email': req.session.username}, {'Credits': username.Credits}, (err)=> {
@@ -334,9 +341,10 @@ router.get('/Startupcredits',(req,res)=>{
                            });
                         }
                     })
-              //   }
+                  }
 
              });
+
 
             });
 
@@ -859,7 +867,7 @@ router.get('/Sidcard',async(req,res,next)=>{
 
 });
 
-// student indiviuals information 
+// student indiviuals information
 router.get('/Sidcard/:id',async(req,res,next)=>{
     console.log("hello");
     const Id = req.params.id;
