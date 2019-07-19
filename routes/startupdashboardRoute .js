@@ -15,6 +15,7 @@ const Participate = require("../Models/participatemodel");
 const config = require('../config/keys.env');
 const randomstring = require("randomstring");
 const path = require('path');
+const PDFDocument = require('pdfkit');
 var fs = require('fs');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
@@ -256,6 +257,170 @@ router.post('/Slogin',(req,res)=>{
       });
     });
 }});
+//this route is for conformation mail to the student
+router.get('/conformation/:id',(req,res)=>{
+    const Id = req.params.id;
+    // const days= res.body.days;
+    // const position = res.body.position;
+    const days= 16;
+    const position = 'HR';
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }else{
+        Startup.findOne({'Email' : req.session.username},(err,data)=>{
+        if(data)
+        {
+            Register.findOne({'_id':Id},(err,student) => {
+                const invoiceName = student._id+'.pdf';
+                const invoicePath = path.join('public', 'pdf', invoiceName);
+          
+                const pdfDoc = new PDFDocument();
+                res.setHeader('Content-Type', 'application/pdf');
+                res.setHeader(
+                  'Content-Disposition',
+                  'inline; filename="' + invoiceName + '"'
+                );
+                pdfDoc.pipe(fs.createWriteStream(invoicePath));
+                
+          
+                pdfDoc.fillColor('red').fontSize(40).text('EDUMONK FOUNDATION', {
+                    align: 'right'
+                });
+
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('red').fontSize(30).text('TALK TO LEARN', {
+                    align: 'right',
+                    characterSpacing:"10"
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('red').fontSize(30).text({
+                    underline:'true'
+                    
+                });
+                pdfDoc.fillColor('black').fontSize(14).text('Regdunderthecompaniesact,2013', {
+                    align: 'left'
+                });
+                pdfDoc.fillColor('black').fontSize(14).text('U80904UP2017NPL098780', {
+                    align: 'left'
+                });
+                // use mometm here for define the current date
+                pdfDoc.fillColor('red').fontSize(14).text('Date-', {
+                    align: 'right'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+
+                pdfDoc.fillColor('black').fontSize(30).text('Internship',{
+                    underline:'true',
+                    align:'center'
+                });
+                pdfDoc.fillColor('black').fontSize(25).text('Experience Letter',{
+                    underline:'true',
+                    align:'center'
+                });
+
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("This letter is to certify that" +student.Name +"has worked at Edumonk Foundation in HR & Marketing",{
+                    align:'center'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("Department for "+ days +"days. During his tenure at Edumonk, she was responsible to handle client visits",{
+                    align:'center'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("and database management of the candidates who applied at Edumonk. She is quite attentive at",{
+                    align:'center'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("her work and does all the task allotted to her accurately and timely.",{
+                    align:'center'
+                });
+
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("I would be obliged to recommend him at any organization related to this work role assuring the",{
+                    align:'center'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("former employer that he can be a very good asset for the organization.",{
+                    align:'center'
+                });
+
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("Best Wishes",{
+                    align:'left'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(20).text("Manish Patel",{
+                    align:'left'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(20).text("Founder & CEO",{
+                    align:'left'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(20).text("Edumonk Foundation",{
+                    align:'left'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("support@edumonk.org",{
+                    align:'left',
+                    link:'support@edumonk.org'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("www.edumonk.org",{
+                    align:'left',
+                    link:'www.edumonk.org'
+                });
+    
+                pdfDoc.fillColor('#868e96').fontSize(14).text("Director",{
+                    align:'left'
+                });
+
+
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('red').fontSize(14).text("E-41, First Floor, Panchsheel Park, South Delhi, N.D-110017",{
+                    align:'center'
+                });
+                pdfDoc.moveDown();
+                pdfDoc.fillColor('#868e96').fontSize(14).text("www.edumonk.org",{
+                    align:'left',
+                    link:'www.edumonk.org'
+                });
+                let HelperOptions ={
+                    from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
+     
+                     //from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
+                     to : student.Email,
+                      subject : "selection of student",
+                      text : "This is the Letter from " +data.Name+ "startup for your selction to cetain position ",
+                      attachments: [{
+                        filename: invoiceName,
+                        path: path.join('public', 'pdf', invoiceName),
+                        contentType: 'application/pdf'
+                      }]
+                  }
+     
+                  transporter.sendMail(HelperOptions,(err,info)=>{
+                      if(err) throw err;
+                      console.log("The message was sent");
+                  });
+                
+                  pdfDoc.pipe(res);
+                pdfDoc.end();
+    
+            });
+        }
+  });
+}});
+
+
 // this route for the startup credits
 router.get('/Startupcredits',(req,res)=>{
     if(!req.session.username){
@@ -1269,6 +1434,5 @@ router.get('/students',async(req,res)=>{
    }
 }
 });
-
 
 module.exports = router;

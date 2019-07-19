@@ -1009,60 +1009,77 @@ router.get('/idcard/download',async(req,res,next)=>{
             pdfDoc.pipe(fs.createWriteStream(invoicePath));
             pdfDoc.pipe(res);
       
-            pdfDoc.fontSize(26).text('Idcard', {
-              underline: true
+            pdfDoc.fontSize(40).text('Idcard', {
+                align: 'center'
             });
 
-            
+            pdfDoc.fillColor('#c55f38').fontSize(30).text(data.Name);
+            pdfDoc.fillColor('#868e96').fontSize(14).text(data.Phone);
+            pdfDoc.fillColor('#c55f38').fontSize(14).text(data.Email);
 
-            pdfDoc.text('-----------------------');
-          //   let totalPrice = 0;
-          //   order.products.forEach(prod => {
-          //     totalPrice += prod.quantity * prod.product.price;
-            pdfDoc.fontSize(14).text(data.Name);
-            pdfDoc.fontSize(14).text(data.Phone);
-            pdfDoc.fontSize(14).text(data.Email);
-          //   });
-            pdfDoc.text('---');
-            interest.forEach(interests => {
-                pdfDoc.fontSize(14).text(interests.Interest);
-            });
-            pdfDoc.text('---');
             objective.forEach(objectives => {
                 pdfDoc.fontSize(14).text(objectives.Objective);
             });
-            pdfDoc.text('---');
-            project.forEach(projects => {
-                pdfDoc.fontSize(14).text("Project Title: " + projects.ProjectTitle);
-                pdfDoc.fontSize(14).text("Project Description: " +projects.ProjectDescription);
+
+
+
+          pdfDoc.fillColor('#212529').fontSize(30).text('Projects');
+
+          project.forEach(projects => {
+            pdfDoc.fillColor('#212529').fontSize(21).text( projects.ProjectTitle);
+
+            pdfDoc.fillColor('#868e96').fontSize(14).text(projects.ProjectDescription);
+        });
+
+           pdfDoc.fillColor('#212529').fontSize(30).text('Education');
+           education.forEach(educations => {
+            pdfDoc.fillColor('#212529').fontSize(14).text(educations.Instname);
+            pdfDoc.fillColor('#868e96').fontSize(14).text(educations.Duration);
+            pdfDoc.fillColor('#868e96').fontSize(14).text(educations.Marks);
+            
+        });
+        pdfDoc.fillColor('#212529').fontSize(30).text('SKILLS');
+        pdfDoc.fillColor('#212529').fontSize(20).text('PROGRAMMING LANGUAGES & TOOLS');
+        
+        skill.forEach(skills => {
+            if(skills.SelectLevel == 'Basic'){
+            pdfDoc.fillColor('#868e96').fontSize(14).text(skills.SkillTitle + '=>' + skills.SelectLevel);
+            }
+            if(skills.SelectLevel == 'Intermediate'){
+                pdfDoc.fillColor('#868e96').fontSize(14).text(skills.SkillTitle + '=>' + skills.SelectLevel);
+            }
+            if(skills.SelectLevel == 'Advance'){
+                pdfDoc.fillColor('#868e96').fontSize(14).text(skills.SkillTitle + '=>' + skills.SelectLevel);
+            }
+
+        });
+
+        pdfDoc.fillColor('#212529').fontSize(30).text("CREDITS EARNED BY " + data.Name);
+
+        pdfDoc.fillColor('#868e96').fontSize(20).text(data.Credits);
+
+        pdfDoc.fillColor('#868e96').fontSize(20).text("Credits");
+
+
+        pdfDoc.fillColor('#212529').fontSize(30).text("INTERESTS");
+            interest.forEach(interests => {
+                pdfDoc.fillColor('#868e96').fontSize(14).text(interests.Interest);
             });
 
-            education.forEach(educations => {
-                pdfDoc.fontSize(14).text(educations.Instname);
-                pdfDoc.fontSize(14).text(educations.Marks);
-                pdfDoc.fontSize(14).text(educations.Duration);
-            });
+
+            pdfDoc.fillColor('#212529').fontSize(30).text("CHALLENGES");
             
-            skill.forEach(skills => {
-                if(skills.SelectLevel == 'Basic'){
-                pdfDoc.fontSize(14).text(skills.SelectLevel);
-                }
-                if(skills.SelectLevel == 'Intermediate'){
-                    pdfDoc.fontSize(14).text(skills.SelectLevel);
-                }
-                if(skills.SelectLevel == 'Advance'){
-                    pdfDoc.fontSize(14).text(skills.SelectLevel);
-                }
-            });
-            
-            pdfDoc.fontSize(14).text(data.Name);
-            pdfDoc.fontSize(14).text(data.Creditrs);
 
             challenge.forEach(challenges => {
-                pdfDoc.fontSize(14).text(challenges.Name);
-                pdfDoc.fontSize(14).text(challenges.POI);
-                pdfDoc.fontSize(14).text(challenges.Description );
+                pdfDoc.fillColor('#212529').fontSize(20).text("CHALLENGES CARD");
+
+                pdfDoc.fillColor('#868e96').fontSize(17).text("NAME: "+ challenges.Name);
+
+                pdfDoc.fillColor('#868e96').fontSize(14).text("POI: "+ challenges.POI);
+
+                pdfDoc.fillColor('#868e96').fontSize(14).text( challenges.Description );
             });
+
             pdfDoc.end();
     
         }catch(e){
