@@ -19,11 +19,13 @@ const dateTime = require('node-datetime');
 const config = require('../config/keys.env');
 const randomstring = require("randomstring");
 const path = require('path');
+const PDFDocument = require('pdfkit');
 var fs = require('fs');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 var phantom = require('phantom');
-var pdf = require('dynamic-html-pdf');
+
+// var pdf = require('dynamic-html-pdf');
 
 
 const multer = require("multer");
@@ -368,6 +370,24 @@ router.post('/login',(req,res)=>{
       });
     });
 }});
+router.get('/viewchallenge/:code',(req,res)=>{
+    // if(!req.session.username){
+    //     res.redirect('/dashboard');
+    // }else{
+    // Register.findOne({'Email' : req.session.username},(err,data)=>{
+        Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
+        
+            var example = challenge.Example;
+            var extension = path.extname(example);
+          res.render('studentdashboard/view-challenge-details',{
+            //   Student : data,
+              Challenge : challenge,
+              Extension : extension
+          });
+        
+  });
+});
+// });
 
 
 
@@ -534,11 +554,11 @@ router.post('/participate',async(req,res)=>{
                           if(user == null){
                           Startup.findOne({'Name': Name.Student},(err,user)=>{
 
-
+                                console.log(user);
                           Submission.findOne({'Name' : req.body.Name,'Username':username.Name},(err,sub)=>{
                               console.log(sub);
                         let HelperOptions ={
-                            from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
+                            from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
                             to : user.Email,
                             subject : "Edumonk Challenge",
                             text : sub.Username+" has completed your challenge"
@@ -849,7 +869,7 @@ router.get('/authenticate/:code/:user',(req,res)=>{
                 Submission.findOne({'UserEmail':req.params.user},(err,submission)=>{
                            Register.findOne({'Name': submission.Username},(err,student)=>{
                         var Credit = student.Credit;
-                        var ChallengeReward = challenge.Reward;
+                        var ChallengeReward = (challenge.Reward)/2;
                         var Credit = Credit + ChallengeReward;
                         Register.update({'Name': submission.Username},{'Credit':Credit},(err,result)=>{
                             if(err) throw err;
@@ -889,13 +909,13 @@ router.post('/rating/:code/:user',async(req,res)=>{
                 Submission.findOne({'UserEmail':req.params.user},(err,submission)=>{
                            Register.findOne({'Name': submission.Username},(err,student)=>{
                         var POI = parseInt(student.POI);
-                        var ChallengePOI = parseInt(req.body.rating);
+                        var ChallengePOI = (parseInt(req.body.rating))/2;
                         console.log(ChallengePOI);
                         var POI = POI + ChallengePOI;
                         Register.update({'Name': submission.Username},{'POI':POI},(err,result)=>{
                             if(err) throw err;
                             else{
-                                Submission.update({'UserEmail':req.params.user},{'isPOI':'Yes','POI':req.body.rating},(err,done)=>{
+                                Submission.update({'UserEmail':req.params.user},{'isPOI':'Yes','POI':ChallengePOI},(err,done)=>{
                                     if(err) throw err;
                                     else{
                                         console.log(done);
@@ -932,8 +952,7 @@ router.get('/idcardform',async(req,res,next)=>{
     }
 
 });
-
-router.get('/idcard',async(req,res,next)=>{
+router.get('/idcard/download',async(req,res,next)=>{
     try{
         const data = await Register.findOne({'Email':req.session.username});
         if(data){
@@ -949,15 +968,103 @@ router.get('/idcard',async(req,res,next)=>{
             const interest = await Interest.find({'Student':data.Name});
             try{
             const challenge = await Submission.find({'Username':data.Name});
-            res.render('studentdashboard/idcard',{
-                Student : data,
-                Objective : objective,
-                Project : project,
-                Education : education,
-                Skill : skill,
-                Interest : interest,
-                Challenge : challenge
+            // var html = ejs.renderFile('../Views/studentdashboard/idcard.ejs',
+            //     {
+                     
+            //     Student : data,
+            //     Objective : objective,
+            //     Project : project,
+            //     Education : education,
+            //     Skill : skill,
+            //     Interest : interest,
+            //     Challenge : challenge,
+            //      function(err, result) {
+            //     // render on success
+            //     if (result) {
+            //        html = result;
+            //     }
+            //     // render or error
+            //     else {
+            //        res.end('An error occurred');
+            //        console.log(err);
+            //     }
+            // }});
+            // var options = { filename: 'idcard.pdf', format: 'A4', orientation: 'portrait', directory: './phantomScripts/',type: "pdf" };
+
+            // pdf.create(html, options).toFile(function(err, res) {
+            //     if (err) return console.log(err);
+            //         console.log(res);
+            //     });
+            
+            console.log(data.Name);
+            const invoiceName = 'idcard.pdf';
+            const invoicePath = path.join('public', 'pdf', invoiceName);
+      
+            const pdfDoc = new PDFDocument();
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader(
+              'Content-Disposition',
+              'inline; filename="' + invoiceName + '"'
+            );
+            pdfDoc.pipe(fs.createWriteStream(invoicePath));
+            pdfDoc.pipe(res);
+      
+            pdfDoc.fontSize(26).text('Idcard', {
+              underline: true
             });
+
+            
+
+            pdfDoc.text('-----------------------');
+          //   let totalPrice = 0;
+          //   order.products.forEach(prod => {
+          //     totalPrice += prod.quantity * prod.product.price;
+            pdfDoc.fontSize(14).text(data.Name);
+            pdfDoc.fontSize(14).text(data.Phone);
+            pdfDoc.fontSize(14).text(data.Email);
+          //   });
+            pdfDoc.text('---');
+            interest.forEach(interests => {
+                pdfDoc.fontSize(14).text(interests.Interest);
+            });
+            pdfDoc.text('---');
+            objective.forEach(objectives => {
+                pdfDoc.fontSize(14).text(objectives.Objective);
+            });
+            pdfDoc.text('---');
+            project.forEach(projects => {
+                pdfDoc.fontSize(14).text("Project Title: " + projects.ProjectTitle);
+                pdfDoc.fontSize(14).text("Project Description: " +projects.ProjectDescription);
+            });
+
+            education.forEach(educations => {
+                pdfDoc.fontSize(14).text(educations.Instname);
+                pdfDoc.fontSize(14).text(educations.Marks);
+                pdfDoc.fontSize(14).text(educations.Duration);
+            });
+            
+            skill.forEach(skills => {
+                if(skills.SelectLevel == 'Basic'){
+                pdfDoc.fontSize(14).text(skills.SelectLevel);
+                }
+                if(skills.SelectLevel == 'Intermediate'){
+                    pdfDoc.fontSize(14).text(skills.SelectLevel);
+                }
+                if(skills.SelectLevel == 'Advance'){
+                    pdfDoc.fontSize(14).text(skills.SelectLevel);
+                }
+            });
+            
+            pdfDoc.fontSize(14).text(data.Name);
+            pdfDoc.fontSize(14).text(data.Creditrs);
+
+            challenge.forEach(challenges => {
+                pdfDoc.fontSize(14).text(challenges.Name);
+                pdfDoc.fontSize(14).text(challenges.POI);
+                pdfDoc.fontSize(14).text(challenges.Description );
+            });
+            pdfDoc.end();
+    
         }catch(e){
             next(e);
         }
@@ -982,6 +1089,60 @@ router.get('/idcard',async(req,res,next)=>{
     }
 
 });
+router.get('/idcard',async(req,res,next)=>{
+    try{
+        const data = await Register.findOne({'Email':req.session.username});
+        if(data){
+            try{
+            const objective = await Objective.find({'Student':data.Name});
+            try{
+            const project = await Project.find({'Student':data.Name});
+            try{
+            const education = await Education.find({'Student':data.Name});
+            try{
+            const skill = await Skill.find({'Student':data.Name});
+            try{
+            const interest = await Interest.find({'Student':data.Name});
+            try{
+            const challenge = await Submission.find({'Username':data.Name});
+            
+            
+            res.render('studentdashboard/idcard',{
+                Student : data,
+                Objective : objective,
+                Project : project,
+                Education : education,
+                Skill : skill,
+                Interest : interest,
+                Challenge : challenge
+            });
+    
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }
+    }catch(e){
+       next(e);
+    }
+
+});
+
+
 
 router.post('/addproject',async(req,res,next)=>{
     try{

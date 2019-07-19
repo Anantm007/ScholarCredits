@@ -65,7 +65,24 @@
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">
+						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">									  
+						<div class="card row s6">
+							<h5>Challenge Type:</h5>
+							<div class="row">
+								<p>
+									<label>
+							        	<input name="Type" type="radio" value="public" checked />
+							        	<span>Public</span>
+									</label>
+								</p>
+								<p>
+									<label>
+								   	 	<input name="Type" type="radio" value="private"/>
+								    	<span>Private</span>
+									</label>
+								</p>
+							</div>
+						</div>
 								<!-- <div class="form-group">
 										<label for="sel1">Categories:</label>
 										<select class="form-control" name="Category" id="sel1" required>
@@ -83,8 +100,11 @@
 										  <option value="Scholarship Challenges">Scholarship Challenges</option>
 										</select>
 									  </div> -->
-									  <div class="form-group">
+									  <div class="input-field s6">
+										  <div class="input-field">
 										<label >Challenge Category:</label>
+										<br>
+										<br>
 										<select class="form-control" name="Category" id="meal" onChange="changecat(this.value);">
 											<option value="" disabled selected>Select</option>
 											<option value="A">Digital Marketing And Growth Hacking</option>
@@ -97,66 +117,89 @@
 											<option value="H">Design And UX/UI</option>
 											<!-- <option value="I">Blockchain Marketing</option> -->
 										</select>
+										  </div>
 										</div>
-										<div class="form-group">
+										<div class="input-field s6">
+											<div class="input-field">
 												<label >Challenge SubCategory:</label>
+												<br>
+												<br>
 										<select class="form-control" name="Subcategory" id="category">
 											<option value="" disabled selected>Select</option>
 										</select>
+											</div>
 									</div>
-									<div class="form-group">
+									<!-- <div class="input-field s6">
 										<label >Challenge Type:</label>
+										<br>
+										<div class="input-field">
 										<select class="form-control" name="Type" id="meal">
 											<option value="" disabled selected>Select</option>
 											<option value="public">Public</option>
 											<option value="private">Private</option>
 										</select>
 										</div>
-									  <div class="form-group">
-											<label >Challenge Name:</label>
-											<input type="text" name="Name" class="form-control" required >
+									</div>	 -->
+									  
+										<div class="input-field col s6">
+											<input  id="first_name" type="text" name="Name" class="validate" required>
+											<label for="first_name">Challenge Name:</label>
 										</div>
-										<div class="form-group">
-											<label >Skills Required:</label>
-											<textarea name="Skills" class="form-control" required ></textarea>
-										</div>
-										<div class="form-group">
-												<label >Estimated Time:</label>
-												<input type="number" name="Time" class="form-control" required>
-												<small>In Hours</small>
-										</div>
-										<div class="form-group">
-												<label>Reward Credits:</label>
-												<input type="number" name="Reward" class="form-control" required>
-										</div>
-										<div class="form-group">
-												<label >Solution Template:</label>
-												<input type="file" name="Example" class="form-control" required>
-										</div>
-										<div class="form-group">
-											<label>Description:</label>
-											<textarea class="form-control" name="Description"></textarea required>
-										</div>
-										<div class="form-group">
-											<label>Objective1:</label>
-												<input type="text" class="form-control" name="Objective1" required>
-										</div>
-										<div class="form-group">
-												<label>Objective2:</label>
-													<input type="text" class="form-control" name="Objective2" required>
+										<div class="row">
+											<div class="input-field col s6">
+											  <textarea id="textarea1" name="Skills" class="materialize-textarea" required></textarea>
+											  <label for="textarea1">Skills Required:</label>
 											</div>
-											<div class="form-group">
-													<label>Objective3:</label>
-														<input type="text" class="form-control" name="Objective3" required>
-												</div>
-												<div class="form-group">
-														<label>Objective4:</label>
-															<input type="text" class="form-control" name="Objective4" required>
-													</div>
-													<div class="form-group">
-															<label>Objective5:</label>
-																<input type="text" class="form-control" name="Objective5" required>
-														</div>
+										</div>
+										
+										<div class="input-field col s6">
+											<input  id="estimated_time" type="number" name="Time" class="validate" required>
+											<label for="estimated_time">Estimated Time:</label>
+											<small>In Hours</small>
+										</div>
+										
+										<div class="input-field col s6">
+											<input  id="reward" type="number" name="Reward" class="validate" required>
+											<label for="reward">Reward Credits:</label>
+											
+										</div>
+										
+										<div class="file-field input-field">
+											<div class="btn">
+											  <span>Solution Template:</span>
+											  <input type="file" name="Example" required>
+											</div>
+											<div class="file-path-wrapper">
+											  <input class="file-path validate" type="text" >
+											</div>
+										  </div>
+										<div class="row">
+											<div class="input-field col s6">
+											  <textarea id="textarea2" name="Description" class="materialize-textarea" required></textarea>
+											  <label for="textarea2">Description:</label>
+											</div>
+										</div>
+
+										<div class="input-field col s6">
+											<input  id="objective1" type="text" name="Objective1" class="validate" required>
+											<label for="objective1">Objective1:</label>
+										</div>
+										<div class="input-field col s6">
+											<input  id="objective2" type="text" name="Objective2" class="validate" required>
+											<label for="objective2">Objective2:</label>
+										</div>
+										<div class="input-field col s6">
+											<input  id="objective3" type="text" name="Objective3" class="validate" required>
+											<label for="objective3">Objective3:</label>
+										</div>
+										<div class="input-field col s6">
+											<input  id="objective4" type="text" name="Objective4" class="validate" required>
+											<label for="objective4">Objective4:</label>
+										</div>
+										<div class="input-field col s6">
+											<input  id="objective5" type="text" name="Objective5" class="validate" required>
+											<label for="objective5">Objective5:</label>
+										</div>
 							<button type="submit" class="btn btn-primary">Create</button>
 						  </form>
 			   </div>
@@ -499,7 +542,12 @@
     <script src="../assets/plugins/popper/popper.js" ></script>
     <script src="../assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
 	<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <!-- bootstrap -->
+	<!-- bootstrap -->
+	   <!-- Compiled and minified CSS -->
+
+	   <!-- Compiled and minified JavaScript -->
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			   
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
     <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
     <!-- data tables -->
@@ -535,7 +583,7 @@
             }
             document.getElementById("category").innerHTML = catOptions;
         }
-    }
+	}
 	 </script>
 </body>
 

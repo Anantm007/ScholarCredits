@@ -20,6 +20,10 @@ const challengeSchema = new schema({
     Status : String,
     Participated : String,
     StartDate : String,
+    NumberOfSubmissions: {
+      type: Number,
+      default: 0
+    }
 
 });
 

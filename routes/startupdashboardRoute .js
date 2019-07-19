@@ -8,11 +8,11 @@ const Startup = require("../Models/startupmodel");
 const passwordHash = require('password-hash');
 const Professor = require("../Models/professormodel");
 const Project = require("../Models/projectsmodel");
-const Participate = require("../Models/participatemodel");
 const Interest = require("../Models/interestsmodel");
 const Education = require("../Models/educationsmodel");
-const config = require('../config/keys.env');
 const Objective = require("../Models/objectsmodel");
+const Participate = require("../Models/participatemodel");
+const config = require('../config/keys.env');
 const randomstring = require("randomstring");
 const path = require('path');
 var fs = require('fs');
@@ -256,7 +256,20 @@ router.post('/Slogin',(req,res)=>{
       });
     });
 }});
-
+// this route for the startup credits
+router.get('/Startupcredits',(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }else{
+        Startup.findOne({'Email' : req.session.username},(err,data)=>{
+        if(data)
+        {
+          res.render('startupdashboard/rewardcredits',{
+            Student : data,
+          });
+        }
+  });
+}});
     router.get('/Sdetails/:code',(req,res)=>{
         if(!req.session.username){
             res.redirect('/Sdashboard');
@@ -278,30 +291,61 @@ router.post('/Slogin',(req,res)=>{
 }});
 
 
-        router.post('/Screatechallenge',multer(multerConf).single('Example'),(req,res)=>{
+       router.post('/Screatechallenge',multer(multerConf).single('Example'),(req,res)=>{
             Startup.findOne({'Email' : req.session.username},(err,username)=>{
                  req.body.Example ='./uploads/'+req.file.filename;
                  req.body.Student = username.Name;
                  req.body.Status ="Not Submitted";
                  req.body.Type
-                Challenge.create(req.body,(err,data)=>{
-                     if(data)
-                      {
-                          console.log(data);
-                        res.render('startupdashboard/create-challenge',{
-                             message : 'Created Successfuly',
-                             Student: username
-                         });
+                 console.log(username.Credits);
+                 username.Credits -= req.body.Reward;
 
-                      }
-                      else{
-                        res.render('startupdashboard/create-challenge',{
-                            message : 'Not Created',
-                            Student : username
-                         });
-                      }
-                  })
+                 if(req.body.Reward > username.Credits)
+                 {
+                   Startup.findOne({'Email' : req.session.username},(err,data)=>{
+                   if(data)
+                   {
+                     res.render('startupdashboard/insufficient_credits',{
+                         Student : data
+                     });
+                   }
              });
+                 }
+
+                 else
+                 {
+                   console.log(req.body.Reward);
+                   console.log(username.Credits);
+                   Startup.findOneAndUpdate({'Email': req.session.username}, {'Credits': username.Credits}, (err)=> {
+                     if(err)
+                     console.log(err);
+
+                     else
+                     console.log("Credits now available " + username.Credits);
+                   });
+
+                  Challenge.create(req.body,(err,data)=>{
+                       if(data)
+                        {
+                            console.log(data);
+                          res.render('startupdashboard/create-challenge',{
+                               message : 'Created Successfuly',
+                               Student: username
+                           });
+
+                        }
+                        else{
+                          res.render('startupdashboard/create-challenge',{
+                              message : 'Not Created',
+                              Student : username
+                           });
+                        }
+                    })
+                  }
+
+             });
+
+
             });
 
            router.get('/Ssubmit',(req,res)=>{
@@ -637,7 +681,7 @@ router.get('/Sparticipants/:code',(req,res)=>{
 }});
 
 
-router.get('/Ssolution/:code',(req,res)=>{
+router.get('/Ssubmittedchallenge/:code',(req,res)=>{
     if(!req.session.username){
         res.redirect('/Sdashboard');
     }else{
@@ -650,10 +694,17 @@ router.get('/Ssolution/:code',(req,res)=>{
             // for(i=0;i<=submission.length;i++){
                 submission.forEach(function(sub){
                     Register.findOne({'Name':sub.Username},(err,POI)=>{
+                        console.log("data is below");
+                        console.log(data);
+                        console.log("submission is below");
+                        console.log(submission);
+                        console.log("poi is below");
+                        console.log(POI);
                 if (err) throw err;
             else{
-                console.log(POI);
-            res.render('startupdashboard/solutions',{
+                // console.log(POI);
+                console.log("here is the data");
+            res.status(200).render('startupdashboard/solutions',{
               Student : data,
               Solutions : submission,
               POI : POI
@@ -815,6 +866,69 @@ router.get('/Sidcard',async(req,res,next)=>{
     }
 
 });
+
+// student indiviuals information
+router.get('/Sidcard/:id',async(req,res,next)=>{
+    console.log("hello");
+    const Id = req.params.id;
+    console.log(Id);
+    try{
+        const data = await Startup.findOne({'Email':req.session.username});
+        // console.log(data);
+        if(data){
+            const student = await Register.findOne({'_id':Id});
+            console.log(student);
+            console.log(student.Name);
+            if(student){
+                try{
+                    const objective = await Objective.find({'Student':student.Name});
+                    try{
+                    const project = await Project.find({'Student':student.Name});
+                    try{
+                    const education = await Education.find({'Student':student.Name});
+                    try{
+                    const skill = await Skill.find({'Student':student.Name});
+                    try{
+                    const interest = await Interest.find({'Student':student.Name});
+                    try{
+                    const challenge = await Submission.find({'Username':student.Name});
+                    console.log(challenge,interest,skill,education,project,objective);
+                    res.render('startupdashboard/eachStudent',{
+                        Student : student,
+                        Objective : objective,
+                        Project : project,
+                        Education : education,
+                        Skill : skill,
+                        Interest : interest,
+                        Challenge : challenge
+                    });
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }catch(e){
+            next(e);
+        }
+        }
+    }
+    }catch(e){
+       next(e);
+    }
+
+});
+
+
 
 router.post('/Saddproject',async(req,res,next)=>{
     try{
@@ -1141,12 +1255,12 @@ router.get('/students',async(req,res)=>{
         res.redirect('/Sdashboard');
     }else{
     const data = await Startup.findOne({'Email':req.session.username});
-    console.log(data);
+    // console.log(data);
    if(data){
-    console.log(req.session.username);
+    // console.log(req.session.username);
      const students = await Register.find();
      if(students){
-         console.log(students);
+        //  console.log(students);
          res.render('startupdashboard/student',{
              Student : data,
              Students : students

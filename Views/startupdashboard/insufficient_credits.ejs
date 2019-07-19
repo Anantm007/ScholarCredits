@@ -17,7 +17,7 @@
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
 				<a href="http://radixtouch.in/templates/admin/smart/source/dark/course_details.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
-				</div></li>	
+				</div></li>
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
 				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
@@ -60,80 +60,45 @@
 			<!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content text-center">
-			   <h1>All challenge</h1><br><br>
-			   <a  href="/Sallchallenges/A"><button class="btn btn-primary" style="margin:10px">Digital Marketing And Growth Hacking</button></a>
-			   <a  href="/Sallchallenges/B"><button class="btn btn-primary" style="margin:10px">Data And Web Analytics</button></a>
-			   <a  href="/Sallchallenges/C"><button class="btn btn-primary" style="margin:10px">Business Development And Strategy</button></a>
-			   <a  href="/Sallchallenges/D"><button class="btn btn-primary" style="margin:10px">Operation And Sales</button></a>
-			   <a  href="/Sallchallenges/E"><button class="btn btn-primary" style="margin:10px">Content Creation and Communication</button></a>
-			   <a  href="/Sallchallenges/F"><button class="btn btn-primary" style="margin:10px">Web And Backend Development</button></a>
-			   <a  href="/Sallchallenges/G"><button class="btn btn-primary" style="margin:10px">Web And Frontend Development</button></a>
-			   <a  href="/Sallchallenges/H"><button class="btn btn-primary" style="margin:10px">Design And UX/UI</button></a>
-			 <div class="row">
-			   <% Challenge.forEach(function(challenge) { %>
-				<div class="col-md-4">
+					<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">How to Earn Scholar Credits</button>
 
-<!-- Card Light -->
-<div class="card">
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-<!-- Card image -->
-<div class="view overlay">
-		<% if(challenge.Category == 'A'){ %>
-			<img class="card-img-top" src="/categories/marketing.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'B') { %>
-			<img class="card-img-top" src="/categories/analytics.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'C') { %>
-			<img class="card-img-top" src="/categories/business.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'D') { %>
-			<img class="card-img-top" src="/categories/sales.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'E') { %>
-			<img class="card-img-top" src="/categories/communication.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'F') { %>
-			<img class="card-img-top" src="/categories/web.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'G') { %>
-			<img class="card-img-top" src="/categories/web.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'H') { %>
-			<img class="card-img-top" src="categories/business.jpg" height="240" width="230" alt="">
-			<% } else if(challenge.Category == 'I') { %>
-			<img class="card-img-top" src="/categories/blockchain.jpg" height="240" width="230" alt="">
-			<% } %>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Scholar Credits</h4>
+      </div>
+      <div class="modal-body">
+        <p>1. Scholar Credit system has been created to help you keep boosting your Talent Brand. The more you use Edumonk,  more are the credits you get. Credits that you can redeem for online courses, paying fees and geting financial aid for studying in our partner institutions and cash grants to support you while studying!</p>
 
-<a>
-	<div class="mask rgba-white-slight"></div>
-  </a>
+				<p>2. Perform Challenges: Complete challenges posted by our community of Educators, Employers and Students. You'll receive Credits depending on the quality of the work done. You'll earn between 5 and 15 Credits if you complete a Learning Challenges successfully. Have a look at the list of available challenges today!</p>
+
+				<p>3.Apply and complete Challenges + Job Offers: As part of the application to a job offer on Edumonk, if you get to the final step, you'll need to complete a Trial Challenges. Even if you're not finally hired, if you complete the Trial Challenges you'll get Credits to help you have more options in future applications! Have a look at all job opportunities today!</p>
+
+				<p>4.Complete our quizzes and games: You will realize that we propose you different quizzes and personality games to showcase your soft skills, values and everything that represents you!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
+                   <h1 style="color:red">Sorry, you don't have enough credits</h1><br>
+                   <h1>Please go to My Profile to add credits </h1>
+                   
 
-<!-- Card content -->
-<div class="card-body">
-
-  <!-- Social shares button -->
-  <hr>
-  <!-- Text -->
-  <p class="card-text"><%= challenge.Type %></p>
-  <!-- Title -->
-  <h4 class="card-title"><%= challenge.Name %></h4>
-  <hr>
-  <!-- Text -->
-  <p class="card-text"><%= challenge.Description %></p>
-  <!-- Rewards for the challenge -->
-  <h4 class="card-title">Credits:<%= challenge.Reward %></h4>
-  <!-- Number of solutions submitted -->
-     <h4 class="card-title">Total Submissions:<%= challenge.NumberOfSubmissions %></h4>
-  <!-- Link -->
-  <a href="/Sdetails/<%= challenge.id %>" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
-
-</div>
-
-</div>
-<!-- Card Light -->
-		  
-				</div>
-				<% }); %>      </div>          </div>
+			                  </div>
                                 </div>
                                 <!-- END PROFILE CONTENT -->
                             </div>
                         </div>
-                    </div>
+
                 <!-- end page content -->
                 <!-- start chat sidebar -->
                 <div class="chat-sidebar-container" data-close-on-body-click="false">
@@ -150,7 +115,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <!-- Start User Chat --> 
+                        <!-- Start User Chat -->
  						<div class="tab-pane active chat-sidebar-chat in active show" role="tabpanel" id="quick_sidebar_tab_1">
                         	<div class="chat-sidebar-list">
 	                            <div class="chat-sidebar-chat-users slimscroll-style" data-rail-color="#ddd" data-wrapper-class="chat-sidebar-list">
@@ -320,8 +285,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End User Chat --> 
- 						<!-- Start Setting Panel --> 
+                        <!-- End User Chat -->
+ 						<!-- Start Setting Panel -->
  						<div class="tab-pane chat-sidebar-settings" role="tabpanel" id="quick_sidebar_tab_3">
                             <div class="chat-sidebar-settings-list slimscroll-style">
                                 <div class="chat-header"><h5 class="list-heading">Layout Settings</h5></div>
@@ -370,9 +335,9 @@
 					                        <div class="setting-text">Notifications</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-1">
-									                  <input type = "checkbox" id = "switch-1" 
+									                  <input type = "checkbox" id = "switch-1"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -382,9 +347,9 @@
 					                        <div class="setting-text">Show Online</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-7">
-									                  <input type = "checkbox" id = "switch-7" 
+									                  <input type = "checkbox" id = "switch-7"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -394,9 +359,9 @@
 					                        <div class="setting-text">Status</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-2">
-									                  <input type = "checkbox" id = "switch-2" 
+									                  <input type = "checkbox" id = "switch-2"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -406,9 +371,9 @@
 					                        <div class="setting-text">2 Steps Verification</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-3">
-									                  <input type = "checkbox" id = "switch-3" 
+									                  <input type = "checkbox" id = "switch-3"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -421,9 +386,9 @@
 					                        <div class="setting-text">Location</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-4">
-									                  <input type = "checkbox" id = "switch-4" 
+									                  <input type = "checkbox" id = "switch-4"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -433,9 +398,9 @@
 					                        <div class="setting-text">Save Histry</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-5">
-									                  <input type = "checkbox" id = "switch-5" 
+									                  <input type = "checkbox" id = "switch-5"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -445,9 +410,9 @@
 					                        <div class="setting-text">Auto Updates</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-6">
-									                  <input type = "checkbox" id = "switch-6" 
+									                  <input type = "checkbox" id = "switch-6"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -477,14 +442,14 @@
         <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
         <!-- Common js-->
 		<script src="../assets/js/app.js" ></script>
-        
+
         <script src="../assets/js/layout.js" ></script>
 		<script src="../assets/js/theme-color.js" ></script>
 		<!-- Material -->
 		<script src="../assets/plugins/material/material.min.js"></script>
+		<!-- end js include path -->
 		<script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"c8b396a4b1b36df1042fa538f614c6819001402b51979831462095e37538a28070cb14981ef0ab3f91b85fac9aa93d23", values:{},ready:function(){$zoho.salesiq.floatbutton.visible('show');}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
 
-        <!-- end js include path -->
 </body>
 
 <!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/course_details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 09:49:37 GMT -->
