@@ -258,12 +258,14 @@ router.post('/Slogin',(req,res)=>{
     });
 }});
 //this route is for conformation mail to the student
-router.get('/conformation/:id',(req,res)=>{
+router.post('/conformation/:id',(req,res)=>{
     const Id = req.params.id;
-    // const days= res.body.days;
-    // const position = res.body.position;
-    const days= 16;
-    const position = 'HR';
+    //    not running
+    console.log(req.body.position);
+    console.log(req.body.time);
+    const position = req.body.position;
+    const time = req.body.time;
+    
     if(!req.session.username){
         res.redirect('/Sdashboard');
     }else{
@@ -321,11 +323,11 @@ router.get('/conformation/:id',(req,res)=>{
                 });
 
                 pdfDoc.moveDown();
-                pdfDoc.fillColor('#868e96').fontSize(14).text("This letter is to certify that" +student.Name +"has worked at Edumonk Foundation in HR & Marketing",{
+                pdfDoc.fillColor('#868e96').fontSize(14).text("This letter is to certify that" +student.Name +"has worked at Edumonk Foundation in " + position+"Position",{
                     align:'center'
                 });
                 pdfDoc.moveDown();
-                pdfDoc.fillColor('#868e96').fontSize(14).text("Department for "+ days +"days. During his tenure at Edumonk, she was responsible to handle client visits",{
+                pdfDoc.fillColor('#868e96').fontSize(14).text("Department for "+ time +"days. During his tenure at Edumonk, she was responsible to handle client visits",{
                     align:'center'
                 });
                 pdfDoc.moveDown();
@@ -1429,6 +1431,26 @@ router.get('/students',async(req,res)=>{
          res.render('startupdashboard/student',{
              Student : data,
              Students : students
+         });
+     }
+   }
+}
+});
+router.get('/hire/:id',async(req,res)=>{
+    const Id = req.params.id;
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }else{
+    const data = await Startup.findOne({'Email':req.session.username});
+    // console.log(data);
+   if(data){
+    // console.log(req.session.username);
+    const student = await Register.findOne({'_id':Id});
+     if(student){
+        //  console.log(students);
+         res.render('startupdashboard/hire',{
+             Student : data,
+             Students : student
          });
      }
    }

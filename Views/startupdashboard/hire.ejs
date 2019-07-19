@@ -1,55 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
+
 <% include ../includes/startupdashboard/head.ejs %>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
         <!-- start header -->
-        <% include ../includes/startupdashboard/header.ejs %>
-        <style>
-        .src-image {
-  display: none;
-}
-
-.card {
-  overflow: hidden;
-  position: relative;
-  border: 1px solid #CCC;
-  border-radius: 8px;
-  text-align: center;
-  padding: 0;
-  background-color: #252E3F;
-  color:white;
-}
-
-.card .header-bg {
-  /* This stretches the canvas across the entire hero unit */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  border-bottom: 1px #FFF solid;
-  /* This positions the canvas under the text */
-  z-index: 1;
-}
-.card .avatar {
-  position: relative;
-  margin-top: 15px;
-  z-index: 100;
-}
-
-.card .avatar img {
-  width: 100px;
-  height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  border: 5px solid rgba(0,0,30,0.8);
-}
-
-        </style>
+		<% include ../includes/startupdashboard/header.ejs %>
+        <!-- end header -->
         <!-- start color quick setting -->
         <div class="quick-setting-main">
 			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
@@ -58,7 +17,7 @@
 				<li><p class="selector-title">Main Layouts</p></li>
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
-				<a href="http://radixtouch.in/templates/admin/smart/source/dark/course_details.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="http://radixtouch.in/templates/admin/smart/source/dark/all_courses.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
 				</div></li>	
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
@@ -96,56 +55,49 @@
 		<!-- end color quick setting -->
         <!-- start page container -->
         <div class="page-container">
-			 <!-- start sidebar menu -->
-			 <% include ../includes/startupdashboard/sidebar.ejs %>
- 				 <!-- end sidebar menu -->
+ 			<!-- start sidebar menu -->
+ 			<% include ../includes/startupdashboard/sidebar.ejs %>
+			 <!-- end sidebar menu -->
 			<!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content text-center">
-               <div class="container">
-                    <div class="row">
-                            <% Students.forEach(function(student) { %>
-				           <div class="col-md-4">
-                            <div class="card">
-                                <canvas class="header-bg" width="400" height="80" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="/<%= student.ProfileImage %>" width="70" height="70" alt="ProfileImage" />
-                                </div>
-                                <div class="content" style="margin-top:15px">
-									<a href="/Sidcard/<%= student._id %>" target="_blank">
-                                    <p><b><%= student.Name %></b> <br></a>
-									   <%= student.Email %><br>
-									   <%= student.Phone %>
-									   <br>
-									   POI: <b style="color:black"><%= student.POI %></b>
-									   <br>
-									   <br>
-									   <!-- <a  href="/conformation/<%= student._id %>"><button class="btn btn-primary">Conformation Mail</button></a> -->
-									   <a  href="/hire/<%= student._id %>"><button class="btn btn-primary">Want to Hire</button></a>
-									</p>
-									
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-                        
-                        
-                    </div>
-                </div>
-			                 </div>
-                                </div>
-                                <!-- END PROFILE CONTENT -->
-                            </div>
-                        </div>
-                    </div>
-                <!-- end page content -->
-                <!-- start chat sidebar -->
-                <div class="chat-sidebar-container" data-close-on-body-click="false">
+					<h1>Want To Hire</h1>
+					<% if(typeof message!== 'undefined'){ %>
+						<small><%= message %></small>
+						<% } %>
+						<form action="/conformation/<%= Students._id %>" method="POST" enctype="multipart/form-data">									  
+							<div class="input-field col s6">
+											<!-- <input  id="first_name" type="text" name="Name" class="validate" value ="<%= Students.Name %>" required> -->
+											<label for="first_name">Candidate Name: <%= Students.Name %></label>
+											<br>
+											<br>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+											  <textarea id="textarea1" name="position" class="materialize-textarea" required></textarea>
+											  <label for="textarea1">Position:</label>
+											</div>
+										</div>
+										
+										<div class="input-field col s6">
+											<input  id="estimated_time" type="number" name="time" class="validate" required>
+											<label for="estimated_time">Time:</label>
+											<small>In Month</small>
+										</div>
+										
+										
+							<button type="submit" class="btn btn-primary"> Hire </button>
+						  </form>
+			   </div>
+			</div>
+            <!-- end page content -->
+            <!-- start chat sidebar -->
+            <div class="chat-sidebar-container" data-close-on-body-click="false">
                 <div class="chat-sidebar">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a href="#quick_sidebar_tab_1" class="nav-link active tab-icon"  data-toggle="tab"> <i class="material-icons">chat</i>Chat
-                                    <span class="badge badge-danger">4</span>
+                                    <span class="Challenge Challenge-danger">4</span>
                                 </a>
                         </li>
                         <li class="nav-item">
@@ -169,7 +121,7 @@
 	                                    </li>
 	                                    <li class="media">
 	                                        <div class="media-status">
-	                                            <span class="badge badge-success">5</span>
+	                                            <span class="Challenge Challenge-success">5</span>
 	                                        </div> <img class="media-object" src="../assets/img/prof/prof1.jpg" width="35" height="35" alt="...">
 	                                        <i class="busy dot"></i>
 	                                        <div class="media-body">
@@ -186,7 +138,7 @@
 	                                    </li>
 	                                    <li class="media">
 	                                        <div class="media-status">
-	                                            <span class="badge badge-danger">8</span>
+	                                            <span class="Challenge Challenge-danger">8</span>
 	                                        </div> <img class="media-object" src="../assets/img/prof/prof4.jpg" width="35" height="35" alt="...">
 	                                        <i class="online dot"></i>
 	                                        <div class="media-body">
@@ -213,7 +165,7 @@
 	                                <ul class="media-list list-items">
 	                                    <li class="media">
 	                                        <div class="media-status">
-	                                            <span class="badge badge-warning">4</span>
+	                                            <span class="Challenge Challenge-warning">4</span>
 	                                        </div> <img class="media-object" src="../assets/img/prof/prof6.jpg" width="35" height="35" alt="...">
 	                                        <i class="offline dot"></i>
 	                                        <div class="media-body">
@@ -232,7 +184,7 @@
 	                                    </li>
 	                                    <li class="media">
 	                                        <div class="media-status">
-	                                            <span class="badge badge-success">9</span>
+	                                            <span class="Challenge Challenge-success">9</span>
 	                                        </div> <img class="media-object" src="../assets/img/prof/prof9.jpg" width="35" height="35" alt="...">
 	                                        <i class="offline dot"></i>
 	                                        <div class="media-body">
@@ -464,32 +416,62 @@
                     </div>
                 </div>
             </div>
-                <!-- end chat sidebar -->
-            </div>
-            <!-- end page container -->
-            <!-- start footer -->
-            <% include ../includes/studentdashboard/footer.ejs %>
-            <!-- end footer -->
-        </div></div>
-        <!-- start js include path -->
-        <script src="../assets/plugins/jquery/jquery.min.js" ></script>
-        <script src="../assets/plugins/popper/popper.js" ></script>
-        <script src="../assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
-		<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-        <!-- bootstrap -->
-        <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
-        <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
-        <!-- Common js-->
-		<script src="../assets/js/app.js" ></script>
-        
-        <script src="../assets/js/layout.js" ></script>
-		<script src="../assets/js/theme-color.js" ></script>
-		<!-- Material -->
-		<script src="../assets/plugins/material/material.min.js"></script>
-		<script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"c8b396a4b1b36df1042fa538f614c6819001402b51979831462095e37538a28070cb14981ef0ab3f91b85fac9aa93d23", values:{},ready:function(){$zoho.salesiq.floatbutton.visible('show');}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+            <!-- end chat sidebar -->
+        </div>
+        <!-- end page container -->
+        <!-- start footer -->
+		<% include ../includes/studentdashboard/footer.ejs %>
+        <!-- end footer -->
+    </div>
+    <!-- start js include path -->
+    <script src="../assets/plugins/jquery/jquery.min.js" ></script>
+    <script src="../assets/plugins/popper/popper.js" ></script>
+    <script src="../assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
+	<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- bootstrap -->
+	   <!-- Compiled and minified CSS -->
 
-        <!-- end js include path -->
+	   <!-- Compiled and minified JavaScript -->
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			   
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
+    <!-- data tables -->
+    <script src="../assets/plugins/datatables/jquery.dataTables.min.js" ></script>
+ 	<script src="../assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
+    <script src="../assets/js/pages/table/table_data.js" ></script>
+    <!-- Common js-->
+	<script src="../assets/js/app.js" ></script>
+    <script src="../assets/js/layout.js" ></script>
+	<script src="../assets/js/theme-color.js" ></script>
+	<!-- Material -->
+	<script src="../assets/plugins/material/material.min.js"></script>
+	 <!-- end js include path -->
+	 <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"c8b396a4b1b36df1042fa538f614c6819001402b51979831462095e37538a28070cb14981ef0ab3f91b85fac9aa93d23", values:{},ready:function(){$zoho.salesiq.floatbutton.visible('show');}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+     <script>
+		 var mealsByCategory = {
+	A : ["Marketing Strategy", "Social Media Marketing", "Digital Marketing", "SEM","SEO","Growth Hacking","Email Marketing","In Bond Marketing","Copy Writting","Advertising"],
+    B:  ["Data Analytics", "Big Data", "Web Analytics", "SQL","MySQL","Data Mining","Google Analytics","MongoDB"],
+	C:  ["Business Strategy", "Business Development", "Marketing Strategy","Market Analysis","Market Research","Financing/Accounting","Outbound Marketing","Email Marketing","Communication Strategy"],
+	D:  ["Business Development", "Market Analysis", "Market Research", "Business Strategy"],
+	E:  ["Social Media Marketing","Translation","Audiovisual Production","Communication Strategy","Advertising","Copywritting,Creativity,Photography"],
+	F:  ["PHP","Python","Node.js",".NET","Symphony","Django","Hadoop","Spark","API Rest","ios","Android","Java","App Development","Web Development"],
+	G: ["Prototyping Design","HTML","Coding","CSS","JavaScript","ReactJs","AngularJs"],
+	H :["Graphic Design","Product Design","Photography","UX","UI","Wireframing","Web Design","App Design"]
+}
+
+    function changecat(value) {
+        if (value.length == 0) document.getElementById("category").innerHTML = "<option></option>";
+        else {
+            var catOptions = "";
+            for (categoryId in mealsByCategory[value]) {
+                catOptions += "<option>" + mealsByCategory[value][categoryId] + "</option>";
+            }
+            document.getElementById("category").innerHTML = catOptions;
+        }
+	}
+	 </script>
 </body>
 
-<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/course_details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 09:49:37 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/all_courses.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 09:49:37 GMT -->
 </html>
