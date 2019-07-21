@@ -18,7 +18,7 @@
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
 				<a href="http://radixtouch.in/templates/admin/smart/source/dark/all_courses.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
-				</div></li>	
+				</div></li>
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
 				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
@@ -61,11 +61,11 @@
 			<!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content text-center">
-					<h1>Want To Hire</h1>
+					<h1>Enter Offer Letter Details</h1>
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/conformation/<%= Students._id %>" method="POST" enctype="multipart/form-data">									  
+						<form action="/conformation/<%= Students._id %>" method="POST" enctype="multipart/form-data">
 							<div class="input-field col s6">
 											<!-- <input  id="first_name" type="text" name="Name" class="validate" value ="<%= Students.Name %>" required> -->
 											<label for="first_name">Candidate Name: <%= Students.Name %></label>
@@ -75,17 +75,27 @@
 										<div class="row">
 											<div class="input-field col s6">
 											  <textarea id="textarea1" name="position" class="materialize-textarea" required></textarea>
-											  <label for="textarea1">Position:</label>
+											  <label for="textarea1">Position:       (eg: Software Developer Intern)</label>
 											</div>
 										</div>
-										
-										<div class="input-field col s6">
-											<input  id="estimated_time" type="number" name="time" class="validate" required>
-											<label for="estimated_time">Time:</label>
-											<small>In Month</small>
-										</div>
-										
-										
+
+                    <div class="input-field col s6">
+                      <textarea id="textarea1" name="time" class="materialize-textarea" required></textarea>
+                      <label for="textarea1">Time:       (eg: 10 May,2019 to 10 July,2019)</label>
+                    </div>
+
+
+                    <div class="input-field col s6">
+                        <textarea id="textarea1" name="responsibilities" class="materialize-textarea" required></textarea>
+                        <label for="textarea1">Responsibilities:       (eg: Developing the software under our guidance)</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                      <textarea id="textarea1" type="number" name="stipend" class="materialize-textarea" required></textarea>
+                      <label for="textarea1">Stipend (in Rs.):       (eg: 5000)</label>
+                    </div>
+
+
 							<button type="submit" class="btn btn-primary"> Hire </button>
 						  </form>
 			   </div>
@@ -106,7 +116,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <!-- Start User Chat --> 
+                        <!-- Start User Chat -->
  						<div class="tab-pane active chat-sidebar-chat in active show" role="tabpanel" id="quick_sidebar_tab_1">
                         	<div class="chat-sidebar-list">
 	                            <div class="chat-sidebar-chat-users slimscroll-style" data-rail-color="#ddd" data-wrapper-class="chat-sidebar-list">
@@ -276,8 +286,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End User Chat --> 
- 						<!-- Start Setting Panel --> 
+                        <!-- End User Chat -->
+ 						<!-- Start Setting Panel -->
  						<div class="tab-pane chat-sidebar-settings" role="tabpanel" id="quick_sidebar_tab_3">
                             <div class="chat-sidebar-settings-list slimscroll-style">
                                 <div class="chat-header"><h5 class="list-heading">Layout Settings</h5></div>
@@ -326,9 +336,9 @@
 					                        <div class="setting-text">Notifications</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-1">
-									                  <input type = "checkbox" id = "switch-1" 
+									                  <input type = "checkbox" id = "switch-1"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -338,9 +348,9 @@
 					                        <div class="setting-text">Show Online</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-7">
-									                  <input type = "checkbox" id = "switch-7" 
+									                  <input type = "checkbox" id = "switch-7"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -350,9 +360,9 @@
 					                        <div class="setting-text">Status</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-2">
-									                  <input type = "checkbox" id = "switch-2" 
+									                  <input type = "checkbox" id = "switch-2"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -362,9 +372,9 @@
 					                        <div class="setting-text">2 Steps Verification</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-3">
-									                  <input type = "checkbox" id = "switch-3" 
+									                  <input type = "checkbox" id = "switch-3"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -377,9 +387,9 @@
 					                        <div class="setting-text">Location</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-4">
-									                  <input type = "checkbox" id = "switch-4" 
+									                  <input type = "checkbox" id = "switch-4"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -389,9 +399,9 @@
 					                        <div class="setting-text">Save Histry</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-5">
-									                  <input type = "checkbox" id = "switch-5" 
+									                  <input type = "checkbox" id = "switch-5"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -401,9 +411,9 @@
 					                        <div class="setting-text">Auto Updates</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-6">
-									                  <input type = "checkbox" id = "switch-6" 
+									                  <input type = "checkbox" id = "switch-6"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -433,7 +443,7 @@
 
 	   <!-- Compiled and minified JavaScript -->
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-			   
+
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
     <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
     <!-- data tables -->
