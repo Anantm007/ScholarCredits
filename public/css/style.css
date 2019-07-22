@@ -39,6 +39,10 @@ Version: 1.0
     background: rgba(0, 0, 0, 0) url("../assests/img/slider/slide_2.jpg") no-repeat scroll center center / cover;
 }
 
+.slide-bg-four {
+    background: rgba(0, 0, 0, 0) url("../assests/img/slider/slide_3.jpeg") no-repeat scroll center center / cover;
+}
+
 .welcome-slider-area .owl-controls {
     margin-top: -80px;
     position: absolute;
