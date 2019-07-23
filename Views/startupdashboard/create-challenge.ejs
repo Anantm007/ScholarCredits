@@ -18,7 +18,7 @@
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
 				<a href="http://radixtouch.in/templates/admin/smart/source/dark/all_courses.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
-				</div></li>	
+				</div></li>
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
 				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
@@ -65,7 +65,7 @@
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">									  
+						<form action="/Screatechallenge" method="POST" enctype="multipart/form-data">
 						<div class="card row s6">
 							<h5>Challenge Type:</h5>
 							<div class="row">
@@ -112,9 +112,13 @@
 											<option value="C">Business Development And Strategy</option>
 											<option value="D">Operation And Sales</option>
 											<option value="E">Content Creation and Communication</option>
-											<option value="F">Web And Backend Development</option>
-											<option value="G">Web And Frontend Development</option>
-											<option value="H">Design And UX/UI</option>
+											<option value="F">Web Development</option>
+									    <option value="G">Software Development</option>
+                      <option value="H">Design And UX/UI</option>
+                      <option value="I">Social Challenges</option>
+                      <option value="J">Industrial Challenges</option>
+                      <option value="K">Other Challenges</option>
+
 											<!-- <option value="I">Blockchain Marketing</option> -->
 										</select>
 										  </div>
@@ -140,7 +144,7 @@
 										</select>
 										</div>
 									</div>	 -->
-									  
+
 										<div class="input-field col s6">
 											<input  id="first_name" type="text" name="Name" class="validate" required>
 											<label for="first_name">Challenge Name:</label>
@@ -151,19 +155,19 @@
 											  <label for="textarea1">Skills Required:</label>
 											</div>
 										</div>
-										
+
 										<div class="input-field col s6">
 											<input  id="estimated_time" type="number" name="Time" class="validate" required>
 											<label for="estimated_time">Estimated Time:</label>
 											<small>In Hours</small>
 										</div>
-										
+
 										<div class="input-field col s6">
 											<input  id="reward" type="number" name="Reward" class="validate" required>
 											<label for="reward">Reward Credits:</label>
-											
+
 										</div>
-										
+
 										<div class="file-field input-field">
 											<div class="btn">
 											  <span>Solution Template:</span>
@@ -220,7 +224,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <!-- Start User Chat --> 
+                        <!-- Start User Chat -->
  						<div class="tab-pane active chat-sidebar-chat in active show" role="tabpanel" id="quick_sidebar_tab_1">
                         	<div class="chat-sidebar-list">
 	                            <div class="chat-sidebar-chat-users slimscroll-style" data-rail-color="#ddd" data-wrapper-class="chat-sidebar-list">
@@ -390,8 +394,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End User Chat --> 
- 						<!-- Start Setting Panel --> 
+                        <!-- End User Chat -->
+ 						<!-- Start Setting Panel -->
  						<div class="tab-pane chat-sidebar-settings" role="tabpanel" id="quick_sidebar_tab_3">
                             <div class="chat-sidebar-settings-list slimscroll-style">
                                 <div class="chat-header"><h5 class="list-heading">Layout Settings</h5></div>
@@ -440,9 +444,9 @@
 					                        <div class="setting-text">Notifications</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-1">
-									                  <input type = "checkbox" id = "switch-1" 
+									                  <input type = "checkbox" id = "switch-1"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -452,9 +456,9 @@
 					                        <div class="setting-text">Show Online</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-7">
-									                  <input type = "checkbox" id = "switch-7" 
+									                  <input type = "checkbox" id = "switch-7"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -464,9 +468,9 @@
 					                        <div class="setting-text">Status</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-2">
-									                  <input type = "checkbox" id = "switch-2" 
+									                  <input type = "checkbox" id = "switch-2"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -476,9 +480,9 @@
 					                        <div class="setting-text">2 Steps Verification</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-3">
-									                  <input type = "checkbox" id = "switch-3" 
+									                  <input type = "checkbox" id = "switch-3"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -491,9 +495,9 @@
 					                        <div class="setting-text">Location</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-4">
-									                  <input type = "checkbox" id = "switch-4" 
+									                  <input type = "checkbox" id = "switch-4"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -503,9 +507,9 @@
 					                        <div class="setting-text">Save Histry</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-5">
-									                  <input type = "checkbox" id = "switch-5" 
+									                  <input type = "checkbox" id = "switch-5"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -515,9 +519,9 @@
 					                        <div class="setting-text">Auto Updates</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-6">
-									                  <input type = "checkbox" id = "switch-6" 
+									                  <input type = "checkbox" id = "switch-6"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -547,7 +551,7 @@
 
 	   <!-- Compiled and minified JavaScript -->
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-			   
+
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
     <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
     <!-- data tables -->
@@ -571,7 +575,10 @@
 	E:  ["Social Media Marketing","Translation","Audiovisual Production","Communication Strategy","Advertising","Copywritting,Creativity,Photography"],
 	F:  ["PHP","Python","Node.js",".NET","Symphony","Django","Hadoop","Spark","API Rest","ios","Android","Java","App Development","Web Development"],
 	G: ["Prototyping Design","HTML","Coding","CSS","JavaScript","ReactJs","AngularJs"],
-	H :["Graphic Design","Product Design","Photography","UX","UI","Wireframing","Web Design","App Design"]
+	H :["Graphic Design","Product Design","Photography","UX","UI","Wireframing","Web Design","App Design"],
+  I :[],
+  J :["Agriculture","Energy","Power"],
+  K :[]
 }
 
     function changecat(value) {
