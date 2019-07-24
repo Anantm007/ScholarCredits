@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="assests/img/sclogo.png" />
+    <link rel="shortcut icon" href="assests/img/sclogo.png" /> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/sharer.js/latest/sharer.min.js"></script>
@@ -19,7 +19,7 @@ background-position:center;
 overflow-x: hidden;
 }
 
-
+        
 
         * {
             box-sizing: border-box;
@@ -410,7 +410,7 @@ overflow-x: hidden;
             border: none;
         }
 
-
+        
         /* Style the Image Used to Trigger the Modal */
 
         #myImg {
@@ -571,12 +571,9 @@ overflow-x: hidden;
                                                                         <%= Challenge.Name %>
                                                                     </h2>
                                                                     <br>
-                                                                    <h4>Contest Starts On:
-                                                                        <%= Challenge.StartDate %></h4>
-                                                                        <h4>Contest Ends On:
-                                                                            <%= Challenge.EndDate %></h4>
-
-
+                                                                    <h4>Work hours estimation:
+                                                                        <%= Challenge.Time %> hours</h4>
+                      
 
                                  <br><br>
                             <label>Help Resources</label>
@@ -603,28 +600,48 @@ overflow-x: hidden;
                                 <h5>Click to Download Example</h5>
                                 <a href=".<%= Challenge.Example %>" download><button class="btn btn-primary">Download Example</button></a>
                              <% } %>
-
-
+                     
+          
                      <br><br>
-                <h3>Eligibility</h3>
-                <textarea class="form-control" rows="4" readonly><%= Challenge.Eligibility %></textarea><br><br>
+                <h3> Skills</h3>
+                <textarea class="form-control" rows="4" readonly><%= Challenge.Skills %></textarea><br><br>
                 <h3> Description</h3>
                 <p>
                     <%= Challenge.Description %>
                 </p>
                 <br>
+                <h3>Objectives</h3>
+                <div  class="container text-left">
+                <ul>
+                    
+                    <li>
+                        <%= Challenge.Objective1 %>
+                    </li>
 
-                <h3>Cnotest Link</h3>
-                <textarea class="form-control" rows="4" readonly><%= Challenge.Link %></textarea><br><br>
-                <h3>Rewards / Prizes</h3>
-                <p>
-                    <%= Challenge.Reward %>
-                </p>
+                    <li>
+                        <%= Challenge.Objective2 %>
+                    </li>
+
+                    <li>
+                        <%= Challenge.Objective3 %>
+                    </li>
+
+                    <li>
+                        <%= Challenge.Objective4 %>
+                    </li>
+
+                    <li>
+                        <%= Challenge.Objective5 %>
+                    </li>
+                </ul>
             </div>
                <br>
                 <a href="/Saccept">
                    </a>
                 <br>
+            <h3>Share With</h3>
+            <a href="#" id="share-tw" class="sharer button"><i class="fa fa-3x fa-twitter-square"></i></a>
+            <a href="#" id="share-li" class="sharer button"><i class="fa fa-3x fa-linkedin-square"></i></a>
 
 
          <br><br>
@@ -668,13 +685,13 @@ overflow-x: hidden;
           if(twitterWindow.focus) { twitterWindow.focus(); }
             return false;
           }
-
+        
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function(event) { 
 
-// Uses sharer.js
-//  https://ellisonleao.github.io/sharer.js/#twitter
+// Uses sharer.js 
+//  https://ellisonleao.github.io/sharer.js/#twitter	
    var url = window.location.href;
    var title = document.title;
    var subject = "Read this good article";
