@@ -403,7 +403,7 @@
                             <% } %>
                         <div class="course-details padding30">
                             <h3 class="font18"><%= challenges.Name %></h3>
-                            <p><%= challenges.Description %></p>
+                            <p><%= challenges.Description.substring(0, 150) + "..." %></p>
                             <p class="mt30"><a href="/viewchallenge/<%= challenges._id %>" class="enroll-button">View Challenge Now</a> <span class="course-price"></span></p>
                         </div>
                     </div>
