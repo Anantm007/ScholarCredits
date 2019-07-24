@@ -464,7 +464,7 @@ router.get('/Startupcredits',(req,res)=>{
        router.post('/Screatechallenge',multer(multerConf).single('Example'),(req,res)=>{
             Startup.findOne({'Email' : req.session.username},(err,username)=>{
                  req.body.Example ='./uploads/'+req.file.filename;
-                 req.body.Student = username.Name;
+                 // req.body.Student = username.Name;
                  req.body.Status ="Not Submitted";
                  req.body.Type
                  console.log(username.Credits);

@@ -113,7 +113,7 @@
 											<option value="D">Operation And Sales</option>
 											<option value="E">Content Creation and Communication</option>
 											<option value="F">Web Development</option>
-									    <option value="G">Software Development</option>
+									    <option value="G">Competitive Coding / Software Development</option>
                       <option value="H">Design And UX/UI</option>
                       <option value="I">Social Challenges</option>
                       <option value="J">Industrial Challenges</option>
@@ -133,17 +133,6 @@
 										</select>
 											</div>
 									</div>
-									<!-- <div class="input-field s6">
-										<label >Challenge Type:</label>
-										<br>
-										<div class="input-field">
-										<select class="form-control" name="Type" id="meal">
-											<option value="" disabled selected>Select</option>
-											<option value="public">Public</option>
-											<option value="private">Private</option>
-										</select>
-										</div>
-									</div>	 -->
 
 										<div class="input-field col s6">
 											<input  id="first_name" type="text" name="Name" class="validate" required>
@@ -151,27 +140,37 @@
 										</div>
 										<div class="row">
 											<div class="input-field col s6">
-											  <textarea id="textarea1" name="Skills" class="materialize-textarea" required></textarea>
-											  <label for="textarea1">Skills Required:</label>
+											  <textarea id="textarea1" name="Eligibility" class="materialize-textarea"></textarea>
+											  <label for="textarea1">Eligibility / Skills Required:</label>
 											</div>
 										</div>
 
-										<div class="input-field col s6">
-											<input  id="estimated_time" type="number" name="Time" class="validate" required>
-											<label for="estimated_time">Estimated Time:</label>
-											<small>In Hours</small>
+
+										<div class="row">
+											<div class="input-field col s6">
+											  <textarea id="textarea1" name="StartDate" type="date" class="materialize-textarea"></textarea>
+											  <label for="textarea1">Challenge Start Date:</label>
+											</div>
 										</div>
 
-										<div class="input-field col s6">
-											<input  id="reward" type="number" name="Reward" class="validate" required>
-											<label for="reward">Reward Credits:</label>
 
+										<div class="row">
+											<div class="input-field col s6">
+											  <textarea id="textarea1" name="EndDate" type="date" class="materialize-textarea"></textarea>
+											  <label for="textarea1">Challenge End Date</label>
+											</div>
+										</div>
+
+
+										<div class="input-field col s6">
+											<input  id="reward" name="Reward" class="validate" required>
+											<label for="reward">Prizes:</label>
 										</div>
 
 										<div class="file-field input-field">
 											<div class="btn">
-											  <span>Solution Template:</span>
-											  <input type="file" name="Example" required>
+											  <span>Help Resources:</span>
+											  <input type="file" name="Example">
 											</div>
 											<div class="file-path-wrapper">
 											  <input class="file-path validate" type="text" >
@@ -184,26 +183,13 @@
 											</div>
 										</div>
 
-										<div class="input-field col s6">
-											<input  id="objective1" type="text" name="Objective1" class="validate" required>
-											<label for="objective1">Objective1:</label>
-										</div>
-										<div class="input-field col s6">
-											<input  id="objective2" type="text" name="Objective2" class="validate" required>
-											<label for="objective2">Objective2:</label>
-										</div>
-										<div class="input-field col s6">
-											<input  id="objective3" type="text" name="Objective3" class="validate" required>
-											<label for="objective3">Objective3:</label>
-										</div>
-										<div class="input-field col s6">
-											<input  id="objective4" type="text" name="Objective4" class="validate" required>
-											<label for="objective4">Objective4:</label>
-										</div>
-										<div class="input-field col s6">
-											<input  id="objective5" type="text" name="Objective5" class="validate" required>
-											<label for="objective5">Objective5:</label>
-										</div>
+                    <div class="row">
+                    <div class="input-field col s6">
+                      <textarea id="textarea2" name="Link" class="materialize-textarea" required></textarea>
+                      <label for="textarea2">Link:</label>
+                    </div>
+                  </div>
+
 							<button type="submit" class="btn btn-primary">Create</button>
 						  </form>
 			   </div>
