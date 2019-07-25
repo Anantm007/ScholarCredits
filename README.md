@@ -1,4 +1,4 @@
 # Scholar Credits
 
 Official website of Scholar Credits under Edumonk Foundation.
-Check it out: https://scholarcredits.herokuapp.com
+Check it out: http://www.scholarcredits.com
