@@ -440,6 +440,22 @@ router.get('/Startupcredits',(req,res)=>{
         }
   });
 }});
+
+
+// route for the about the startup
+router.get('/Sabout',(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }else{
+        Startup.findOne({'Email' : req.session.username},(err,data)=>{
+        if(data)
+        {
+          res.render('startupdashboard/about_us',{
+            Student : data,
+          });
+        }
+  });
+}});
     router.get('/Sdetails/:code',(req,res)=>{
         if(!req.session.username){
             res.redirect('/Sdashboard');
