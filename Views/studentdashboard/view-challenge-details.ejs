@@ -542,88 +542,112 @@ overflow-x: hidden;
                     </div>
                 </div>
 
-               <div class="container-fluid">
-                   <div class="row">
-                 <div class="col-md-2"></div>
-                  <div class="col-md-8 text-center" style="background:white;opacity:0.9;">
-                   <br>
-                            <% if(Challenge.Category == 'A'){ %>
-                                <h1>Digital Marketing And Growth Hacking</h1>
-                                <% } else if(Challenge.Category == 'B') { %>
-                                    <h1>Data And Web Analytics</h1>
-                                    <% } else if(Challenge.Category == 'C') { %>
-                                        <h1>Business Development And Strategy</h1>
-                                        <% } else if(Challenge.Category == 'D') { %>
-                                            <h1>Operation And Sales</h1>
-                                            <% } else if(Challenge.Category == 'E') { %>
-                                                <h1>Content Creation and Communication</h1>
-                                                <% } else if(Challenge.Category == 'F') { %>
-                                                    <h1>Web And Backend Development</h1>
-                                                    <% } else if(Challenge.Category == 'G') { %>
-                                                        <h1>Web And Frontend Development</h1>
-                                                        <% } else if(Challenge.Category == 'H') { %>
-                                                            <h1>Design And UX/UI</h1>
-                                                            <% } else if(Challenge.Category == 'I') { %>
-                                                                <h1>Blockchain Marketing</h1>
-                                                                <% } %>
-                                                                    <h2>
-                                                                        <%= Challenge.Name %>
-                                                                    </h2>
+                <div class="container-fluid">
+                    <div class="row">
+                  <div class="col-md-2"></div>
+                   <div class="col-md-8 text-center" style="background:white;opacity:0.9;">
+                    <br>
+                             <!-- <% if(Challenge.Category == 'A'){ %>
+                                 <h1>Digital Marketing And Growth Hacking</h1>
+                                 <% } else if(Challenge.Category == 'B') { %>
+                                     <h1>Data And Web Analytics</h1>
+                                     <% } else if(Challenge.Category == 'C') { %>
+                                         <h1>Business Development And Strategy</h1>
+                                         <% } else if(Challenge.Category == 'D') { %>
+                                             <h1>Operation And Sales</h1>
+                                             <% } else if(Challenge.Category == 'E') { %>
+                                                 <h1>Content Creation and Communication</h1>
+                                                 <% } else if(Challenge.Category == 'F') { %>
+                                                     <h1>Web And Backend Development</h1>
+                                                     <% } else if(Challenge.Category == 'G') { %>
+                                                         <h1>Web And Frontend Development</h1>
+                                                         <% } else if(Challenge.Category == 'H') { %>
+                                                             <h1>Design And UX/UI</h1>
+                                                             <% } else if(Challenge.Category == 'I') { %>
+                                                                 <h1>Blockchain Marketing</h1>
+                                                                 <% } %> -->
+                                                                     <h2>
+                                                                         <%= Challenge.Name %>
+                                                                     </h2>
+                                                                     <br><br>
+
+                                                                     <ul class="nav nav-tabs">
+                                                                    <li class="active"><a data-toggle="tab" href="#about">Description</a></li>
+                                                                    <li><a data-toggle="tab" href="#menu1">Timeline</a></li>
+                                                                    <li><a data-toggle="tab" href="#menu2">Eligibility</a></li>
+                                                                    <li><a data-toggle="tab" href="#menu3">Rewards / Prizes</a></li>
+                                                                    <li><a data-toggle="tab" href="#menu5">Help Resources</a></li>
+                                                                  </ul>
+
+                                                                  <div class="tab-content">
                                                                     <br>
-                                                                    <h4>Challenge Deadline:
-                                                                        <%= Challenge.EndDate %></h4>
+                                                                    <div id="about" class="tab-pane fade in active">
+                                                                      <h4 style="font-family:verdana">Description</h4><br>
+                                                                      <p style="text-align:left"><p><%= Challenge.Description %></p>  %></p><br>
+                                                                    </div>
+
+                                                                    <div id="menu1" class="tab-pane fade">
+                                                                      <h4 style="font-family:verdana">Timeline</h4><br>
+                                                                            <h4>Contest Starts On:
+                                                                            <%= Challenge.StartDate %></h4>
+                                                                            <h4>Contest Ends On:
+                                                                            <%= Challenge.EndDate %></h4>
+                                                                    </div>
+
+                                                                    <div id="menu2" class="tab-pane fade">
+                                                                        <h3>Eligibility</h3><br>
+                                                                       <p><%= Challenge.Eligibility %></p><br><br>
 
 
-                                 <br><br>
-                            <label>Help Resources</label>
-                            <% if( Extension == '.png' || Extension == '.jpeg' || Extension == '.jpg'){ %>
-                            <div class="Challenge-thumbnail" style="border:1px solid black;">
-                                <!-- Trigger the Modal -->
-                                <img id="myImg"  class="img-responsive" src=".<%= Challenge.Example %>" alt="Example">
+                                                                    </div>
 
-                                <!-- The Modal -->
-                                <div id="myModal" class="modal">
+                                                                    <div id="menu3" class="tab-pane fade">
+                                                                      <h3>Rewards / Prizes</h3><br>
+                                                                      <p><%= Challenge.Reward %></p>                                                                     </p>
+                                                                   </div>
 
-                                    <!-- The Close Button -->
-                                    <span class="close">&times;</span>
+                                                                     <div id="menu5" class="tab-pane fade">
+                                                                      <h4 style="font-family:verdana;text-align:left">Help Resoiurces</h4>
+                                                                      <label>Help Resources</label>
+                                                                      <% if( Extension == '.png' || Extension == '.jpeg' || Extension == '.jpg'){ %>
+                                                                      <div class="challenge-thumbnail" style="border:1px solid black;">
+                                                                          <!-- Trigger the Modal -->
+                                                                          <img id="myImg"  class="img-responsive" src=".<%= Challenge.Example %>" alt="Example">
 
-                                    <!-- Modal Content (The Image) -->
-                                    <img class="modal-content" id="img01">
+                                                                          <!-- The Modal -->
+                                                                          <div id="myModal" class="modal">
 
-                                    <!-- Modal Caption (Image Text) -->
-                                    <div id="caption"></div>
-                                </div>
-                                </div>
-                            <% } else{ %>
-                                <br>
-                                <h5>Click to Download Example</h5>
-                                <a href=".<%= Challenge.Example %>" download><button class="btn btn-primary">Download Example</button></a>
-                             <% } %>
+                                                                              <!-- The Close Button -->
+                                                                              <span class="close">&times;</span>
+
+                                                                              <!-- Modal Content (The Image) -->
+                                                                              <img class="modal-content" id="img01">
+
+                                                                              <!-- Modal Caption (Image Text) -->
+                                                                              <div id="caption"></div>
+                                                                          </div>
+                                                                          </div>
+                                                                      <% } else{ %>
+                                                                          <br>
+                                                                          <h5>Click to Download Example</h5>
+                                                                          <a href=".<%= Challenge.Example %>" download><button class="btn btn-primary">Download Example</button></a>
+                                                                       <% } %>
 
 
-                     <br><br>
-                <!-- <h3>Skills</h3>
-                <textarea class="form-control" rows="4" readonly><%= Challenge.Skills %></textarea><br><br> -->
-                <h3> Description</h3>
-                <p>
-                    <%= Challenge.Description %>
-                </p>
-                <br>
-                <br>
-                <br>
-            <!-- </div> -->
-               <br>
-                <a href="/dashboard">
-                    <button type="button" class="btn btn-default1 btn-md">
-                        <b>Accept Challenge</b>
-                    </button>
-                </a>
-                <!-- <h3>Share With</h3>
-            <a href="#" id="share-tw" class="sharer button"><i class="fa fa-3x fa-twitter-square"></i></a>
-            <a href="#" id="share-li" class="sharer button"><i class="fa fa-3x fa-linkedin-square"></i></a> -->
-         <br><br>
-         </div>
-    </div>
+                                                                     </div>
+
+                                                                     <a href="/dashboard">
+                                                                                           <button type="button" class="btn btn-default1 btn-md">
+                                                                                               <b>Accept Challenge</b>
+                                                                                           </button>
+                                                                                       </a>
+ </div>
+ <br>
+ <a href="/Saccept">
+    </a>
+
+ </div>
+ </div>
     <div class="col-md-2"></div>
     </div>
     </div>
