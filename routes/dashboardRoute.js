@@ -376,7 +376,7 @@ router.get('/viewchallenge/:code',(req,res)=>{
     // }else{
     // Register.findOne({'Email' : req.session.username},(err,data)=>{
         Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
-        
+
             var example = challenge.Example;
             var extension = path.extname(example);
           res.render('studentdashboard/view-challenge-details',{
@@ -384,7 +384,7 @@ router.get('/viewchallenge/:code',(req,res)=>{
               Challenge : challenge,
               Extension : extension
           });
-        
+
   });
 });
 // });
@@ -970,7 +970,7 @@ router.get('/idcard/download',async(req,res,next)=>{
             const challenge = await Submission.find({'Username':data.Name});
             // var html = ejs.renderFile('../Views/studentdashboard/idcard.ejs',
             //     {
-                     
+
             //     Student : data,
             //     Objective : objective,
             //     Project : project,
@@ -995,11 +995,11 @@ router.get('/idcard/download',async(req,res,next)=>{
             //     if (err) return console.log(err);
             //         console.log(res);
             //     });
-            
+
             console.log(data.Name);
             const invoiceName = 'idcard.pdf';
             const invoicePath = path.join('public', 'pdf', invoiceName);
-      
+
             const pdfDoc = new PDFDocument();
             res.setHeader('Content-Type', 'application/pdf');
             res.setHeader(
@@ -1008,7 +1008,7 @@ router.get('/idcard/download',async(req,res,next)=>{
             );
             pdfDoc.pipe(fs.createWriteStream(invoicePath));
             pdfDoc.pipe(res);
-      
+
             pdfDoc.fontSize(40).text('Idcard', {
                 align: 'center'
             });
@@ -1036,11 +1036,11 @@ router.get('/idcard/download',async(req,res,next)=>{
             pdfDoc.fillColor('#212529').fontSize(14).text(educations.Instname);
             pdfDoc.fillColor('#868e96').fontSize(14).text(educations.Duration);
             pdfDoc.fillColor('#868e96').fontSize(14).text(educations.Marks);
-            
+
         });
         pdfDoc.fillColor('#212529').fontSize(30).text('SKILLS');
         pdfDoc.fillColor('#212529').fontSize(20).text('PROGRAMMING LANGUAGES & TOOLS');
-        
+
         skill.forEach(skills => {
             if(skills.SelectLevel == 'Basic'){
             pdfDoc.fillColor('#868e96').fontSize(14).text(skills.SkillTitle + '=>' + skills.SelectLevel);
@@ -1068,7 +1068,7 @@ router.get('/idcard/download',async(req,res,next)=>{
 
 
             pdfDoc.fillColor('#212529').fontSize(30).text("CHALLENGES");
-            
+
 
             challenge.forEach(challenges => {
                 pdfDoc.fillColor('#212529').fontSize(20).text("CHALLENGES CARD");
@@ -1081,7 +1081,7 @@ router.get('/idcard/download',async(req,res,next)=>{
             });
 
             pdfDoc.end();
-    
+
         }catch(e){
             next(e);
         }
@@ -1122,8 +1122,8 @@ router.get('/idcard',async(req,res,next)=>{
             const interest = await Interest.find({'Student':data.Name});
             try{
             const challenge = await Submission.find({'Username':data.Name});
-            
-            
+
+
             res.render('studentdashboard/idcard',{
                 Student : data,
                 Objective : objective,
@@ -1133,7 +1133,7 @@ router.get('/idcard',async(req,res,next)=>{
                 Interest : interest,
                 Challenge : challenge
             });
-    
+
         }catch(e){
             next(e);
         }
@@ -1500,6 +1500,25 @@ router.get('/startups',async(req,res)=>{
      if(startup){
          console.log(startup);
          res.render('studentdashboard/startups',{
+             Student : data,
+             Startup : startup
+         });
+     }
+   }
+}
+});
+
+
+router.get('/council',async(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/dashboard');
+    }else{
+    const data = await Register.findOne({'Email':req.session.username});
+   if(data){
+     const startup = await Startup.find();
+     if(startup){
+         console.log(startup);
+         res.render('studentdashboard/council',{
              Student : data,
              Startup : startup
          });
