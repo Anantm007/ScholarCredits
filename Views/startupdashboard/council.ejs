@@ -2,12 +2,12 @@
 <html lang="en">
 <!-- BEGIN HEAD -->
 
-<% include ../includes/studentdashboard/head.ejs %>
+<% include ../includes/startupdashboard/head.ejs %>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
         <!-- start header -->
-		<% include ../includes/studentdashboard/header.ejs %>
+		<% include ../includes/startupdashboard/header.ejs %>
         <!-- start color quick setting -->
         <div class="quick-setting-main">
 			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
@@ -55,7 +55,7 @@
         <!-- start page container -->
         <div class="page-container">
 			 <!-- start sidebar menu -->
-			 <% include ../includes/studentdashboard/sidebar.ejs %>
+			 <% include ../includes/startupdashboard/sidebar.ejs %>
  				 <!-- end sidebar menu -->
 			<!-- start page content -->
             <div class="page-content-wrapper">
@@ -112,55 +112,56 @@
                     <p style="text-align:left"><font color="violet">Violet</font> House - <b>500000 Scholar Credits</b></p>
                     <p style="text-align:left"><font color="white">White</font> House - <b>1000000 Scholar Credits</b></p>
 
-                                          <h1>Our Scholar Council</h1>
-                                          <ul class="nav nav-tabs">
-                                          <li class="active"><a data-toggle="tab" href="#red">Red</a></li>
-                                          <li><a data-toggle="tab" href="#orange">Orange</a></li>
-                                          <li><a data-toggle="tab" href="#yellow">Yellow</a></li>
-                                          <li><a data-toggle="tab" href="#green">Green</a></li>
-                                          <li><a data-toggle="tab" href="#blue">Blue</a></li>
-                                          <li><a data-toggle="tab" href="#indigo">Indigo</a></li>
-                                          <li><a data-toggle="tab" href="#violet">Violet</a></li>
-                                          <li><a data-toggle="tab" href="#white">White</a></li>
-                                          </ul>
+                      <h1>Our Scholar Council</h1>
+                      <ul class="nav nav-tabs">
+                      <li class="active"><a data-toggle="tab" href="#red">Red</a></li>
+                      <li><a data-toggle="tab" href="#orange">Orange</a></li>
+                      <li><a data-toggle="tab" href="#yellow">Yellow</a></li>
+                      <li><a data-toggle="tab" href="#green">Green</a></li>
+                      <li><a data-toggle="tab" href="#blue">Blue</a></li>
+                      <li><a data-toggle="tab" href="#indigo">Indigo</a></li>
+                      <li><a data-toggle="tab" href="#violet">Violet</a></li>
+                      <li><a data-toggle="tab" href="#white">White</a></li>
+                      </ul>
 
-                                          <div class="tab-content">
-                                          <div id="red" class="tab-pane fade in active">
-                                           <h4 style="font-family:verdana;text-align:left">Our Story</h4>
-                                           <p style="text-align:left"><%= Student.About %></p><br>
-                                          </div>
+                      <div class="tab-content">
+                      <div id="red" class="tab-pane fade in active">
+                       <h4 style="font-family:verdana;text-align:left">Our Story</h4>
+                       <p style="text-align:left"><%= Student.About %></p><br>
+                      </div>
 
-                                          <div id="orange" class="tab-pane fade">
-                                           <h4 style="font-family:verdana;text-align:left">Website</h4>
-                                           <p style="text-align:left"><a href="<%=Student.Website%>"><%= Student.Website %></a></p><br>
-                                          </div>
+                      <div id="orange" class="tab-pane fade">
+                       <h4 style="font-family:verdana;text-align:left">Website</h4>
+                       <p style="text-align:left"><a href="<%=Student.Website%>"><%= Student.Website %></a></p><br>
+                      </div>
 
-                                          <div id="yellow" class="tab-pane fade">
-                                           <h4 style="font-family:verdana;text-align:left">Contact</h4>
-                                           <p style="text-align:left"><a href="mailto: <%=Student.Email%>"><%= Student.Email %></a></p>
-                                           <p style="text-align:left">Phone No. - <%= Student.Phone %></p>
-                                           <p style="text-align:left">Address - <%= Student.Address %></p><br>
-                                          </div>
+                      <div id="yellow" class="tab-pane fade">
+                       <h4 style="font-family:verdana;text-align:left">Contact</h4>
+                       <p style="text-align:left"><a href="mailto: <%=Student.Email%>"><%= Student.Email %></a></p>
+                       <p style="text-align:left">Phone No. - <%= Student.Phone %></p>
+                       <p style="text-align:left">Address - <%= Student.Address %></p><br>
+                      </div>
 
-                                          <div id="green" class="tab-pane fade">
-                                           <h4 style="font-family:verdana;text-align:left">My challenges</h4>
-                                          </div>
+                      <div id="green" class="tab-pane fade">
+                       <h4 style="font-family:verdana;text-align:left">My challenges</h4>
+                      </div>
 
-                                          <div id="blue" class="tab-pane fade">
-                                           <h4 style="font-family:verdana;text-align:left">Community</h4>
-                                          </div>
+                      <div id="blue" class="tab-pane fade">
+                       <h4 style="font-family:verdana;text-align:left">Community</h4>
+                      </div>
 
-                                          <div id="indigo" class="tab-pane fade">
-                                            <h4 style="font-family:verdana;text-align:left">Community</h4>
-                                          </div>
+                      <div id="indigo" class="tab-pane fade">
+                        <h4 style="font-family:verdana;text-align:left">Community</h4>
+                      </div>
 
-                                          <div id="violet" class="tab-pane fade">
-                                            <h4 style="font-family:verdana;text-align:left">Community</h4>
-                                          </div>
+                      <div id="violet" class="tab-pane fade">
+                        <h4 style="font-family:verdana;text-align:left">Community</h4>
+                      </div>
 
-                                          <div id="white" class="tab-pane fade">
-                                             <h4 style="font-family:verdana;text-align:left">Community</h4>
-                                          </div>
+                      <div id="white" class="tab-pane fade">
+                         <h4 style="font-family:verdana;text-align:left">Community</h4>
+                      </div>
+
 
 			                  </div>
                                 </div>
@@ -498,7 +499,7 @@
             </div>
             <!-- end page container -->
             <!-- start footer -->
-            <% include ../includes/studentdashboard/footer.ejs %>
+            <% include ../includes/startupdashboard/footer.ejs %>
             <!-- end footer -->
         </div></div>
         <!-- start js include path -->
