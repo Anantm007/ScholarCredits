@@ -1527,4 +1527,24 @@ router.get('/council',async(req,res)=>{
 }
 });
 
+
+
+router.get('/clubs',async(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/dashboard');
+    }else{
+    const data = await Register.findOne({'Email':req.session.username});
+   if(data){
+     const startup = await Startup.find();
+     if(startup){
+         console.log(startup);
+         res.render('studentdashboard/studentclubs',{
+             Student : data,
+             Startup : startup
+         });
+     }
+   }
+}
+});
+
 module.exports = router;
