@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const challengeSchema = new schema({
+    MainType: String,
+    MainCategory: String,
     Category : String,
     Subcategory : String,
     Type:String,
