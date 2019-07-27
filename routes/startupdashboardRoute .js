@@ -1482,23 +1482,39 @@ router.get('/Scouncil',async(req,res)=>{
     }
     else{
 
-   //  const data = await Register.findOne({'Email':req.session.username});
-   // if(data){
      const startup = await Startup.find({'Email':req.session.username});
      if(startup){
          console.log(startup);
          res.render('startupdashboard/council',{
                 // Student : data,
                 Student : startup
-   //
-   //     });
-   //    }
-   // }
+              });
+
+     }
+
+    }
+
 });
 
-}
 
-}
+router.get('/Sclubs',async(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/Sdashboard');
+    }
+
+    else
+    {
+         const startup = await Startup.find({'Email':req.session.username});
+         if(startup){
+             console.log(startup);
+             res.render('startupdashboard/studentclubs',{
+                    // Student : data,
+                    Student : startup
+                  });
+
+                }
+    }
+
 });
 
 module.exports = router;
