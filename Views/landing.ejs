@@ -81,7 +81,7 @@
                                 <li><a href="#">Explore</a>
                                 <ul class="dropdown-menu">
                                   <li><a href="#challenges">Challenges</a></li>
-                                  <li><a href="#brands">Brands</a></li>
+                                  <li><a href="#brands">Our Partners</a></li>
                                   <li><a href="#">News</a></li>
                                   <li><a href="#">Scholar Council</a></li>
                                 </ul>
@@ -187,14 +187,14 @@
     <section class="features-top-area" id="features">
         <div class="container">
             <div class="row promo-content">
-                <h2 style="text-align: center">For  Startups /  Brands</h2>
+                <h2 style="text-align: center">For  Companies</h2>
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                     <div class="text-icon-box mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.1s">
                         <div class="box-icon features-box-icon">
                             <i class="fa fa-graduation-cap"></i>
                         </div>
-                        <h3 class="box-title">Register your Startup/ Brand</h3>
-                        <p>Get your brand /  company listed to get exposure among our worldwide community of web developers, digital marketers, content writers ,video makers , translators , social media marketers. Scholar Community Manager will get in touch with you and conceptualize challenge creation strategy.</p>
+                        <h3 class="box-title">Register your Company</h3>
+                        <p>Get your Company listed to get exposure among our worldwide community of web developers, digital marketers, content writers ,video makers , translators , social media marketers. Scholar Community Manager will get in touch with you and conceptualize challenge creation strategy.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
@@ -238,7 +238,7 @@
                                 <i class="fa fa-graduation-cap"></i>
                             </div>
                             <h3 class="box-title">Register yourself on the platform</h3>
-                            <p>Search and apply for relevant challenges hosted by different startups / brands on our platform.</p>
+                            <p>Search and apply for relevant challenges hosted by different companies on our platform.</p>
                           </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
@@ -347,7 +347,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="single-fun-fact mb30 wow fadeInUp" data-wow-delay="0.2s">
                         <h3 class="font60 xs-font26"><span class="counter">100</span>+</h3>
-                        <p class="font600">Startups / Brands</p>
+                        <p class="font600">Companies</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -402,7 +402,7 @@
                             <img  src="categories/blockchain.jpg" style="width:200px;height:200px;" alt="">
                             <% } %>
                         <div class="course-details padding30">
-                            <h3 class="font18"><%= challenges.Name %></h3>
+                            <h3 class="font18"><%= challenges.Name.substring(0,25) + " ..." %></h3>
                             <p><%= challenges.Description.substring(0, 150) + "..." %></p>
                             <p class="mt30"><a href="/viewchallenge/<%= challenges._id %>" class="enroll-button">View Challenge Now</a> <span class="course-price"></span></p>
                         </div>
@@ -416,50 +416,36 @@
     </section>
 
 
-        <!--COURSE AREA-->
+        <!--Company AREA-->
         <section class="course-area padding-top" id="brands">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
                         <div class="area-title text-center wow fadeIn">
-                            <h2 class="xs-font26">Scholar Credits Is Trusted By 100+ Brands</h2>
+                            <h2 class="xs-font26">Some of Our Partners</h2>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row course-list">
-                    <% Challenge.forEach((challenges)=>{ %>
+                <div class="row course-list">
+                    <% Startup.forEach((startup)=>{ %>
                    <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                         <div class="single-course mb20">
-                            <% if(challenges.Category == 'A'){ %>
-                                <img  src="categories/marketing.png" style="width:200px;height:200px;"  alt="">
-                                <% } else if(challenges.Category == 'B') { %>
-                                <img src="categories/analytics.jpg"  style="width:200px;height:200px;"  alt="">
-                                <% } else if(challenges.Category == 'C') { %>
-                                <img  src="categories/business.jpg"  style="width:200px;height:200px;" alt="">
-                                <% } else if(challenges.Category == 'D') { %>
-                                <img  src="categories/sales.jpg"     style="width:200px;height:200px;" alt="">
-                                <% } else if(challenges.Category == 'E') { %>
-                                <img  src="categories/communication.png" style="width:200px;height:200px;"  alt="">
-                                <% } else if(challenges.Category == 'F') { %>
-                                <img  src="categories/web.jpg"  style="width:200px;height:200px;" alt="">
-                                <% } else if(challenges.Category == 'G') { %>
-                                <img  src="categories/web.jpg"  style="width:200px;height:200px;" alt="">
-                                <% } else if(challenges.Category == 'H') { %>
-                                <img  src="categories/business.jpg"   style="width:200px;height:200px;" alt="">
-                                <% } else if(challenges.Category == 'I') { %>
-                                <img  src="categories/blockchain.jpg" style="width:200px;height:200px;" alt="">
-                                <% } %>
+                            <!-- <img src="assests/img/course/blog-1.jpg" alt=""> -->
+                                 <img  src="<%=startup.ProfileImage%>" style="width:200px;height:200px;"  alt="">
+
                             <div class="course-details padding30">
-                                <h3 class="font18"><%= challenges.Name %></h3>
-                                <p><%= challenges.Description.substring(0, 150) + "..." %></p>
-                                <p class="mt30"><a href="/viewchallenge/<%= challenges._id %>" class="enroll-button">View Challenge Now</a> <span class="course-price"></span></p>
+                                <h3 class="font18"><%= startup.Name.substring(0,25) + " ..." %></h3>
+                                <p><%= startup.About.substring(0, 150) + "..." %></p>
+                                <p class="mt30"><a href="/viewchallenge/<%= startup._id %>" class="enroll-button">View Challenge Now</a> <span class="course-price"></span></p>
                             </div>
                         </div>
                     </div>
                      <% }) %>
 
                     </div>
-                </div> -->
+                </div>
+            </div>
+
             </div>
         </section>
     <!--COURSE AREA END-->
