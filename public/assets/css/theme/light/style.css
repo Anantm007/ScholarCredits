@@ -4,7 +4,7 @@
  *  Description: This style sheet is used for light layout theme customizations.
 
 
-						1. USER LIST 
+						1. USER LIST
 						2. NOTIFICATIONS
 						3. EMAIL
 						4. SELECT ITEM
@@ -274,7 +274,7 @@ h4.vew-mail-header b {
     margin: 5px;
     color: transparent;
     position: relative;
-    background-color: #EAEEF3; 
+    background-color: #EAEEF3;
 }
 .quick-setting ul#themecolors li a.green-theme {
     background-color: #0f0;
@@ -749,7 +749,7 @@ span.online-status {
 
 .app-search {
     position: relative;
-}	
+}
 .contact-detail {
     float: left;
     width: 100%;
@@ -788,7 +788,7 @@ tr.group:hover {
 }
 
 .selector-title{
-	margin-top: 0px !important; 
+	margin-top: 0px !important;
 	color: #000000;
 }
 .note-icon-font{

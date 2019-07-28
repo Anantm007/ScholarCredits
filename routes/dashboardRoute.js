@@ -387,7 +387,20 @@ router.get('/viewchallenge/:code',(req,res)=>{
 
   });
 });
-// });
+
+
+router.get('/viewstartup/:code',(req,res)=>{
+  console.log("hello");
+        Startup.findOne({ '_id' : req.params.code },(err,startup)=>{
+
+          res.render('studentdashboard/view-startup-details',{
+
+              Startup : startup
+          });
+
+  });
+});
+
 
 
 
