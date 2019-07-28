@@ -560,7 +560,7 @@ router.post('/participate',async(req,res)=>{
                         let HelperOptions ={
                             from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
                             to : user.Email,
-                            subject : "Edumonk Challenge",
+                            subject : "Scholar Credits Challenge Completeion",
                             text : sub.Username+" has completed your challenge"
                         }
 
@@ -584,7 +584,7 @@ router.post('/participate',async(req,res)=>{
                   let HelperOptions ={
                     from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
                       to : user.Email,
-                      subject : "Edumonk Challenge",
+                      subject : "Scholar Credits Challenge Completion",
                       text : sub.Username+" has completed your challenge"
                   }
 
