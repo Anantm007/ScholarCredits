@@ -10,11 +10,17 @@ router.get('/',async(req,res)=>{
    const challenge = await Challenge.find().sort({'_id' : -1}).limit(10);
    const startup = await Startup.find().sort({'_id': -1}).limit(10);
    if(startup)
-   console.log(startup);
-   if(challenge){
-    res.render('landing',{
-        Challenge : challenge,
-        Startup: startup
-    });}});
+   {
+
+     if(challenge){
+      res.render('landing',{
+          Challenge : challenge,
+          Startup: startup
+      });
+
+   }
+ }
+
+ });
 
 module.exports = router;
