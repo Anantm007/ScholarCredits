@@ -554,3 +554,7 @@ label.mt10.valid {
     background: #3ee792;
     color: #ffffff;
 }
+
+.navbar .nav li .dropdown-menu li a {
+  white-space: normal;
+}

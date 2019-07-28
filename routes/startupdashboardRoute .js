@@ -22,6 +22,12 @@ var pdf = require('html-pdf');
 var phantom = require('phantom');
 var pdf = require('dynamic-html-pdf');
 
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({
+    extended: true
+}));
+router.use(bodyParser.json({type: 'application/json'}));
+
 
 const multer = require("multer");
 const multerConf = {
@@ -174,6 +180,169 @@ router.post('/Slogin',(req,res)=>{
         });
         });
 
+        //this route is for conformation hiring mail to the student
+        router.post('/conformation/:id',(req,res)=>{
+
+            const Id = req.params.id;
+            //    not running
+            const position = req.body.position;
+            const time = req.body.time;
+            const stipend = req.body.stipend;
+            const responsibilities = req.body.responsibilities
+
+            console.log(req.body.position);
+            console.log(req.body.time);
+            if(!req.session.username){
+                res.redirect('/Sdashboard');
+            }else{
+                Startup.findOne({'Email' : req.session.username},(err,data)=>{
+                if(data)
+                {
+                    Register.findOne({'_id':Id},(err,student) => {
+                        const invoiceName = student._id+'.pdf';
+                        const invoicePath = path.join('public', 'pdf', invoiceName);
+
+                        const pdfDoc = new PDFDocument();
+                        res.setHeader('Content-Type', 'application/pdf');
+                        res.setHeader(
+                          'Content-Disposition',
+                          'inline; filename="' + invoiceName + '"'
+                        );
+                        pdfDoc.pipe(fs.createWriteStream(invoicePath));
+
+
+                        pdfDoc.fillColor('red').fontSize(40).text('EDUMONK FOUNDATION', {
+                            align: 'left'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('red').fontSize(30).text('TALK TO LEARN', {
+                            align: 'left',
+                            // characterSpacing:"10"
+                        });
+                        pdfDoc.moveDown();
+
+                        pdfDoc.fillColor('black').fontSize(14).text('Regdunderthecompaniesact,2013', {
+                            align: 'left'
+                        });
+                        pdfDoc.fillColor('black').fontSize(14).text('U80904UP2017NPL098780', {
+                            align: 'left'
+                        });
+                        // use mometm here for define the current date
+                        const d = new Date();
+                        pdfDoc.fillColor('red').fontSize(14).text('Date - ' + d.toISOString().slice(0,10), {
+                            align: 'right'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+
+                        pdfDoc.fillColor('black').fontSize(25).text('Offer Letter',{
+                            underline:'true',
+                            bold: "true",
+                            align:'center'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("Dear " +student.Name +"," ,{
+                        align:'center'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("We feel elated to inform you that you have been selected for internship at Edumonk Foundation as a " + position,{
+                            align:'center'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("from " + time,{
+                            align:'center'
+                        });
+
+
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("You will be responsible for " + responsibilities,{
+                            align:'center'
+                        });
+
+
+
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("The stipend for the internhsip will be Rs." + stipend,{
+                            align:'center'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("Wishing you Best Of Luck for this internhsip and your future!",{
+                            align:'center'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("Best Wishes",{
+                            align:'left'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(16).text("Manish Patel",{
+                            align:'left'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("Founder & CEO, Edumonk Foundation",{
+                            align:'left'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("support@edumonk.org",{
+                            align:'left',
+                            link:'support@edumonk.org'
+                        });
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('black').fontSize(14).text("www.edumonk.org",{
+                            align:'left',
+                            link:'www.edumonk.org'
+                        });
+
+                        pdfDoc.moveUp();
+                        pdfDoc.moveUp();
+                        pdfDoc.moveUp();
+                        pdfDoc.fillColor('black').fontSize(14).text("Director",{
+                            align:'right',
+                            link:'www.edumonk.org'
+                        });
+
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.moveDown();
+                        pdfDoc.fillColor('red').fontSize(14).text("E-41, First Floor, Panchsheel Park, South Delhi, N.D-110017",{
+                            align:'center'
+                        });
+
+                        let HelperOptions ={
+                          from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
+
+                             to : student.Email,
+                              subject : "Congrats! You have been selected for an internship role at " + data.Name,
+                              text : "Hello, " + student.Name +", we are pleased to inform you that " + data.Name + " have offered you a " + position + " position in their company",
+                              attachments: [{
+                                filename: invoiceName,
+                                path: path.join('public', 'pdf', invoiceName),
+                                contentType: 'application/pdf'
+                              }]
+                          }
+
+                          transporter.sendMail(HelperOptions,(err,info)=>{
+                              if(err) throw err;
+                              console.log("The message was sent");
+                          });
+
+                          pdfDoc.pipe(res);
+                        pdfDoc.end();
+
+                    });
+                }
+          });
+        }});
+
 
         router.get('/Screatechallenge',async(req,res,next)=>{
             if(!req.session.username){
@@ -254,172 +423,6 @@ router.post('/Slogin',(req,res)=>{
             }
       });
     });
-}});
-
-//this route is for conformation hiring mail to the student
-router.post('/conformation/:id',(req,res)=>{
-
-    const Id = req.params.id;
-    //    not running
-    const position = req.body.position;
-    const time = req.body.time;
-    const stipend = req.body.stipend;
-    const responsibilities = req.body.responsibilities
-
-    console.log(req.body.position);
-    console.log(req.body.time);
-    if(!req.session.username){
-        res.redirect('/Sdashboard');
-    }else{
-        Startup.findOne({'Email' : req.session.username},(err,data)=>{
-        if(data)
-        {
-            Register.findOne({'_id':Id},(err,student) => {
-                const invoiceName = student._id+'.pdf';
-                const invoicePath = path.join('public', 'pdf', invoiceName);
-
-                const pdfDoc = new PDFDocument();
-                res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader(
-                  'Content-Disposition',
-                  'inline; filename="' + invoiceName + '"'
-                );
-                pdfDoc.pipe(fs.createWriteStream(invoicePath));
-
-
-                pdfDoc.fillColor('red').fontSize(40).text('EDUMONK FOUNDATION', {
-                    align: 'center'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('red').fontSize(30).text('TALK TO LEARN', {
-                    align: 'center',
-                    characterSpacing:"10"
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('red').fontSize(30).text({
-                    underline:'true'
-
-                });
-                pdfDoc.fillColor('black').fontSize(14).text('Regdunderthecompaniesact,2013', {
-                    align: 'left'
-                });
-                pdfDoc.fillColor('black').fontSize(14).text('U80904UP2017NPL098780', {
-                    align: 'left'
-                });
-                // use mometm here for define the current date
-                const d = new Date();
-                pdfDoc.fillColor('red').fontSize(14).text('Date - ' + d.toISOString().slice(0,10), {
-                    align: 'right'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-
-                pdfDoc.fillColor('black').fontSize(25).text('Offer Letter',{
-                    underline:'true',
-                    bold: "true",
-                    align:'center'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("Dear " +student.Name +"," ,{
-                align:'center'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("We feel elated to inform you that you have been selected for internship at Edumonk Foundation as a " + position,{
-                    align:'center'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("from " + time,{
-                    align:'center'
-                });
-
-
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("You will be responsible for " + responsibilities,{
-                    align:'center'
-                });
-
-
-
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("The stipend for the internhsip will be Rs." + stipend,{
-                    align:'center'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("Wishing you Best Of Luck for this internhsip and your future!",{
-                    align:'center'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("Best Wishes",{
-                    align:'left'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(16).text("Manish Patel",{
-                    align:'left'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("Founder & CEO, Edumonk Foundation",{
-                    align:'left'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("support@edumonk.org",{
-                    align:'left',
-                    link:'support@edumonk.org'
-                });
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('black').fontSize(14).text("www.edumonk.org",{
-                    align:'left',
-                    link:'www.edumonk.org'
-                });
-
-                pdfDoc.moveUp();
-                pdfDoc.moveUp();
-                pdfDoc.moveUp();
-                pdfDoc.fillColor('black').fontSize(14).text("Director",{
-                    align:'right',
-                    link:'www.edumonk.org'
-                });
-
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.moveDown();
-                pdfDoc.fillColor('red').fontSize(14).text("E-41, First Floor, Panchsheel Park, South Delhi, N.D-110017",{
-                    align:'center'
-                });
-
-                let HelperOptions ={
-                  from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
-
-                     to : student.Email,
-                      subject : "Congrats! You have been selected for an internship role at " + data.Name,
-                      text : "Hello, " + student.Name +", we are pleased to inform you that " + data.Name + " have offered you a " + position + " position in their company",
-                      attachments: [{
-                        filename: invoiceName,
-                        path: path.join('public', 'pdf', invoiceName),
-                        contentType: 'application/pdf'
-                      }]
-                  }
-
-                  transporter.sendMail(HelperOptions,(err,info)=>{
-                      if(err) throw err;
-                      console.log("The message was sent");
-                  });
-
-                  pdfDoc.pipe(res);
-                pdfDoc.end();
-
-            });
-        }
-  });
 }});
 
 
@@ -1361,7 +1364,6 @@ router.get('/Sdeleteeducation/:code',async(req,res,next)=>{
         next(e);
     }
 });
-
 
 
 router.post('/Sreset',async(req,res,next)=>{
