@@ -117,11 +117,46 @@
 									   <%= student.Email %><br>
 									   <%= student.Phone %>
 									   <br>
-									   POI: <b style="color:black"><%= student.POI %></b>
+									   Scholar Credits : <b style="color:#08ffc8"><%= student.Credit%></b>
 									   <br>
 									   <br>
 									   <!-- <a  href="/conformation/<%= student._id %>"><button class="btn btn-primary">Conformation Mail</button></a> -->
-									   <a  href="/hire/<%= student._id %>"><button class="btn btn-primary">Hire</button></a>
+									   <a  href="/hire/<%= student._id %>"><button class="btn btn-primary">Hire</button></a><br><br>
+                     <% if(student.Credit <= 5000) { %>
+                       <p style="color:red">Red house</p>
+                       <% } %>
+
+                      <% if(student.Credit > 5000 && student.Credit <= 10000) { %>
+                       <p style="color:orange">Orange house</p>
+                      <% } %>
+
+                       <% if(student.Credit > 10000 && student.Credit <= 25000) { %>
+                        <p style="color:yellow">Yellow house</p>
+                       <% } %>
+
+                       <% if(student.Credit > 25000 && student.Credit <= 75000) { %>
+                        <p style="color:green">Green house</p>
+                       <% } %>
+
+                       <% if(student.Credit > 75000 && student.Credit <= 100000) { %>
+                         <p style="color:blue">Blue house</p>
+                       <% } %>
+
+                       <% if(student.Credit > 100000 && student.Credit <= 300000) { %>
+                         <p style="color:#7700cf">Indigo house</p>
+                       <% } %>
+
+                       <% if(student.Credit > 300000 && student.Credit <= 500000) { %>
+                         <p style="color:violet">Violet house</p>
+                       <% } %>
+
+                       <% if(student.Credit > 500000) { %>
+                         <p style="color:white">White house</p>
+                       <% } %>
+
+
+
+
 									</p>
 
                                 </div>
