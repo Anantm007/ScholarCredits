@@ -45,8 +45,8 @@ let transporter = nodemailer.createTransport({
     secure : false,
     port : 25,
     auth : {
-        user : config.EmailCredentials.Id,
-        pass : config.EmailCredentials.Pass
+        user : process.env.EmailCredentialsId || config.EmailCredentials.Id,
+        pass : process.env.EmailCredentialsPass || config.EmailCredentials.Pass
     },
     tls : {
         rejectUnauthorized : false
@@ -87,7 +87,7 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
 
                     // from : config.EmailCredentials.Name,
 
-                    from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
+                    from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
                     to : req.body.Email,
                     subject : "Scholar Credits",
                     text : "Please Authenticate Your Profile By Clicking the link "+fullUrl
@@ -558,7 +558,7 @@ router.post('/participate',async(req,res)=>{
                           Submission.findOne({'Name' : req.body.Name,'Username':username.Name},(err,sub)=>{
                               console.log(sub);
                         let HelperOptions ={
-                            from : config.EmailCredentials.Name + '<'+config.EmailCredentials.Id+'>' ,
+                          from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
                             to : user.Email,
                             subject : "Scholar Credits Challenge Completeion",
                             text : sub.Username+" has completed your challenge"
@@ -582,7 +582,7 @@ router.post('/participate',async(req,res)=>{
                     Submission.findOne({'Name' : req.body.Name,'Username':username.Name},(err,sub)=>{
                         console.log(sub);
                   let HelperOptions ={
-                    from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
+                    from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
                       to : user.Email,
                       subject : "Scholar Credits Challenge Completion",
                       text : sub.Username+" has completed your challenge"
@@ -1422,7 +1422,7 @@ router.post('/reset',async(req,res,next)=>{
     if(result){
         req.session.code = code;
         let HelperOptions ={
-            from : config.EmailCredentials.Name+ '<'+config.EmailCredentials.Id ,
+          from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
             to : req.body.Email,
             subject : "Password Reset",
             text : "The link to reset Your password is "+fullUrl
