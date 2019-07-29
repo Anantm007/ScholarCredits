@@ -106,7 +106,7 @@
                     <div class="row">
                             <% Students.forEach(function(student) { %>
 				           <div class="col-md-4">
-                            <div class="card">
+                            <div class="card bg-warning">
                                 <canvas class="header-bg" width="400" height="80" id="header-blur"></canvas>
                                 <div class="avatar">
                                     <img src="/<%= student.ProfileImage %>" width="70" height="70" alt="ProfileImage" />
@@ -153,9 +153,6 @@
                        <% if(student.Credit > 500000) { %>
                          <p style="color:white">White house</p>
                        <% } %>
-
-
-
 
 									</p>
 
