@@ -184,22 +184,21 @@ router.post('/Slogin',(req,res)=>{
 
         //this route is for conformation hiring mail to the student
         router.post('/conformation/:id',(req,res)=>{
-
+          if(!req.session.username){
+              res.redirect('/Sdashboard');
+          }else{
+              Startup.findOne({'Email' : req.session.username},(err,data)=>{
+              if(data)
+              {
             const Id = req.params.id;
             //    not running
             const position = req.body.position;
             const time = req.body.time;
             const stipend = req.body.stipend;
-            const responsibilities = req.body.responsibilities
+            const responsibilities = req.body.responsibilities;
 
             console.log(req.body.position);
             console.log(req.body.time);
-            if(!req.session.username){
-                res.redirect('/Sdashboard');
-            }else{
-                Startup.findOne({'Email' : req.session.username},(err,data)=>{
-                if(data)
-                {
                     Register.findOne({'_id':Id},(err,student) => {
                         const invoiceName = student._id+'.pdf';
                         const invoicePath = path.join('public', 'pdf', invoiceName);
