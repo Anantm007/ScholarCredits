@@ -37,7 +37,7 @@ const multerConf = {
     filename : function(req,file,next){
       const ext = file.mimetype.split("/")[1];
       next(null, file.fieldname + '-' + Date.now()+ "." + ext);
-      // next(null,file.originalname);
+      next(null,file.originalname);
     }
   })
 };
