@@ -1517,7 +1517,6 @@ router.post('/Sreport/:id',(req,res)=>{
 
       });
     });
-
 });
 
 
