@@ -1507,7 +1507,7 @@ router.post('/Sreport/:id',(req,res)=>{
           from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
            to : "scholarcredits@gmail.com",
             subject : "A Student has been reported by " + data.Name,
-            text : req.body.Description + "The student can be contacted at - " + student.Email
+            text : req.body.Description + " The student can be contacted at - " + student.Email
         }
 
         transporter.sendMail(HelperOptions,(err,info)=>{

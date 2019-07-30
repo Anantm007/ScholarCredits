@@ -65,7 +65,7 @@
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/conformation/<%= Students._id %>" method="POST" enctype="multipart/form-data">
+						<form action="/conformation/<%= Students._id %>" method="POST">
 							<div class="input-field col s6">
 											<!-- <input  id="first_name" type="text" name="Name" class="validate" value ="<%= Students.Name %>" required> -->
 											<label for="first_name">Candidate Name: <%= Students.Name %></label>
