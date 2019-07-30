@@ -65,24 +65,22 @@
 					<% if(typeof message!== 'undefined'){ %>
 						<small><%= message %></small>
 						<% } %>
-						<form action="/report/<%= Students._id %>" method="POST" enctype="multipart/form-data">
-							<div class="input-field col s6">
-											<!-- <input  id="first_name" type="text" name="Name" class="validate" value ="<%= Students.Name %>" required> -->
-											<label for="first_name">Student Name: <%= Students.Name %></label>
-											<br>
-											<br>
-										</div>
-										<div class="row">
-											<div class="input-field col s6">
-
-                    <div class="input-field col s6">
-                        <textarea id="textarea1" name="Description" class="materialize-textarea" required></textarea>
-                        <label for="Description">Why do you want to report the student ?:       </label>
+            <form action="/Sreport/<%=Students.id%>"  method="POST">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                        <div class="form-group" id="name-field">
+                            <div class="form-input">
+                                <input type="text" class="form-control" id="form-name" name="Description" placeholder="Why do you want to report the student ? " required>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="form-group mb0">
+                            <input type="submit" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
 
-
-							<button type="submit" class="btn btn-warning"> Report </button>
-						  </form>
 			   </div>
 			</div>
             <!-- end page content -->

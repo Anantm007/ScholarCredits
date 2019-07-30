@@ -1477,13 +1477,11 @@ router.get('/hire/:id',async(req,res)=>{
 });
 
 router.get('/report/:id',async(req,res)=>{
-  console.log("Hello");
     const Id = req.params.id;
     if(!req.session.username){
         res.redirect('/Sdashboard');
     }else{
     const data = await Startup.findOne({'Email':req.session.username});
-    // console.log(data);
    if(data){
     // console.log(req.session.username);
     const student = await Register.findOne({'_id':Id});
@@ -1497,41 +1495,30 @@ router.get('/report/:id',async(req,res)=>{
 }
 });
 
-router.post('/report/:id',(req,res)=>{
-  if(!req.session.username){
-      res.redirect('/Sdashboard');
-  }else{
-      Startup.findOne({'Email' : req.session.username},(err,data)=>{
-      if(data)
-      {
-        console.log(data);
-    const Id = req.params.id;
-    //    not running
-    const description = req.body.Description;
-    console.log(description);
+router.post('/Sreport/:id',(req,res)=>{
 
-      Register.findOne({'_id':Id},(err,student) => {
+      const Id = req.params.id;
+       Register.findOne({'_id':Id},(err,student) => {
+       Startup.findOne({'Email' : req.session.username},(err,data)=>{
 
-                let HelperOptions ={
-                  from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
+       console.log(req.body);
 
-                     to : "askedumonk@gmail.com",
-                      subject : student.Name + " has been reported by " + data.Name,
-                      text : data.Name + " has reported " + student.Name + " due to the following reason - " + req.body.Description +  " Student email - " + student.Email
-                  }
-
-                  transporter.sendMail(HelperOptions,(err,info)=>{
-                      if(err) throw err;
-                      console.log("The message was sent");
-                  });
-
-
-            });
+        let HelperOptions ={
+          from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
+           to : "scholarcredits@gmail.com",
+            subject : "A Student has been reported by " + data.Name,
+            text : req.body.Description + "The student can be contacted at - " + student.Email
         }
-  });
 
-  res.render('startupdashboard/report')
-}});
+        transporter.sendMail(HelperOptions,(err,info)=>{
+            if(err) throw err;
+            console.log("The message was sent" );
+        });
+
+      });
+    });
+
+});
 
 
 
