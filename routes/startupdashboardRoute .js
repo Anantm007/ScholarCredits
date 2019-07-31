@@ -1519,6 +1519,22 @@ router.post('/Sreport/:id',(req,res)=>{
     });
 });
 
+router.get('/Shelp', async(req, res) => {
+  if(!req.session.username){
+      res.redirect('/Sdashboard');
+  }
+
+
+    Startup.findOne({'Email' : req.session.username},(err,data)=>{
+    if(data)
+    {
+      res.render('startupdashboard/we-help',{
+          Student : data
+      });
+    }
+});
+
+});
 
 
 router.get('/Scouncil',async(req,res)=>{
