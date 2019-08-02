@@ -21,6 +21,8 @@ var ejs = require('ejs');
 var pdf = require('html-pdf');
 var phantom = require('phantom');
 var pdf = require('dynamic-html-pdf');
+var http = require('http');
+
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({
@@ -441,6 +443,41 @@ router.get('/Startupcredits',(req,res)=>{
         }
   });
 }});
+
+router.get('/invite/:id', async(req,res) =>
+{
+  if(!req.session.username){
+      res.redirect('/Sdashboard');
+  }
+
+  const smshelper = {
+
+  clientid: config.SMSCredentials.ClientId,
+  apikey: config.SMSCredentials.ApiKey,
+  // msisdn: Single mobile number or multiple mobile numbers separated by comma(10 digits or +91),
+  sid: config.SMSCredentials.SenderId,
+  msg: "Welcome to Scholar Credits. Join this awesome challenge to earn awesome rewards and prizes. www.scholarcredits.com/viewchallenge/" + req.params.id,
+  fl: 0,
+  gwid: 2
+  };
+
+  var options = {
+    host: 'http://sms.shinenetcore.com',
+    port: 80,
+    path: encodeURI('/vendorsms/pushsms.aspx?clientid='+smshelper.clientid +'&apikey=' + smshelper.apikey + '&msisdn=' + '9711093860,9643754311' + '&sid=' + smshelper.sid + '&msg=' + smshelper.msg + '&fl=0&&gwid=2')
+
+  };
+
+  const x = options.host + options.path;
+  console.log(x);
+
+  http.get(x, (res) => {
+    console.log(res.statusCode);
+    console.log('message sent');
+    res.send("Students invited!")
+  });
+
+});
 
 
 // route for the about the startup
