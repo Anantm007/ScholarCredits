@@ -145,20 +145,28 @@ router.get('/Sregister/auth/:email/:code',async(req,res)=>{
     const data = await Startup.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
 if(data){
    res.render('startupdashboard/OtpVerify',{
-       message : 'Please Enter the OTP below'
+       message : 'Please Enter the OTP below',
+       Startup: data
    });
 }
 });
 
 
-router.post('/Sotpverify/:email', async(req, res)=> {
-
-  const data = await Startup.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
-  if(data){
+router.post('/Sregister/auth/:email/Sotpverify', async(req, res)=> {
+console.log(req.body);
+const data = await Startup.findOne({'Email':req.params.email});
+if(data){
+  console.log(data.Otp);
+  if( parseInt(req.body.enteredotp) === parseInt(data.Otp) )
+  {
     res.render('startupdashboard/startupdashboard',{
      message : 'Your Profile Has Been Authenticated,You Can Login Now'
    });
- }
+  }
+
+  else
+  console.log("incorrect");
+}
 
 });
 
