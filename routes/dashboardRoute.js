@@ -24,6 +24,7 @@ var fs = require('fs');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 var phantom = require('phantom');
+var http = require('http');
 
 // var pdf = require('dynamic-html-pdf');
 
@@ -60,6 +61,8 @@ router.get('/dashboard',(req,res)=>{
 });
 
 router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
+  const otp = Math.floor(1000 + Math.random() * 9000);
+
     if(req.body.Password == req.body.CPassword){
         req.body.Password = passwordHash.generate(req.body.Password);
         req.body.CPassword = req.body.Password;
@@ -70,6 +73,7 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
         req.body.Code = '';
         req.body.POI = 0;
         req.body.Auth = 'No';
+        req.body.Otp = otp;
         var code =  randomstring.generate({
             length: 12,
             charset: 'alphabetic'
@@ -85,6 +89,36 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
             else{
                 var Url = req.protocol + '://' + req.get('host') + req.originalUrl;
                    var fullUrl = Url+'/'+'auth/'+req.body.Email+'/'+code;
+
+                   const smshelper = {
+
+                   clientid: config.SMSCredentials.ClientId,
+                   apikey: config.SMSCredentials.ApiKey,
+                   // msisdn: Single mobile number or multiple mobile numbers separated by comma(10 digits or +91),
+                   sid: config.SMSCredentials.SenderId,
+
+                   msg: "Welcome to Scholar Credits. Please Enter OTP " + otp + " to verify your mobile number." ,
+                   fl: 0,
+                   gwid: 2
+                   };
+
+                   var options = {
+                     host: 'http://sms.shinenetcore.com',
+                     port: 80,
+                     path: encodeURI('/vendorsms/pushsms.aspx?clientid='+smshelper.clientid +'&apikey=' + smshelper.apikey + '&msisdn=' + req.body.Phone + '&sid=' + smshelper.sid + '&msg=' + smshelper.msg + '&fl=0&&gwid=2')
+
+                   };
+
+                   const x = options.host + options.path;
+                   console.log(x);
+
+                   http.get(x, (res) => {
+                     console.log(res.statusCode);
+                     console.log('OTP sent to ' + req.body.Phone);
+                     });
+
+
+
                 let HelperOptions ={
 
                     // from : config.EmailCredentials.Name,
@@ -115,11 +149,31 @@ router.get('/register/auth/:email/:code',async(req,res)=>{
         const data = await Register.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
         console.log(data);
    if(data){
-       res.render('studentdashboard/index',{
-           message : 'Your Profile Has Been Authenticated,You Can Login Now'
+       res.render('studentdashboard/OtpVerify',{
+           message : 'Please Enter the OTP below',
+           Student: data
        });
    }
 });
+
+router.post('/register/auth/:email/otpverify', async(req, res)=> {
+console.log(req.body);
+const data = await Register.findOne({'Email':req.params.email});
+if(data){
+  console.log(data.Otp);
+  if( parseInt(req.body.enteredotp) === parseInt(data.Otp) )
+  {
+    res.render('studentdashboard/index',{
+     message : 'Your Profile Has Been Authenticated,You Can Login Now'
+   });
+  }
+
+  else
+  console.log("incorrect");
+}
+
+});
+
 
 router.get('/login',(req,res)=>{
    res.redirect('/dashboard');

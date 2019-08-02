@@ -9,6 +9,7 @@ const registerSchema = new schema({
     Password : String,
     CPassword : String,
     Phone : Number,
+    Otp: Number,
     Location : String,
     City :String,
     Credit : Number,
