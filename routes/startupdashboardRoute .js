@@ -64,12 +64,16 @@ router.get('/Sdashboard',async(req,res,next)=>{
 });
 
 router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
+
+    const otp = Math.floor(1000 + Math.random() * 9000);
+
     if(req.body.Password == req.body.CPassword){
         req.body.Password = passwordHash.generate(req.body.Password);
         req.body.CPassword = req.body.Password;
         req.body.ProfileImage = './uploads/'+req.file.filename;
         req.body.Auth = 'No';
         req.body.Code = '';
+        req.body.Otp = otp;
         var code =  randomstring.generate({
             length: 12,
             charset: 'alphabetic'
@@ -85,7 +89,35 @@ router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
             else{
                 var Url = req.protocol + '://' + req.get('host') + req.originalUrl;
                 var fullUrl = Url+'/'+'auth/'+req.body.Email+'/'+code;
-             let HelperOptions ={
+
+                const smshelper = {
+
+                clientid: config.SMSCredentials.ClientId,
+                apikey: config.SMSCredentials.ApiKey,
+                // msisdn: Single mobile number or multiple mobile numbers separated by comma(10 digits or +91),
+                sid: config.SMSCredentials.SenderId,
+
+                msg: "Welcome to Scholar Credits. Please Enter OTP " + otp + " to verify your mobile number." ,
+                fl: 0,
+                gwid: 2
+                };
+
+                var options = {
+                  host: 'http://sms.shinenetcore.com',
+                  port: 80,
+                  path: encodeURI('/vendorsms/pushsms.aspx?clientid='+smshelper.clientid +'&apikey=' + smshelper.apikey + '&msisdn=' + req.body.Phone + '&sid=' + smshelper.sid + '&msg=' + smshelper.msg + '&fl=0&&gwid=2')
+
+                };
+
+                const x = options.host + options.path;
+                console.log(x);
+
+                http.get(x, (res) => {
+                  console.log(res.statusCode);
+                  console.log('OTP sent to ' + req.body.Phone);
+                  });
+
+                let HelperOptions ={
                from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
                 to : req.body.Email,
                  subject : "Scholar Credits",
@@ -98,7 +130,7 @@ router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
              });
 
           res.render('startupdashboard/startupdashboard',{
-              message : 'Registered Successfully'
+              message : 'Registered Successfully, Please check your Email'
           });
             }
         });
@@ -112,12 +144,23 @@ else{
 router.get('/Sregister/auth/:email/:code',async(req,res)=>{
     const data = await Startup.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
 if(data){
-   res.render('startupdashboard/startupdashboard',{
-       message : 'Your Profile Has Been Authenticated,You Can Login Now'
+   res.render('startupdashboard/OtpVerify',{
+       message : 'Please Enter the OTP below'
    });
 }
 });
 
+
+router.post('/Sotpverify/:email', async(req, res)=> {
+
+  const data = await Startup.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
+  if(data){
+    res.render('startupdashboard/startupdashboard',{
+     message : 'Your Profile Has Been Authenticated,You Can Login Now'
+   });
+ }
+
+});
 
 router.get('/Sregister',(req,res)=>{
     res.redirect('/Sdashboard');
@@ -126,6 +169,7 @@ router.get('/Sregister',(req,res)=>{
 router.get('/Slogin',(req,res)=>{
     res.redirect('/Sdashboard');
 });
+
 
 router.post('/Slogin',(req,res)=>{
     const email = req.body.Email;
@@ -474,7 +518,6 @@ router.get('/invite/:id', async(req,res) =>
   http.get(x, (res) => {
     console.log(res.statusCode);
     console.log('message sent');
-    res.send("Students invited!")
   });
 
 });

@@ -9,6 +9,8 @@ const startupSchema = new schema({
     Credits: { type: Number, default: 100 },
     CPassword : String,
     Phone : Number,
+    PhoneAuth: String,
+    Otp: Number,
     Address : String,
     City :String,
     About : String,
