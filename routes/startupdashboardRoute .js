@@ -4,6 +4,7 @@ const Register = require("../Models/registermodel");
 const Challenge = require("../Models/challengemodel");
 const Submission = require("../Models/challengesubmissionmodel");
 const Skill = require("../Models/skillsmodel");
+const Mentor = require("../Models/mentorsmodel")
 const Startup = require("../Models/startupmodel");
 const passwordHash = require('password-hash');
 const Professor = require("../Models/professormodel");
@@ -553,6 +554,7 @@ router.get('/Sabout',(req,res)=>{
         }
   });
 }});
+
     router.get('/Sdetails/:code',(req,res)=>{
         if(!req.session.username){
             res.redirect('/Sdashboard');
@@ -829,18 +831,6 @@ router.post('/Saboutme',multer(multerConf).single('ProfileImage'),(req,res)=>{
     });
 });
 
-// router.post('/aboutme',(req,res)=>{
-//     Register.findOne({'Email' : req.session.username},(err,data)=>{
-//          if(data){
-//              if(req.body.ProfileImage == ''){
-//                  req.body.ProfileImage = data.ProfileImage;
-//              }
-//              Register.update({'Email' : req.session.username},req.body,(err,data)=>{
-//                      res.redirect('/account');
-//              });
-//          }
-//     });
-// });
 
 router.post('/Smyskills',(req,res)=>{
     Startup.findOne({'Email' : req.session.username},(err,data)=>{
@@ -1153,7 +1143,7 @@ router.get('/Sidcard',async(req,res,next)=>{
 
 // student indiviuals information
 router.get('/Sidcard/:id',async(req,res,next)=>{
-    console.log("hello");
+    
     const Id = req.params.id;
     console.log(Id);
     try{
@@ -1211,7 +1201,6 @@ router.get('/Sidcard/:id',async(req,res,next)=>{
     }
 
 });
-
 
 
 router.post('/Saddproject',async(req,res,next)=>{
@@ -1552,6 +1541,7 @@ router.get('/students',async(req,res)=>{
    }
 }
 });
+
 router.get('/hire/:id',async(req,res)=>{
     const Id = req.params.id;
     if(!req.session.username){

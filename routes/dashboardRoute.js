@@ -5,6 +5,7 @@ const router = express.Router();
 const Register = require("../Models/registermodel");
 const Challenge = require("../Models/challengemodel");
 const Submission = require("../Models/challengesubmissionmodel");
+const Mentor = require("../Models/mentorsmodel")
 const Skill = require("../Models/skillsmodel");
 const Startup = require("../Models/startupmodel");
 const passwordHash = require('password-hash');

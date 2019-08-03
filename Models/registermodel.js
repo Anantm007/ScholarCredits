@@ -8,7 +8,10 @@ const registerSchema = new schema({
     Email : { type : String , unique : true },
     Password : String,
     CPassword : String,
-    Phone : Number,
+    Phone : {
+      type: Number,
+      unique: true
+    },
     PhoneAuth : {
       type: String,
       default: "No"},

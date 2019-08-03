@@ -8,7 +8,10 @@ const startupSchema = new schema({
     Password : String,
     Credits: { type: Number, default: 100 },
     CPassword : String,
-    Phone : Number,
+    Phone : {
+      type: Number,
+      unique: true
+    },
     PhoneAuth : {
       type: String,
       default: "No"},

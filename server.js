@@ -9,8 +9,6 @@ const config = require('./config/keys.env');
 
 const user = process.env.DatabaseUsername || 'edudev';
 const pass = process.env.DatabasePass || 'edudev';
-//db connection
-// const url="mongodb://localhost:27017/edumonk";
 const url = "mongodb+srv://" + user + ":" + pass +  "@cluster0-vljvr.mongodb.net/test?retryWrites=true&&w=majority";
 //const url = "mongodb+srv://edudev:edudev@cluster0-vljvr.mongodb.net/test?retryWrites=true&&w=majority";
 //const url="mongodb:"+config.Database.Username+":"+config.Database.Password+"@cluster0-vljvr.mongodb.net/test?retryWrites=true&&w=majority"//@ds161485.mlab.com:61485/edumonk";
@@ -44,7 +42,7 @@ app.use(require('./routes/adminroutes.js'));
 app.use(require('./routes/edumonk.js'));
 app.use(require('./routes/dashboardRoute.js'));
 app.use(require('./routes/startupdashboardRoute .js'));
-
+app.use(require('./routes/mentorDashboardRoute.js'))
 
 //creating server
 app.listen(process.env.PORT || 3000,()=>{
