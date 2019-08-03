@@ -13,6 +13,7 @@ const registerSchema = new schema({
       type: String,
       default: "No"},
     Otp: Number,
+    College: String,
     Location : String,
     City :String,
     Credit : Number,
