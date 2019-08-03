@@ -9,6 +9,9 @@ const registerSchema = new schema({
     Password : String,
     CPassword : String,
     Phone : Number,
+    PhoneAuth : {
+      type: String,
+      default: "No"},
     Otp: Number,
     Location : String,
     City :String,

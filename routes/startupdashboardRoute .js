@@ -94,10 +94,9 @@ router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
 
                 clientid: config.SMSCredentials.ClientId,
                 apikey: config.SMSCredentials.ApiKey,
-                // msisdn: Single mobile number or multiple mobile numbers separated by comma(10 digits or +91),
                 sid: config.SMSCredentials.SenderId,
 
-                msg: "Welcome to Scholar Credits. Please Enter OTP " + otp + " to verify your mobile number." ,
+                msg: "Welcome to Scholar Credits. Please check your email and enter OTP " + otp + " to verify your mobile number." ,
                 fl: 0,
                 gwid: 2
                 };
@@ -153,15 +152,24 @@ if(data){
 
 
 router.post('/Sregister/auth/:email/Sotpverify', async(req, res)=> {
-console.log(req.body);
-const data = await Startup.findOne({'Email':req.params.email});
+  const data = await Startup.findOne({'Email':req.params.email});
+
 if(data){
-  console.log(data.Otp);
-  if( parseInt(req.body.enteredotp) === parseInt(data.Otp) )
+  if( data.Auth=="Yes" && parseInt(req.body.enteredotp) === parseInt(data.Otp) )
   {
     res.render('startupdashboard/startupdashboard',{
      message : 'Your Profile Has Been Authenticated,You Can Login Now'
    });
+
+    Startup.findOneAndUpdate({'Email':req.params.email},{'PhoneAuth':'Yes'},function(err, doc)
+  {
+    if(err)
+    console.log(err);
+
+    else
+    console.log("phone authorized");
+  });
+
   }
 
   else
@@ -189,7 +197,7 @@ router.post('/Slogin',(req,res)=>{
            const result = passwordHash.verify(password,data.Password);
              if(result)
              {
-                if(data.Auth == 'No'){
+                if(data.Auth == 'No' || data.PhoneAuth == 'No'){
                     res.render('studentdashboard/startupdashboard',{
                         message : 'You Have Not Authenticated Yet!'
                     });
