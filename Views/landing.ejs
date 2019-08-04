@@ -80,16 +80,17 @@
                                 <li><a href="#challenges">Challenges</a></li>
                                 <li><a href="#brands">Our Partners</a></li>
                                 <li><a href="#faqs">FAQs</a></li>
+                                <li><a href="#pricing">Pricing</a></li>
                               </ul>
                             </li>
-                                  <li><a>Post Challenges</a>
+                                  <li><a>Admin Login</a>
                                   <ul class="dropdown-menu">
                                     <li><a href="/Sdashboard">Company Login</a></li>
                                     <li><a href="#">University Login</a></li>
+                                    <li><a href="/Mdashboard">Mentor Login</a></li>
                                   </ul>
                                 </li>
 
-                              <li><a href="/Mdashboard">Mentor Login</a></li>
                              <li><a href="/dashboard">Solve Challenges</a></li>
 
                                 <li><a >Join Scholar Council</a>
@@ -101,20 +102,6 @@
                                 </li>
 
 
-                                <!-- <li class="nav navbar-nav dropdown-toggle" data-toggle="dropdown">Explore
-                              <ul class="dropdown-menu">
-                                <li><a href="#challenges">Challenges</a></li>
-                                <li><a href="#">Brands</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Scholar Council</a></li>
-                              </ul>
-                              </li> -->
-                                <!-- <li><a href="#features">Features</a></li> -->
-                                <!-- <li><a href="#challenges">Challenges</a></li> -->
-                                <!-- <li><a href="#testmonial">Testmonial</a></li>
-                                <li><a href="#blog">Blog</a></li>
-                                <li><a href="#faqs">Faqs</a></li> -->
-                                <!-- <li><a href="#contact">Contact</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -206,10 +193,10 @@
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                     <div class="text-icon-box mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.1s">
                         <div class="box-icon features-box-icon">
-                            <i class="fa fa-graduation-cap"></i>
+                            <i class="fa fa-group"></i>
                         </div>
-                        <h3 class="box-title">Register your Company</h3>
-                        <p>Get your Company listed to get exposure among our worldwide community of web developers, digital marketers, content writers ,video makers , translators , social media marketers. Scholar Community Manager will get in touch with you and conceptualize challenge creation strategy.</p>
+                        <h3 class="box-title">Employee Engagement</h3>
+                        <p>We help you create professional happiness and understand your audiences better with our powerful analytics.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
@@ -217,28 +204,19 @@
                         <div class="box-icon features-box-icon">
                             <i class="icofont icofont-business-man-alt-1"></i>
                         </div>
-                        <h3 class="box-title">Host  Challenges </h3>
-                        <p>Challenge will be hosted and sent to all the members of our Scholar Council in different colleges and companes to increase participation. Applicants and their submission will be further reviewed.</p>
+                        <h3 class="box-title">Advocacy & Marketing</h3>
+                        <p>We have a warchest of challenge cards for you to launch your advocacy or marketing campaign quickly on web and mobile.</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                     <div class="text-icon-box relative mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.3s">
                         <div class="box-icon features-box-icon">
-                            <i class="fa fa-rocket"></i>
+                            <i class="fa fa-graduation-cap"></i>
                         </div>
-                        <h3 class="box-title">Issue Rewards and Certificates</h3>
-                        <p>Issue different badges/ certifictes and Reward Tokens for the completed challenges on the basis of quality of submissions. </p>
+                        <h3 class="box-title">Learning</h3>
+                        <p>Redefine the learning experience with our sleek user experience, automated feedback and rewards, coupled with your narratives.</p>
                     </div>
-                <!-- </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="text-icon-box relative mb20 xs-mb0 wow fadeInUp padding30 visible-sm" data-wow-delay="0.4s">
-                        <div class="box-icon features-box-icon">
-                            <i class="fa fa-cog"></i>
-                        </div>
-                        <h3 class="box-title">Quality Service</h3>
-                        <p>A Google Docs scam that appears to be widespread began landing in Wednesday in what seemed to be a phishing attack.</p>
-                    </div>
-                </div> -->
+
             </div>
         </div>
     </section>
@@ -259,7 +237,7 @@
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                         <div class="text-icon-box relative mb20 xs-mb0  wow fadeInUp padding30" data-wow-delay="0.2s">
                             <div class="box-icon features-box-icon">
-                                <i class="icofont icofont-business-man-alt-1"></i>
+                                <i class="icofont icofont-book"></i>
                             </div>
                             <h3 class="box-title"> Submit Solutions </h3>
                             <p>Submit the solutions once you are shortlisted according to the given time frame to get it reviewed & evaluated by the  reviewers. </p>
@@ -388,7 +366,7 @@
             <div class="row">
                 <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
                     <div class="area-title text-center wow fadeIn">
-                        <h2 class="xs-font26">CHALLENGES</h2>
+                        <h2 class="xs-font26">Challenges</h2>
                     </div>
                 </div>
             </div>
@@ -418,6 +396,7 @@
                             <% } %>
                         <div class="course-details padding30">
                             <h3 class="font18"><%= challenges.Name.substring(0,25) + " ..." %></h3>
+
                             <p><%= challenges.Description.substring(0, 150) + "..." %></p>
                             <p class="mt30"><a href="/viewchallenge/<%= challenges._id %>" class="enroll-button">Know More</a> <span class="course-price"></span></p>
                         </div>
@@ -463,7 +442,134 @@
 
             </div>
         </section>
-    <!--COURSE AREA END-->
+    <!--COUMPANIES AREA END-->
+
+            <!--PRICING AREA-->
+            <section class="course-area padding-top" id="brands">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
+                            <div class="area-title text-center wow fadeIn">
+                                <h2 class="xs-font26">Pricing</h2>
+                                <h4>Browse Our Extremely Flexible And Competitive Plans</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="pricing py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Free Tier -->
+      <div class="col-lg-4 xs-12">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body"><br>
+            <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
+            <h6 class="card-price text-center">$0<span class="period">/month</span></h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Unlimited Private Projects</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Dedicated Phone Support</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+            </ul><br>
+            <a href="/Sdashboard" class="btn btn-block btn-primary text-uppercase" style="width: 200px;margin:auto;color:black">Sign Up Now</a><br><br>
+          </div>
+        </div>
+      </div>
+      <!-- Plus Tier -->
+      <div class="col-lg-4 xs-12">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body"><br>
+            <h5 class="card-title text-muted text-uppercase text-center">Light</h5>
+            <h6 class="card-price text-center">$50<span class="period">/month</span></h6>
+            <h6 class="card-price text-center">$600<span class="period">/year</span></h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+            </ul>
+            <a href="/Sdashboard" class="btn btn-block btn-primary text-uppercase" style="width: 200px;margin:auto;color:black">Sign Up Now</a><br>
+          </div>
+        </div>
+      </div>
+      <!-- Pro Tier -->
+      <div class="col-lg-4 xs-12">
+        <div class="card">
+          <div class="card-body"><br>
+            <h5 class="card-title text-muted text-uppercase text-center">Regular</h5>
+            <h6 class="card-price text-center">$100<span class="period">/month</span></h6>
+            <h6 class="card-price text-center">$1200<span class="period">/year</span></h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
+            </ul>
+            <a href="/Sdashboard" class="btn btn-block btn-primary text-uppercase" style="width: 200px;margin:auto;color:black">Sign Up Now</a><br>
+          </div>
+        </div>
+      </div>
+    </div><br><br>
+    <div class="col-lg-5 xs-12" style="margin-left:10%">
+      <div class="card">
+        <div class="card-body"><br>
+          <h5 class="card-title text-muted text-uppercase text-center">Premium</h5>
+          <h6 class="card-price text-center">$250<span class="period">/month</span></h6>
+          <h6 class="card-price text-center">$3000<span class="period">/year</span></h6>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong></li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
+          </ul>
+          <a href="/Sdashboard" class="btn btn-block btn-primary text-uppercase" style="width: 200px;margin:auto;color:black">Sign Up Now</a><br>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 xs-12">
+      <div class="card">
+        <div class="card-body"><br>
+          <h5 class="card-title text-muted text-uppercase text-center">Premium Plus</h5>
+          <h6 class="card-price text-center">$6000<span class="period">/year</span></h6>
+          <hr>
+          <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong></li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li><br>
+          </ul>
+          <a href="/Sdashboard" class="btn btn-block btn-primary text-uppercase" style="width: 200px;margin:auto;color:black">Sign Up Now</a><br>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+</section>
+
+
+            </section>
+        <!--PRICING AREA END-->
 
     <!--ABOUT AREA-->
     <section class="section-padding about-area" id="about">
@@ -857,20 +963,20 @@
         <!-- STUDENTS SCHOOL AREA -->
         <section class="contact-area sky-gray-bg" id="contact">
           <div class="contact-title wow fadeIn">
-              <h3 class="font28 mb50 xs-mb30 xs-font22 xs-mt20" style="text-align:center">OUR SCHOLARS ARE FROM</h3><br>
+              <h3 class="font28 mb50 xs-mb30 xs-font22 xs-mt20" style="text-align:center">OUR SCHOLARS ARE FROM TOP INSTITUTIONS LIKE</h3><br>
               <div class="row course-list">
-                <img src="http://web.mit.edu/chosetec/www/origami/mensetmanus2/mitseal.jpg" alt="company_image" style="height:140px;margin-right:20px">
-                <img src="http://www.pvamu.edu/honorsprogram/wp-content/uploads/sites/43/Harvard-Logo-large-20.jpg" alt="company_image" style="height:120px;margin-right:20px">
-                <img src="https://assets.fontsinuse.com/static/use-media-items/53/52886/full-589x589/59355d3c/Oxford-University-square-logo.png?resolution=0" alt="company_image" style="height:140px;margin-right:20px">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/California_Golden_Bears_logo.svg/1200px-California_Golden_Bears_logo.svg.png" alt="company_image" style="height:140px;margin-right:20px">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/79/University_of_Chicago_shield.svg/1200px-University_of_Chicago_shield.svg.png" alt="company_image" style="height:140px;margin-right:20px">
-                <img src="http://assets.manchester.ac.uk/logos/hi-res/TAB_UNI_MAIN_logo/White_backgrounds/TAB_col_white_background.jpg" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/DTU%2C_Delhi_official_logo.png/220px-DTU%2C_Delhi_official_logo.png" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Netaji_Subhas_University_of_Technology.svg/220px-Netaji_Subhas_University_of_Technology.svg.png" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="http://nitkkr.ac.in/docs/NITKKR_logo.png" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/GGSIU_logo.svg/1200px-GGSIU_logo.svg.png" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="https://www.iitr.ac.in/departments/ECE/uploads/Image/IITR%20New%20LOGO/IITR%20New%20Logo.jpg" alt="company_image" style="height:140px;margin-right:20px">
                 <img src="https://www.iiitd.ac.in/sites/default/files/images/logo/logo.jpg" alt="company_image" style="height:140px;margin-right:20px">
+                <img src="http://web.mit.edu/chosetec/www/origami/mensetmanus2/mitseal.jpg" alt="company_image" style="height:140px;margin-right:20px">
+                <img src="http://www.pvamu.edu/honorsprogram/wp-content/uploads/sites/43/Harvard-Logo-large-20.jpg" alt="company_image" style="height:120px;margin-right:20px">
+                <img src="https://assets.fontsinuse.com/static/use-media-items/53/52886/full-589x589/59355d3c/Oxford-University-square-logo.png?resolution=0" alt="company_image" style="height:140px;margin-right:20px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/California_Golden_Bears_logo.svg/1200px-California_Golden_Bears_logo.svg.png" alt="company_image" style="height:140px;margin-right:20px">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/79/University_of_Chicago_shield.svg/1200px-University_of_Chicago_shield.svg.png" alt="company_image" style="height:140px;margin-right:20px">
+                <img src="http://assets.manchester.ac.uk/logos/hi-res/TAB_UNI_MAIN_logo/White_backgrounds/TAB_col_white_background.jpg" alt="company_image" style="height:140px;margin-right:20px">
 
                   </div>
 
@@ -959,7 +1065,7 @@
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="footer-copyright text-center wow fadeIn">
                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Edumonk Foundation</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Scholar Credits</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                         </div>
                     </div>
