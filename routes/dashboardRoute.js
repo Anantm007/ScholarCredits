@@ -80,6 +80,7 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
             charset: 'alphabetic'
           });
           req.body.authCode = code;
+
         Register.create(req.body,(err)=>{
             if(err)
             {

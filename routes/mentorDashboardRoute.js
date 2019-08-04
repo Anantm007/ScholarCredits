@@ -1,9 +1,11 @@
+//jshint esversion: 6
+
 const express = require("express");
 const router = express.Router();
 const Register = require("../Models/registermodel");
 const Challenge = require("../Models/challengemodel");
 const Submission = require("../Models/challengesubmissionmodel");
-const Mentor = require("../Models/mentorsmodel")
+const Mentor = require("../Models/mentorsmodel");
 const Skill = require("../Models/skillsmodel");
 const Startup = require("../Models/startupmodel");
 const passwordHash = require('password-hash');
@@ -66,87 +68,94 @@ router.get('/Mdashboard',async(req,res,next)=>{
 
 
 router.post('/Mregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
-
-    const otp = Math.floor(1000 + Math.random() * 9000);
+  const otp = Math.floor(1000 + Math.random() * 9000);
 
     if(req.body.Password == req.body.CPassword){
         req.body.Password = passwordHash.generate(req.body.Password);
         req.body.CPassword = req.body.Password;
+        req.body.Credit = 0;
+        // req.body.CV = '';
         req.body.ProfileImage = './uploads/'+req.file.filename;
-        req.body.Auth = 'No';
+        // req.body.IDCard = 'False';
         req.body.Code = '';
+        // req.body.POI = 0;
+        req.body.Auth = 'No';
         req.body.Otp = otp;
         var code =  randomstring.generate({
             length: 12,
             charset: 'alphabetic'
           });
           req.body.authCode = code;
+console.log(req.body);
         Mentor.create(req.body,(err)=>{
             if(err)
             {
-                res.render('mentordashboard/mentordashboard',{
+                res.render('studentdashboard/index',{
                     message : 'Registration Unsuccessfull'
                 });
             }
             else{
                 var Url = req.protocol + '://' + req.get('host') + req.originalUrl;
-                var fullUrl = Url+'/'+'auth/'+req.body.Email+'/'+code;
+                   var fullUrl = Url+'/'+'auth/'+req.body.Email+'/'+code;
 
-                const smshelper = {
+                   const smshelper = {
 
-                clientid: config.SMSCredentials.ClientId,
-                apikey: config.SMSCredentials.ApiKey,
-                sid: config.SMSCredentials.SenderId,
+                   clientid: config.SMSCredentials.ClientId,
+                   apikey: config.SMSCredentials.ApiKey,
+                    sid: config.SMSCredentials.SenderId,
 
-                msg: "Welcome to Scholar Credits. Please check your email and enter OTP " + otp + " to verify your mobile number." ,
-                fl: 0,
-                gwid: 2
-                };
+                   msg: "Welcome to Scholar Credits. Please check your email and enter OTP " + otp + " to verify your mobile number." ,
+                   fl: 0,
+                   gwid: 2
+                   };
 
-                var options = {
-                  host: 'http://sms.shinenetcore.com',
-                  port: 80,
-                  path: encodeURI('/vendorsms/pushsms.aspx?clientid='+smshelper.clientid +'&apikey=' + smshelper.apikey + '&msisdn=' + req.body.Phone + '&sid=' + smshelper.sid + '&msg=' + smshelper.msg + '&fl=0&&gwid=2')
+                   var options = {
+                     host: 'http://sms.shinenetcore.com',
+                     port: 80,
+                     path: encodeURI('/vendorsms/pushsms.aspx?clientid='+smshelper.clientid +'&apikey=' + smshelper.apikey + '&msisdn=' + req.body.Phone + '&sid=' + smshelper.sid + '&msg=' + smshelper.msg + '&fl=0&&gwid=2')
 
-                };
+                   };
 
-                const x = options.host + options.path;
-                console.log(x);
+                   const x = options.host + options.path;
+                   console.log(x);
 
-                http.get(x, (res) => {
-                  console.log(res.statusCode);
-                  console.log('OTP sent to ' + req.body.Phone);
-                  });
+                   http.get(x, (res) => {
+                     console.log(res.statusCode);
+                     console.log('OTP sent to ' + req.body.Phone);
+                     });
+
+
 
                 let HelperOptions ={
-               from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
-                to : req.body.Email,
-                 subject : "Scholar Credits",
-                 text : "Please Authenticate Your Profile By Clicking the link "+fullUrl
-             }
 
-             transporter.sendMail(HelperOptions,(err,info)=>{
-                 if(err) throw err;
-                 console.log("The message was sent");
-             });
+                    // from : config.EmailCredentials.Name,
 
-          res.render('mentordashboard/mentordashboard',{
-              message : 'Registered Successfully, Please check your Email'
+                    from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
+                    to : req.body.Email,
+                    subject : "Scholar Credits",
+                    text : "Please Authenticate Your Profile By Clicking the link "+fullUrl
+                };
+
+                transporter.sendMail(HelperOptions,(err,info)=>{
+                    if(err) throw err;
+                    console.log("The message was sent");
+                });
+
+          res.render('studentdashboard/index',{
+              message : 'Registered Successfully Please Check Your Mail'
           });
             }
         });
     }
 else{
-    console.log('Do not');
-    res.render('mentordashboard/mentordashboard');
+    res.render('studentdashboard/index');
 }
 });
 
-
-router.get('/Sregister/auth/:email/:code',async(req,res)=>{
-    const data = await Startup.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
+router.get('/Mregister/auth/:email/:code',async(req,res)=>{
+    const data = await Mentor.update({'Email':req.params.email,'authCode':req.params.code},{'Auth':'Yes'});
 if(data){
-   res.render('startupdashboard/OtpVerify',{
+   res.render('mentordashboard/OtpVerify',{
        message : 'Please Enter the OTP below',
        Startup: data
    });
@@ -273,7 +282,7 @@ router.get('/Mallchallenges',(req,res)=>{
         if(!req.session.username){
             res.redirect('/Mdashboard');
         }else{
-            Startup.findOne({'Email' : req.session.username},(err,data)=>{
+            Mentor.findOne({'Email' : req.session.username},(err,data)=>{
             Challenge.find({'Category': cat},(err,challenge)=>{
 
             if(data)
@@ -376,7 +385,7 @@ router.get('/Maccount',(req,res)=>{
     if(!req.session.username){
         res.redirect('/Mdashboard');
     }else{
-        Startup.findOne({'Email' : req.session.username},(err,data)=>{
+        Mentor.findOne({'Email' : req.session.username},(err,data)=>{
         if(data)
         {
           res.render('mentordashboard/myaccount',{
@@ -396,13 +405,13 @@ router.post('/Maboutme',multer(multerConf).single('ProfileImage'),(req,res)=>{
          if(data){
             if(req.file == undefined){
                 req.body.ProfileImage = data.ProfileImage;
-                Startup.update({'Email' : req.session.username},req.body,(err,data)=>{
+                Mentor.update({'Email' : req.session.username},req.body,(err,data)=>{
                     res.redirect('/Maccount');
                 });
             }
             else{
                 req.body.ProfileImage='./uploads/'+req.file.filename;
-                Startup.update({'Email' : req.session.username},req.body,(err,data)=>{
+                Mentor.update({'Email' : req.session.username},req.body,(err,data)=>{
                     res.redirect('/Maccount');
             });
             }
@@ -412,7 +421,7 @@ router.post('/Maboutme',multer(multerConf).single('ProfileImage'),(req,res)=>{
 });
 
 router.post('/Mupdatepass',(req,res)=>{
-    Startup.findOne({'Email':req.body.Email},(err,user)=>{
+    Mentor.findOne({'Email':req.body.Email},(err,user)=>{
         const result = passwordHash.verify(req.body.Old,user.Password);
         if(result){
             if(req.body.New === req.body.CNew)
@@ -591,7 +600,7 @@ router.post('/Mreset',async(req,res,next)=>{
             if(err) throw err;
             console.log("The message was sent");
         });
-        res.render('startupdashboard/startupdashboard',{
+        res.render('mentordashboard/mentordashboard',{
             message : 'Check Your Email'
         });
 
@@ -650,7 +659,7 @@ router.get('/students',async(req,res)=>{
      const students = await Register.find();
      if(students){
         //  console.log(students);
-         res.render('startupdashboard/student',{
+         res.render('mentordashboard/student',{
              Student : data,
              Students : students
          });
@@ -664,7 +673,7 @@ router.get('/hire/:id',async(req,res)=>{
     if(!req.session.username){
         res.redirect('/Mdashboard');
     }else{
-    const data = await Startup.findOne({'Email':req.session.username});
+    const data = await Mentor.findOne({'Email':req.session.username});
     // console.log(data);
    if(data){
     // console.log(req.session.username);

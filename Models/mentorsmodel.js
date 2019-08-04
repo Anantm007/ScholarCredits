@@ -5,7 +5,8 @@ const mentorSchema = new schema({
   Name: String,
   ProfileImage: String,
   Password : String,
-  Credits: { type: Number, default: 100 },
+  Email : { type : String , unique : true },
+  Credit: { type: Number, default: 100 },
   CPassword : String,
   Phone : {
     type: Number,

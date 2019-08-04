@@ -65,7 +65,7 @@ router.get('/Sdashboard',async(req,res,next)=>{
 });
 
 router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
-
+console.log(req.body);
     const otp = Math.floor(1000 + Math.random() * 9000);
 
     if(req.body.Password == req.body.CPassword){
@@ -1143,7 +1143,7 @@ router.get('/Sidcard',async(req,res,next)=>{
 
 // student indiviuals information
 router.get('/Sidcard/:id',async(req,res,next)=>{
-    
+
     const Id = req.params.id;
     console.log(Id);
     try{
