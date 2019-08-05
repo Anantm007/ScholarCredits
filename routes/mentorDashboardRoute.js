@@ -73,13 +73,11 @@ router.post('/Mregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
     if(req.body.Password == req.body.CPassword){
         req.body.Password = passwordHash.generate(req.body.Password);
         req.body.CPassword = req.body.Password;
-        req.body.Credit = 0;
-        // req.body.CV = '';
         req.body.ProfileImage = './uploads/'+req.file.filename;
-        // req.body.IDCard = 'False';
         req.body.Code = '';
-        // req.body.POI = 0;
         req.body.Auth = 'No';
+        req.body.PhoneAuth = 'No';
+        req.body.Credit = 0;
         req.body.Otp = otp;
         var code =  randomstring.generate({
             length: 12,
@@ -90,7 +88,9 @@ console.log(req.body);
         Mentor.create(req.body,(err)=>{
             if(err)
             {
-                res.render('studentdashboard/index',{
+              console.log("yo");
+                    console.log(err);
+                    res.render('mentordashboard/index',{
                     message : 'Registration Unsuccessfull'
                 });
             }
@@ -141,14 +141,14 @@ console.log(req.body);
                     console.log("The message was sent");
                 });
 
-          res.render('studentdashboard/index',{
+          res.render('mentordashboard/index',{
               message : 'Registered Successfully Please Check Your Mail'
           });
             }
         });
     }
 else{
-    res.render('studentdashboard/index');
+    res.render('mentordashboard/index');
 }
 });
 
@@ -648,7 +648,7 @@ router.post('/Mchangepass',async(req,res,next)=>{
 
 });
 
-router.get('/students',async(req,res)=>{
+router.get('/Mstudents',async(req,res)=>{
     if(!req.session.username){
         res.redirect('/Mdashboard');
     }else{

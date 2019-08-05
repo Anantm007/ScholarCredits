@@ -12,10 +12,10 @@
     <head>
         <meta charset="UTF-8" />
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>Verify OTP</title>
+        <title>Registration Form</title>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 		<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-		<link rel="shortcut icon" href="assests/img/sclogo.png">
+        <link rel="shortcut icon" href="assests/img/sclogo.png" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <style>
@@ -1645,7 +1645,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .fadeInRight {
 	-webkit-animation-name: fadeInRight;
-	-moz-animation-name: fadeInRight;ProfileImage
+	-moz-animation-name: fadeInRight;
 	-ms-animation-name: fadeInRight;
 	-o-animation-name: fadeInRight;
 	animation-name: fadeInRight;
@@ -1653,7 +1653,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 @-webkit-keyframes fadeInUpBig {
 	0% {
 		opacity: 0;
-		-webkit-transform: translateYProfileImage
+		-webkit-transform: translateY(2000px);
 	}
 
 	100% {
@@ -1779,7 +1779,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .fadeInDownBig {
 	-webkit-animation-name: fadeInDownBig;
-	-moz-animation-name: fadeInDownBig;ProfileImage
+	-moz-animation-name: fadeInDownBig;
 	-ms-animation-name: fadeInDownBig;
 	-o-animation-name: fadeInDownBig;
 	animation-name: fadeInDownBig;
@@ -1787,18 +1787,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 @-webkit-keyframes fadeInLeftBig {
 	0% {
 		opacity: 0;
-		-webkit-transform: translateX(-ProfileImage
+		-webkit-transform: translateX(-2000px);
 	}
 
 	100% {
 		opacity: 1;
-		-webkit-transform: translateX(0ProfileImage
+		-webkit-transform: translateX(0);
 	}
 }
 @-moz-keyframes fadeInLeftBig {
 	0% {
 		opacity: 0;
-		-moz-transform: translateX(-200ProfileImage
+		-moz-transform: translateX(-2000px);
 	}
 
 	100% {
@@ -1809,7 +1809,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 @-ms-keyframes fadeInLeftBig {
 	0% {
 		opacity: 0;
-		-ms-transform: translateX(-2000ProfileImage
+		-ms-transform: translateX(-2000px);
 	}
 
 	100% {
@@ -1820,7 +1820,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 @-o-keyframes fadeInLeftBig {
 	0% {
 		opacity: 0;
-		-o-transform: translateX(-2000pProfileImage
+		-o-transform: translateX(-2000px);
 	}
 
 	100% {
@@ -4501,11 +4501,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             <header>
 				<br><br><br>
 					<% if(typeof message !== 'undefined') { %>
-						<div class="alert" >
+						<div class="alert">
 								<h1 style="color:red;"><%= message %></h1>
 							</div>
 						<% }else{ %>
-                <h1>OTP Verification Form</h1>
+                <h1>Mentor Login and Registration Form</h1>
 				<% } %>
             </header>
             <section>
@@ -4516,64 +4516,68 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <div id="wrapper">
                         <div id="login" class="animate form">
 							<div>
-                <form action='Motpverify/<%=Startup.Email%>' method="POST">
+								<form action="/Mlogin" method="POST">
 									<h1>Log in</h1>
 									<fieldset class="form-group">
-												<label for="gname">OTP Sent to your Mobile Number</label>
-										<input  name="enteredotp" class="form-control" type="number" placeholder="4 Digit OTP" required>
+												<label for="gname">Email</label>
+										<input  name="Email" class="form-control" type="email" placeholder="Enter you Email" required>
 									 </fieldset>
+								<fieldset class="form-group">
+									<label for="edesc">Password:</label><br>
+									<input type="password" class="form-control" name="Password" placeholder="Enter Your Password" required>
+								</fieldset>
 
 										<div class="modal-footer d-flex justify-content-center">
 											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-									<a id="pass" style="cursor:pointer">Forgot Password?</a>
+											</div>
+										</form>
+											<a id="pass" style="cursor:pointer">Forgot Password?</a>
 											<div id="divpass" style="display:none;">
-													<form action="/Sreset" method="POST">
+													<form action="/reset" method="POST">
 													  <input type="email" class="form-control" name="Email" placeholder="Enter Your Email" required>
 														 <input type="submit" class="btn btn-primary value="Send Mail">
 													 </form>
 												 </div>
-												</div>
+										</div>
 										<p class="change_link">
 												Not a member yet ?
 												<a href="#toregister" class="to_register">Join us</a>
 											</p>
+												<br> <br>
 
 
+										</div>
 
-                        </div>
 
                         <div id="register" class="animate form">
-								<form role="form" method="POST" action="/Sregister" enctype="multipart/form-data">
+								<form role="form" method="POST" action="/register" enctype="multipart/form-data">
 									<h1> Sign up </h1>
 									<div class="form-group">
-										<input type="text" class="form-control" name="Name" value="" placeholder="Startup Name" required>
+										<input type="text" class="form-control" name="Name" value="" placeholder="Name" required>
 									</div>
 									<div class="form-group">
-										<label>Startup Logo:</label>
+										<label>Profile Image:</label>
 										<small>For best upload <strong> 75 X 75 </strong>Dimensions image</small>
 											<input type="file" class="form-control" name="ProfileImage"  required>
 										</div>
 										<div class="form-group">
-										<label>Website Link:</label>
-											<input type="text" class="form-control" name="Website"  required>
-										</div>
-										<!-- <div class="form-group">
 											<select name="Gender" class="form-control input-lg">
 												<option value="">Select Your Gender</option>
 												<option value="Male">Male</option>
 												<option value="Female">Female</option>
 											</select>
-											</div> -->
+											</div>
 									<div class="form-group">
 										<input type="email" class="form-control"  name="Email" value="" placeholder="Email Address" required>
 									</div>
+                  <div class="form-group">
+                    <input type="text" class="form-control"  name="College" value="" placeholder="College / University" required>
+                  </div>
 									<div class="form-group">
 										<input type="password" class="form-control" id="password"  name="Password" value=""placeholder="Password" required>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control"  id="cpassword" name="CPassword" value="" placeholder="Confirm Password" required>
+										<input type="password" class="form-control"  id="cpassword" name="CPassword" value="" placeholder="confirm Password" required>
 									</div>
 									<div id="show" style="color:red;display:none">
 											<small id="show">Password Does Not Match</small>
@@ -4582,7 +4586,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 										<input type="number" class="form-control"  name="Phone" value="" placeholder="+91 Your 10 Digit Phone Number" required>
 									</div>
 									<div class="form-group">
-										<textarea name="Address" class="form-control" placeholder="Your Address"></textarea>
+										<input type="text" placeholder="Enter Your Country" name="Location" class="form-control" >
 									</div>
                             <div class="form-group">
 						  <label for="sel2"></label>
@@ -4619,7 +4623,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						  <option value="Ashok Nagar"> Ashok Nagar</option>
 						  <option value="Auraiya"> Auraiya</option>
 						  <option value="Aurangabad"> Aurangabad</option>
-						  <option value="Aurangabad"> Aurangabad</option>
+						  <option value="A<a id="pass" >Forgot Password?</a>urangabad"> Aurangabad</option>
 						  <option value="Azamgarh"> Azamgarh</option>
 						  <option value="Badgam"> Badgam</option>
 						  <option value="Bagalkot">  Bagalkot</option>
@@ -5227,9 +5231,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						  <option value="Zunheboto"> Zunheboto</option>
 						  </select>
 						  </div>
-						  <div class="form-group">
-								<textarea name="About" class="form-control" placeholder="About Your Startup"></textarea>
-							</div>
+						  <div class="checkbox"style="color:black;">
+						</div>
 									<button type="submit" class="btn btn-primary pull-center">Submit Form</button>
 								   <p class="change_link">
 											Already a member ?

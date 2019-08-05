@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
-<% include ../includes/startupdashboard/head.ejs %>
+<% include ../includes/mentordashboard/head.ejs %>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
         <!-- start header -->
-        <% include ../includes/startupdashboard/header.ejs %>
+        <% include ../includes/mentordashboard/header.ejs %>
         <style>
         .src-image {
   display: none;
@@ -97,7 +97,7 @@
         <!-- start page container -->
         <div class="page-container">
 			 <!-- start sidebar menu -->
-			 <% include ../includes/startupdashboard/sidebar.ejs %>
+			 <% include ../includes/mentordashboard/sidebar.ejs %>
  				 <!-- end sidebar menu -->
 			<!-- start page content -->
             <div class="page-content-wrapper">
@@ -147,7 +147,7 @@
                                     <img src="/<%= student.ProfileImage %>" width="70" height="70" alt="ProfileImage" />
                                 </div>
                                 <div class="content" style="margin-top:15px">
-									<a href="/Sidcard/<%= student._id %>" target="_blank">
+									<a href="/Midcard/<%= student._id %>" target="_blank">
                                     <p><b><%= student.Name %></b> <br></a>
 									   <%= student.Email %><br>
 									   <%= student.Phone %>

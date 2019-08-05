@@ -6,16 +6,14 @@ const mentorSchema = new schema({
   ProfileImage: String,
   Password : String,
   Email : { type : String , unique : true },
-  Credit: { type: Number, default: 100 },
+  Credit: Number,
   CPassword : String,
   Phone : {
     type: Number,
     unique: true
   },
   Company: String,
-  PhoneAuth : {
-    type: String,
-    default: "No"},
+  PhoneAuth : String,
   LinkedIn: String,
   Otp: Number,
   Auth : String,
@@ -25,4 +23,4 @@ const mentorSchema = new schema({
 
 const Mentor = mongoose.model('mentor', mentorSchema);
 
-module.expors = Mentor;
+module.exports = Mentor;
