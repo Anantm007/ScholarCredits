@@ -27,16 +27,16 @@
     <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
 	<link href="../assets/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
 	<!-- favicon -->
-    <link rel="shortcut icon" href="assests/img/sclogo.png" /> 
+    <link rel="shortcut icon" href="assests/img/sclogo.png" />
 	<style>
 			body {font-family: Arial;}
-			
+
 			/* Style the tab */
 			.tab {
 				overflow: hidden;
 				background-color:white;
 			}
-			
+
 			/* Style the buttons inside the tab */
 			.tab button {
 				background-color: inherit;
@@ -48,17 +48,17 @@
 				transition: 0.3s;
 				font-size: 17px;
 			}
-			
+
 			/* Change background color of buttons on hover */
 			.tab button:hover {
 				background-color: #ddd;
 			}
-			
+
 			/* Create an active/current tablink class */
 			.tab button.active {
 				background-color: #ccc;
 			}
-			
+
 			/* Style the tab content */
 			.tabcontent {
 				display: none;
@@ -72,7 +72,7 @@
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
         <!-- start header -->
-		<% include ../includes/startupdashboard/header.ejs %>
+		<% include ../includes/mentordashboard/header.ejs %>
         <!-- start color quick setting -->
         <div class="quick-setting-main">
 			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
@@ -82,7 +82,7 @@
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
 				<a href="http://radixtouch.in/templates/admin/smart/source/dark/course_details.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
-				</div></li>	
+				</div></li>
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
 				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
@@ -120,7 +120,7 @@
         <!-- start page container -->
         <div class="page-container">
 			 <!-- start sidebar menu -->
-			 <% include ../includes/startupdashboard/sidebar.ejs %>
+			 <% include ../includes/mentordashboard/sidebar.ejs %>
  				 <!-- end sidebar menu -->
 			<!-- start page content -->
             <div class="page-content-wrapper">
@@ -163,7 +163,7 @@
 												  </div>
 											  <div class="form-group">
 													<label for="pwd">About</label>
-													<textarea name="About" class="form-control"><%= Student.About %></textarea> 
+													<textarea name="About" class="form-control"><%= Student.About %></textarea>
 												  </div>
 												  <div class="form-group">
 														<label for="pwd">City</label>
@@ -180,7 +180,7 @@
 
 									</div>
 									  <button type="submit" class="btn btn-primary">Update</button>
-									 
+
 							</form>
 						</div><br>
 						<!-- <h2>My Skills</h2>
@@ -214,12 +214,12 @@
 									</div>
 								</div>
 						</div> -->
-						  </div>  
-					  
-							  
-							  
+						  </div>
+
+
+
 							  <div id="Paris" class="tabcontent">
-									<h2>My Account</h2> 
+									<h2>My Account</h2>
 									<div class="col-md-8" style="background:white;">
 											<br><br>
 											<form action="/Supdatepass" method="POST">
@@ -230,7 +230,7 @@
 													  <input type="email" name="Email" value="<%= Student.Email %>" class="form-control" >
 													</div>
 													<div class="form-group">
-														
+
 												</div>
 											</div>
 												  </div>
@@ -248,22 +248,22 @@
 												  <input class="form-control" type="password" name="CPassword" id="">
 												  </div>
 												  <br>
-												  <input type="submit" class="btn btn-primary" value="Change"> 
+												  <input type="submit" class="btn btn-primary" value="Change">
 												</div>
-											
-												  
+
+
 										  </form>
 										  <button id="pass" class="btn btn-primary">Change Password</button>
 									  </div>
 							  </div>
-							  
+
 							  <div id="Tokyo" class="tabcontent">
 									<h2>My Account</h2>
 							  </div>
-					  
+
 						<!-- <div id="menu1" class="tab-pane fade">
 							  <h2>My Account</h2>
-						 
+
 						  </div>
 						<div id="menu2" class="tab-pane fade">
 							  <h2 style="text-align: center;font-weight:bold">For Employers</h2>
@@ -271,17 +271,17 @@
 <p>=>Register your organization on Edumonk and login to your dashboard</p>
 <p>=>Create a Challenges to some the problems you currently need to take in your organization</p>
 <p>=>Reviews the submissions and assign the mentioned reward of the Challengesto selected candidates</p>
-<a href="/dashboard"><button  style="display:block;margin: auto" class="btn btn-primary">Signup/Login As An Employer</button>  
+<a href="/dashboard"><button  style="display:block;margin: auto" class="btn btn-primary">Signup/Login As An Employer</button>
 </a>
 </div> -->
 				 </div>
-                    
+
 			                  </div>
                                 </div>
                                 <!-- END PROFILE CONTENT -->
                             </div>
                         </div>
-                    
+
                 <!-- end page content -->
                 <!-- start chat sidebar -->
                 <div class="chat-sidebar-container" data-close-on-body-click="false">
@@ -298,7 +298,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <!-- Start User Chat --> 
+                        <!-- Start User Chat -->
  						<div class="tab-pane active chat-sidebar-chat in active show" role="tabpanel" id="quick_sidebar_tab_1">
                         	<div class="chat-sidebar-list">
 	                            <div class="chat-sidebar-chat-users slimscroll-style" data-rail-color="#ddd" data-wrapper-class="chat-sidebar-list">
@@ -468,8 +468,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End User Chat --> 
- 						<!-- Start Setting Panel --> 
+                        <!-- End User Chat -->
+ 						<!-- Start Setting Panel -->
  						<div class="tab-pane chat-sidebar-settings" role="tabpanel" id="quick_sidebar_tab_3">
                             <div class="chat-sidebar-settings-list slimscroll-style">
                                 <div class="chat-header"><h5 class="list-heading">Layout Settings</h5></div>
@@ -518,9 +518,9 @@
 					                        <div class="setting-text">Notifications</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-1">
-									                  <input type = "checkbox" id = "switch-1" 
+									                  <input type = "checkbox" id = "switch-1"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -530,9 +530,9 @@
 					                        <div class="setting-text">Show Online</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-7">
-									                  <input type = "checkbox" id = "switch-7" 
+									                  <input type = "checkbox" id = "switch-7"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -542,9 +542,9 @@
 					                        <div class="setting-text">Status</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-2">
-									                  <input type = "checkbox" id = "switch-2" 
+									                  <input type = "checkbox" id = "switch-2"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -554,9 +554,9 @@
 					                        <div class="setting-text">2 Steps Verification</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-3">
-									                  <input type = "checkbox" id = "switch-3" 
+									                  <input type = "checkbox" id = "switch-3"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -569,9 +569,9 @@
 					                        <div class="setting-text">Location</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-4">
-									                  <input type = "checkbox" id = "switch-4" 
+									                  <input type = "checkbox" id = "switch-4"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -581,9 +581,9 @@
 					                        <div class="setting-text">Save Histry</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-5">
-									                  <input type = "checkbox" id = "switch-5" 
+									                  <input type = "checkbox" id = "switch-5"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -593,9 +593,9 @@
 					                        <div class="setting-text">Auto Updates</div>
 					                        <div class="setting-set">
 					                            <div class="switch">
-					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect"
 									                  for = "switch-6">
-									                  <input type = "checkbox" id = "switch-6" 
+									                  <input type = "checkbox" id = "switch-6"
 									                     class = "mdl-switch__input" checked>
 									               	</label>
 					                            </div>
@@ -612,7 +612,7 @@
             </div>
             <!-- end page container -->
             <!-- start footer -->
-            <% include ../includes/studentdashboard/footer.ejs %>
+            <% include ../includes/mentordashboard/footer.ejs %>
             <!-- end footer -->
         </div></div>
         <!-- start js include path -->
@@ -625,7 +625,7 @@
         <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
         <!-- Common js-->
 		<script src="../assets/js/app.js" ></script>
-        
+
         <script src="../assets/js/layout.js" ></script>
 		<script src="../assets/js/theme-color.js" ></script>
 		<!-- Material -->

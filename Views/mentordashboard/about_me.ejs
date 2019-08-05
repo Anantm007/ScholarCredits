@@ -2,13 +2,12 @@
 <html lang="en">
 <!-- BEGIN HEAD -->
 
-<% include ../includes/studentdashboard/head.ejs %>
+<% include ../includes/startupdashboard/head.ejs %>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
         <!-- start header -->
-		<% include ../includes/studentdashboard/header.ejs %>
-        <!-- end header -->
+		<% include ../includes/mentordashboard/header.ejs %>
         <!-- start color quick setting -->
         <div class="quick-setting-main">
 			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
@@ -17,7 +16,7 @@
 				<li><p class="selector-title">Main Layouts</p></li>
 				<li class="complete"><div class="theme-color layout-theme">
 				<a href="#" data-theme="light"><span class="head"></span><span class="cont"></span></a>
-				<a href="http://radixtouch.in/templates/admin/smart/source/dark/all_courses.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="http://radixtouch.in/templates/admin/smart/source/dark/course_details.html" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
 				</div></li>
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
@@ -55,201 +54,84 @@
 		<!-- end color quick setting -->
         <!-- start page container -->
         <div class="page-container">
- 			<!-- start sidebar menu -->
- 			<% include ../includes/mentordashboard/sidebar.ejs %>
-			 <!-- end sidebar menu -->
+			 <!-- start sidebar menu -->
+			 <% include ../includes/mentordashboard/sidebar.ejs %>
+ 				 <!-- end sidebar menu -->
 			<!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content text-center">
-					<a href="/idcard" target="blank"><button class="btn btn-primary">Show ID Card</button></a><br><br>
+					<!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">How to Earn Scholar Credits</button> -->
 
-					<h3>Or Fill Your ID Card</h3>
-					<% if(typeof message!== 'undefined'){ %>
-						<small><%= message %></small>
-						<% } %>
-						<div>
-								<label >Add Skills</label><br>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalskills"><i style="font-size:30px;color:#4062FF;" class="fa fa-plus-circle" aria-hidden="true"></i></button>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-												<div id="myModalskills" class="modal fade" role="dialog">
-														<div class="modal-dialog">
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Skills Form</h4>
-											</div>
-											<div class="modal-body">
-											  <form action="/addskills" method="POST">
-													<div class="form-group">
-													<label >Title</label>
-													<input class="form-control" type="text" name="SkillTitle" required>
-													</div>
-													<div class="form-group">
-													<label >Level</label>
-													<select class="form-control" name="SelectLevel">
-														<option value="Basic">Basic</option>
-														<option value="Intermediate">Intermediate</option>
-														<option value="Advance">Advance</option>
-													</select>
-													</div>
-													<input type="submit" class="btn btn-primary" value="Submit">
-											  </form>
-											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Scholar Credits</h4>
+      </div>
+      <div class="modal-body">
+        <p>1. Scholar Credit system has been created to help you keep boosting your Talent Brand. The more you use Edumonk,  more are the credits you get. Credits that you can redeem for online courses, paying fees and geting financial aid for studying in our partner institutions and cash grants to support you while studying!</p>
 
-										</div>
-									  </div>
-						</div><br>
-						<div>
-								<label >Add Projects</label><br>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalprojects"><i style="font-size:30px;color:#4062FF;" class="fa fa-plus-circle" aria-hidden="true"></i></button>
-								<div id="myModalprojects" class="modal fade" role="dialog">
-										<div class="modal-dialog">
+				<p>2. Perform Challenges: Complete challenges posted by our community of Educators, Employers and Students. You'll receive Credits depending on the quality of the work done. You'll earn between 5 and 15 Credits if you complete a Learning Challenges successfully. Have a look at the list of available challenges today!</p>
 
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Project Form</h4>
-											</div>
-											<div class="modal-body">
-											  <form action="/addproject" method="POST">
-													<div class="form-group">
-													<label >Title</label>
-													<input class="form-control" type="text" name="ProjectTitle" required>
-													</div>
-													<div class="form-group">
-													<label >Description</label>
-													<textarea class="form-control"  name="ProjectDescription" required></textarea>
-													</div>
-													<input type="submit" class="btn btn-primary" value="Submit">
-											  </form>
-											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
+				<p>3.Apply and complete Challenges + Job Offers: As part of the application to a job offer on Edumonk, if you get to the final step, you'll need to complete a Trial Challenges. Even if you're not finally hired, if you complete the Trial Challenges you'll get Credits to help you have more options in future applications! Have a look at all job opportunities today!</p>
 
-										</div>
-									  </div>
-						</div><br>
-						<div>
-								<label >Add Education</label><br>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModaleducation"><i style="font-size:30px;color:#4062FF;" class="fa fa-plus-circle" aria-hidden="true"></i></button>
-								<div id="myModaleducation" class="modal fade" role="dialog">
-										<div class="modal-dialog">
+				<p>4.Complete our quizzes and games: You will realize that we propose you different quizzes and personality games to showcase your soft skills, values and everything that represents you!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Education Form</h4>
-											</div>
-											<div class="modal-body">
-											  <form action="/addeducation" method="POST">
-													<div class="form-group">
-													<label >Class</label>
-													<select class="form-control" name="Class">
-															<option value="Matriculate">Matriculate</option>
-															<option value="Intermediate">Intermediate</option>
-															<option value="Graduate">Graduate</option>
-														</select>
-													</div>
-													<div class="form-group">
-														<label >Name of Institution</label>
-														<input type="text" class="form-control" name="Instname">
-														</div>
-														<div class="form-group">
-															<label >Marks Scored</label>
-															<small>In %(percentage)</small>
-															<input type="text" class="form-control" name="Marks">
-															</div>
-													<div class="form-group">
-													<label >Duration</label>
-													<small>(yyyy-yyyy)</small>
-													<input type="text" class="form-control" name="Duration">
-													</div>
-													<input type="submit" class="btn btn-primary" value="Submit">
-											  </form>
-											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
+  </div>
+</div>
+                   <br><b style="font-family:verdana;font-size:200%"><%= Student.Name %></b><br><br>
+                   <img src="<%=Student.ProfileImage%>" alt="profile_image" style="height:250px;width:250px;border-radius: 100%;"><br>
+                   <!-- <h1><%= Student.Credits %> Credits</h1> -->
 
-										</div>
-									  </div>
-						</div><br>
-						<div>
-								<label >Add Interests</label><br>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalinterest"><i style="font-size:30px;color:#4062FF;" class="fa fa-plus-circle" aria-hidden="true"></i></button>
-								<div id="myModalinterest" class="modal fade" role="dialog">
-										<div class="modal-dialog">
+                   <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#aboutus">Current Role</a></li>
+                  <li><a data-toggle="tab" href="#menu2">Contact</a></li>
+                  <li><a data-toggle="tab" href="#menu3">Challenges</a></li>
+                  <li><a data-toggle="tab" href="#menu4">Community</a></li>
+                </ul>
 
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Interest Form</h4>
-											</div>
-											<div class="modal-body">
-											  <form action="/addinterest" method="POST">
-													<div class="form-group">
-													<label >Interests</label>
-													<textarea type="text" class="form-control" name="Interest"></textarea>
-													</div>
-													<input type="submit" class="btn btn-primary" value="Submit">
-											  </form>
-											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
-
-										</div>
-									  </div>
-						</div><br>
-						<div>
-								<label >Add Objective</label><br>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalobjective"><i style="font-size:30px;color:#4062FF;" class="fa fa-plus-circle" aria-hidden="true"></i></button>
-								<div id="myModalobjective" class="modal fade" role="dialog">
-										<div class="modal-dialog">
-
-										  <!-- Modal content-->
-										  <div class="modal-content">
-											<div class="modal-header">
-											  <button type="button" class="close" data-dismiss="modal">&times;</button>
-											  <h4 class="modal-title">Objective Form</h4>
-											</div>
-											<div class="modal-body">
-											  <form action="/addobjective" method="POST">
-													<div class="form-group">
-													<label >Objective</label>
-
-													<textarea type="text" class="form-control" name="Objective"></textarea>
-													</div>
-													<input type="submit" class="btn btn-primary" value="Submit">
-											  </form>
-											</div>
-											<div class="modal-footer">
-											  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
-										  </div>
-
-										</div>
-									  </div>
-						</div><br>
+                <div class="tab-content">
+                  <div id="aboutus" class="tab-pane fade in active">
+                    <h4 style="font-family:verdana;text-align:left">Current Role</h4>
+                    <p style="text-align:left"><%= Student.Company %></p><br>
+                  </div>
 
 
-			   </div>
-			</div>
-            <!-- end page content -->
-            <!-- start chat sidebar -->
-            <div class="chat-sidebar-container" data-close-on-body-click="false">
+                  <div id="menu2" class="tab-pane fade">
+                    <h4 style="font-family:verdana;text-align:left">Contact</h4>
+                    <p style="text-align:left"><a href="mailto: <%=Student.Email%>"><%= Student.Email %></a></p>
+                    <p style="text-align:left">Phone No. - <%= Student.Phone %></p>
+                    <p style="text-align:left"><a href="<%=Student.LinkedIn%>"><%= Student.LinkedIn %></a></p>
+                    </div>
+
+                  <div id="menu3" class="tab-pane fade">
+                    <h4 style="font-family:verdana;text-align:left">My challenges</h4>
+                 </div>
+
+                   <div id="menu4" class="tab-pane fade">
+                    <h4 style="font-family:verdana;text-align:left">Community</h4>
+                   </div>
+
+
+			                  </div>
+                                </div>
+                                <!-- END PROFILE CONTENT -->
+                            </div>
+                        </div>
+
+                <!-- end page content -->
+                <!-- start chat sidebar -->
+                <div class="chat-sidebar-container" data-close-on-body-click="false">
                 <div class="chat-sidebar">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
@@ -573,35 +455,32 @@
                     </div>
                 </div>
             </div>
-            <!-- end chat sidebar -->
-        </div>
-        <!-- end page container -->
-        <!-- start footer -->
-		<% include ../includes/studentdashboard/footer.ejs %>
-        <!-- end footer -->
-    </div>
-    <!-- start js include path -->
-    <script src="../assets/plugins/jquery/jquery.min.js" ></script>
-    <script src="../assets/plugins/popper/popper.js" ></script>
-    <script src="../assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
-	<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <!-- bootstrap -->
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
-    <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
-    <!-- data tables -->
-    <script src="../assets/plugins/datatables/jquery.dataTables.min.js" ></script>
- 	<script src="../assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
-    <script src="../assets/js/pages/table/table_data.js" ></script>
-    <!-- Common js-->
-	<script src="../assets/js/app.js" ></script>
-    <script src="../assets/js/layout.js" ></script>
-	<script src="../assets/js/theme-color.js" ></script>
-	<!-- Material -->
-	<script src="../assets/plugins/material/material.min.js"></script>
-	 <!-- end js include path -->
-	 <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"c8b396a4b1b36df1042fa538f614c6819001402b51979831462095e37538a28070cb14981ef0ab3f91b85fac9aa93d23", values:{},ready:function(){$zoho.salesiq.floatbutton.visible('show');}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+                <!-- end chat sidebar -->
+            </div>
+            <!-- end page container -->
+            <!-- start footer -->
+            <% include ../includes/mentordashboard/footer.ejs %>
+            <!-- end footer -->
+        </div></div>
+        <!-- start js include path -->
+        <script src="../assets/plugins/jquery/jquery.min.js" ></script>
+        <script src="../assets/plugins/popper/popper.js" ></script>
+        <script src="../assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
+		<script src="../assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <!-- bootstrap -->
+        <script src="../assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
+        <script src="../assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
+        <!-- Common js-->
+		<script src="../assets/js/app.js" ></script>
+
+        <script src="../assets/js/layout.js" ></script>
+		<script src="../assets/js/theme-color.js" ></script>
+		<!-- Material -->
+		<script src="../assets/plugins/material/material.min.js"></script>
+		<!-- end js include path -->
+		<script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"c8b396a4b1b36df1042fa538f614c6819001402b51979831462095e37538a28070cb14981ef0ab3f91b85fac9aa93d23", values:{},ready:function(){$zoho.salesiq.floatbutton.visible('show');}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
 
 </body>
 
-<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/all_courses.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 09:49:37 GMT -->
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/course_details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 09:49:37 GMT -->
 </html>

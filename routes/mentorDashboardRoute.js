@@ -77,7 +77,7 @@ router.post('/Mregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
         req.body.Code = '';
         req.body.Auth = 'No';
         req.body.PhoneAuth = 'No';
-        req.body.Credit = 0;
+        req.body.Credit = 100;
         req.body.Otp = otp;
         var code =  randomstring.generate({
             length: 12,
@@ -367,19 +367,6 @@ router.get('/Mallchallenges',(req,res)=>{
     });
 }});
 
-router.get('/Mcredits',(req,res)=>{
-    if(!req.session.username){
-        res.redirect('/Mdashboard');
-    }else{
-        Mentor.findOne({'Email' : req.session.username},(err,data)=>{
-        if(data)
-        {
-          res.render('mentordashboard/rewardcredits',{
-              Student : data
-          });
-        }
-  });
-}});
 
 router.get('/Maccount',(req,res)=>{
     if(!req.session.username){
@@ -398,6 +385,24 @@ router.get('/Maccount',(req,res)=>{
 router.get('/Mdashlogout',(req,res)=>{
     req.session.destroy();
     res.redirect('/Mdashboard');
+});
+
+router.get('/Mabout', (req,res)=> {
+  if(!req.session.username) {
+    res.redirect('/Mdashboard');
+  }
+
+  else
+  {
+    Mentor.findOne({'Email': req.session.username}, (err,data) =>{
+      if(data)
+      {
+        res.render('mentordashboard/about_me', {
+          Student: data
+        });
+      }
+    });
+  }
 });
 
 router.post('/Maboutme',multer(multerConf).single('ProfileImage'),(req,res)=>{
@@ -777,7 +782,7 @@ router.get('/Mclubs',async(req,res)=>{
          if(mentor){
              res.render('mentordashboard/studentclubs',{
                     // Student : data,
-                    Student : startup
+                    Student : mentor
                   });
 
                 }
