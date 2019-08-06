@@ -691,7 +691,7 @@ router.post('/Sparticipate',async(req,res)=>{
 
     router.get('/Ssubmitchallenge',(req,res)=>{
         if(!req.session.username){
-            res.redirect('/dashboard');
+            res.redirect('/Sdashboard');
         }else{
             Startup.findOne({'Email' : req.session.username},(err,username)=>{
           res.render('studentdashboard/submit-challenge',{

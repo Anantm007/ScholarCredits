@@ -788,6 +788,178 @@ router.get('/Mdetails/:code',(req,res)=>{
   });
 });
 }});
+
+router.get('/Mcreatechallenge',async(req,res,next)=>{
+    if(!req.session.username){
+        res.redirect('/Mdashboard');
+    }else{
+    try{
+        const data= await Mentor.findOne({'Email':req.session.username});
+        console.log(data);
+        res.render('mentordashboard/create-challenge',{
+            Student : data
+        });
+       }
+       catch(e)
+       {
+           next(e);
+       }
+    }
+});
+
+router.post('/Mcreatechallenge',multer(multerConf).single('Example'),(req,res)=>{
+     Mentor.findOne({'Email' : req.session.username},(err,username)=>{
+          req.body.Example ='./uploads/'+req.file.filename;
+          req.body.Student = username.Name;
+          req.body.Status ="Not Submitted";
+          req.body.Type
+          console.log(username.Credits);
+          username.Credits -= req.body.Reward;
+
+          if(req.body.Reward > username.Credits)
+          {
+            Mentor.findOne({'Email' : req.session.username},(err,data)=>{
+            if(data)
+            {
+              res.render('mentordashboard/insufficient_credits',{
+                  Student : data
+              });
+            }
+      });
+          }
+
+          else
+          {
+            console.log(req.body.Reward);
+            console.log(username.Credits);
+            Mentor.findOneAndUpdate({'Email': req.session.username}, {'Credits': username.Credits}, (err)=> {
+              if(err)
+              console.log(err);
+
+              else
+              console.log("Credits now available " + username.Credits);
+            });
+
+           Challenge.create(req.body,(err,data)=>{
+                if(data)
+                 {
+                     console.log(data);
+                   res.render('mentordashboard/create-challenge',{
+                        message : 'Created Successfuly',
+                        Student: username
+                    });
+
+                 }
+                 else{
+                   res.render('mentordashboard/create-challenge',{
+                       message : 'Not Created',
+                       Student : username
+                    });
+                 }
+             })
+           }
+
+      });
+
+
+     });
+
+
+router.get('/Mmychallenges',async(req,res,next)=>{
+    if(!req.session.username){
+                    res.redirect('/Mdashboard');
+                }else{
+   try{
+     const data = await Mentor.findOne({'Email' : req.session.username});
+
+     if(data){
+         try{
+         const challenge = await Challenge.find({'Student' : data.Name });
+         if(challenge){
+             res.render('mentordashboard/mychallenges',{
+                 Student : data,
+                 Challenge : challenge
+             });
+         }}catch(e){
+             next(e);
+         }
+       }}catch(e){
+           next(e);
+       }
+    }
+});
+
+router.get('/Msubmit',(req,res)=>{
+ if(!req.session.username){
+     res.redirect('/Mdashboard');
+ }else{
+     Mentor.findOne({'Email' : req.session.username},(err,data)=>{
+     Challenge.find({'Student':{ $nin : [data.Name]}},(err,challenge)=>{
+     if(data)
+     {
+       res.render('mentordashboard/submit-challenge',{
+           Student : data ,
+           Challenges : challenge
+       });
+     }
+});
+});
+}});
+
+router.get('/Maccept',(req,res)=>{
+if(!req.session.username){
+ res.redirect('/Mdashboard');
+}else{
+Mentor.findOne({'Email' : req.session.username},(err,data)=>{
+ Challenge.find({'Student':{ $nin : [data.Name]}},(err,challenge)=>{
+ if(data)
+ {
+   res.render('mentordashboard/participate-challenge',{
+       Student : data ,
+       Challenges : challenge
+   });
+ }
+});
+});
+}});
+
+router.post('/Mparticipate',async(req,res)=>{
+const data = await Mentor.findOne({'Email':req.session.username});
+if(data){
+const challenge = await Challenge.find({'Student':{ $nin : [data.Name]}});
+var dt = dateTime.create();
+var formatted = dt.format('Y-m-d');
+req.body.startDate = formatted;
+req.body.username = data.Name;
+const result = await Participate.create(req.body);
+if(result){
+const result = await Challenge.update({'Name':req.body.Name},{'Participated':'Yes'});
+res.render('mentordashboard/participate-challenge',{
+Student : data,
+Challenges : challenge,
+message : 'Submitted Successfully'
+})
+}
+}
+});
+
+
+
+router.get('/Msubmitchallenge',(req,res)=>{
+if(!req.session.username){
+ res.redirect('/Mdashboard');
+}else{
+ Mentor.findOne({'Email' : req.session.username},(err,username)=>{
+res.render('mentordashboard/submit-challenge',{
+   Student : username
+});
+
+});
+}
+});
+
+
+
 router.get('/Mviewchallenge/:code',(req,res)=>{
 
 if(!req.session.username)
