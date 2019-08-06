@@ -769,6 +769,47 @@ router.get('/Mcouncil',async(req,res)=>{
     }
 
 });
+router.get('/Mdetails/:code',(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/dashboard');
+    }else{
+    Register.findOne({'Email' : req.session.username},(err,data)=>{
+        Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
+        if(data)
+        {
+            var example = challenge.Example;
+            var extension = path.extname(example);
+          res.render('mentordashboard/challenge-details',{
+              Student : data,
+              Challenge : challenge,
+              Extension : extension
+          });
+        }
+  });
+});
+}});
+router.get('/Mviewchallenge/:code',(req,res)=>{
+
+if(!req.session.username)
+    res.redirect('/dashboard');
+else {
+Mentor.findOne({'Email' : req.session.username},(err,data)=>{
+    Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
+
+        var example = challenge.Example;
+        var extension = path.extname(example);
+      res.render('mentordashboard/view-challenge-details',{
+          Challenge : challenge,
+          Extension : extension
+      });
+
+});
+});
+
+}
+
+});
+
 
 
 router.get('/Mclubs',async(req,res)=>{
