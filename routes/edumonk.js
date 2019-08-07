@@ -38,6 +38,17 @@ router.get('/',async(req,res)=>{
 
  });
 
+router.get('/pricing', async(req,res) =>{
+     res.render('pricing');
+
+});
+
+
+router.get('/aboutus', async(req,res) =>{
+     res.render('aboutvalues');
+
+});
+
  router.post('/enquiry', async(req, res) => {
 
     console.log(req.body);
