@@ -395,8 +395,24 @@ router.post('/Slogin',(req,res)=>{
                           }
 
                           transporter.sendMail(HelperOptions,(err,info)=>{
-                              if(err) throw err;
-                              console.log("The message was sent");
+                              if(err) {
+                                throw err;
+                                res.render('startupdashboard/conf_message',{
+                                    Student : data,
+                                    Message: "There was an error! Please try again later"
+                                });
+
+                              }
+
+                              else
+                              {
+                                console.log("The message was sent");
+                                res.render('startupdashboard/conf_message',{
+                                    Student : data,
+                                    Message: "Confirmation email has been sent."
+                                });
+                               }
+
                           });
 
                           pdfDoc.pipe(res);
@@ -1592,13 +1608,30 @@ router.post('/Sreport/:id',(req,res)=>{
         let HelperOptions ={
           from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
            to : "scholarcredits@gmail.com",
-            subject : "A Student has been reported by " + data.Name,
-            text : req.body.Description + " The student can be contacted at - " + student.Email
+            subject : student.Name + " has been reported by " + data.Name,
+            text : req.body.Description + "\nThe student can be contacted at - " + student.Email + "\nThe company can be contacted at - " + data.Email
         }
 
         transporter.sendMail(HelperOptions,(err,info)=>{
-            if(err) throw err;
-            console.log("The message was sent" );
+
+              if(err) {
+                res.render('startupdashboard/conf_message',{
+                    Student : data,
+                    Message: "There was an error! Please try again later"
+                });
+                throw err;
+
+              }
+
+              else
+              {
+                res.render('startupdashboard/conf_message',{
+                    Student : data,
+                    Message: "The student has been reported. We will review your request and get back to you shortly."
+                });
+                console.log("The message was sent");
+
+               }
         });
 
       });
