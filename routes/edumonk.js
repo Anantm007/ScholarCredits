@@ -57,7 +57,7 @@ router.get('/aboutus', async(req,res) =>{
 
           to : "scholarcredits@gmail.com",
           subject : req.body.Name + " has submitted a query - " + req.body.Subject,
-          text : req.body.Message + "They can be contacted at - " + req.body.Email
+          text : req.body.Message + "\n" + req.body.Name + " can be contacted at - " + req.body.Email
       };
 
       transporter.sendMail(HelperOptions,(err,info)=>{
