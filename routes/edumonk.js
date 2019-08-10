@@ -62,8 +62,24 @@ router.get('/aboutus', async(req,res) =>{
 
       transporter.sendMail(HelperOptions,(err,info)=>{
           if(err) throw err;
+
+          Query.create(req.body);
           console.log("The message was sent");
       });
+
+      let HelperOptions2 ={
+        from : (process.env.EmailCredentialsName || config.EmailCredentials.Name) + '<'+ (process.env.EmailCredentialsId || config.EmailCredentials.Id)+'>' ,
+
+            to : req.body.Email,
+            subject :"You have successfully submitted a query - " + req.body.Subject,
+            text : "Thank You for contacting us. We have received your request and would get back to you shortly. If you would like to add anything please reply to this email." + "\n" + "Regards, Scholar Credits"
+        };
+
+        transporter.sendMail(HelperOptions2,(err,info)=>{
+            if(err) throw err;
+
+            console.log("The message was sent");
+        });
 
     res.redirect("/");
  });

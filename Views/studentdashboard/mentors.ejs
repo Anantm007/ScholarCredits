@@ -115,8 +115,9 @@
                                 <div class="content">
                                     <p><b><%= startup.Name %></b> <br>
                                        <%= startup.Company %></p>
-                                    <p><a href="/viewstartup/<%= startup._id %>" target="_blank"><button type="button" class="btn btn-default">View</button></a></p>
+
                                     <p><a href="/enquire/<%= startup._id %>" target="_blank"><button type="button" class="btn btn-default">Enquire</button></a></p>
+                                       <a href="<%=startup.LinkedIn%>" title="LinkedIn" class="btn btn-linkedin"><i class="fa fa-linkedin fa-fw"></i></a><br><br>
                                 </div>
                             </div>
                         </div>
