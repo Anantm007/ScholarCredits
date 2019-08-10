@@ -8,6 +8,7 @@ const Submission = require("../Models/challengesubmissionmodel");
 const Mentor = require("../Models/mentorsmodel");
 const Skill = require("../Models/skillsmodel");
 const Startup = require("../Models/startupmodel");
+const StudentQuery = require("../Models/studentquerymodel");
 const passwordHash = require('password-hash');
 const Professor = require("../Models/professormodel");
 const Project = require("../Models/projectsmodel");
@@ -773,7 +774,7 @@ router.get('/Mdetails/:code',(req,res)=>{
     if(!req.session.username){
         res.redirect('/dashboard');
     }else{
-    Register.findOne({'Email' : req.session.username},(err,data)=>{
+    Mentor.findOne({'Email' : req.session.username},(err,data)=>{
         Challenge.findOne({ '_id' : req.params.code },(err,challenge)=>{
         if(data)
         {
@@ -983,7 +984,6 @@ Mentor.findOne({'Email' : req.session.username},(err,data)=>{
 });
 
 
-
 router.get('/Mclubs',async(req,res)=>{
     if(!req.session.username){
         res.redirect('/Mdashboard');
@@ -1002,5 +1002,37 @@ router.get('/Mclubs',async(req,res)=>{
     }
 
 });
+
+
+
+router.get('/Mstudentquery', async(req,res) =>{
+  if(!req.session.username)
+  {
+    res.redirect('/Mdashboard');
+  }
+
+  const mentor = await Mentor.find({'Email':req.session.username});
+  if(mentor)
+  {
+
+    const queries = await StudentQuery.find({'MentorEmail': req.session.username});
+    if(queries)
+    {
+      const students = await Register.find({'_id': queries.StudentId});
+      console.log(queries);
+      // console.log(queries.StudentEmail);
+      // console.log(students);
+      //
+      //   res.render('mentordashboard/queries',{
+      //     Student: mentor,
+      //     Queries: queries,
+      //     Students: students
+      // });
+
+
+  }
+}
+});
+
 
 module.exports = router;

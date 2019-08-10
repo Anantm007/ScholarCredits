@@ -1708,7 +1708,8 @@ router.post('/enquire/:id', async(req,res) =>{
                 req.body.StudentId = student.id;
                 req.body.Status = "Not Resolved";
                 req.body.MentorId = req.params.id;
-
+                req.body.MentorEmail = mentor.Email;
+                req.body.StudentEmail = student.Email;
                 console.log(req.body);
                 StudentQuery.create(req.body);
                 console.log(("success"));
