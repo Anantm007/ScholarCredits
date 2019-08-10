@@ -5,7 +5,8 @@ const router = express.Router();
 const Register = require("../Models/registermodel");
 const Challenge = require("../Models/challengemodel");
 const Submission = require("../Models/challengesubmissionmodel");
-const Mentor = require("../Models/mentorsmodel")
+const Mentor = require("../Models/mentorsmodel");
+const StudentQuery = require("../Models/studentquerymodel");
 const Skill = require("../Models/skillsmodel");
 const Startup = require("../Models/startupmodel");
 const passwordHash = require('password-hash');
@@ -1627,5 +1628,103 @@ router.get('/clubs',async(req,res)=>{
    }
 }
 });
+
+router.get('/query/:id', async(req,res) => {
+    if(!req.seesion.username)
+    {
+      res.redirect('/dashboard');
+    }
+
+    else
+    {
+      const mentor = await Mentor.findOne({'_id':req.params.id});
+      const data = await Register.findOne({'Email': req.session.username});
+      if(data)
+      {
+        res.render('studentdashboard/query');
+      }
+
+    }
+
+});
+
+router.get('/mentors',async(req,res)=>{
+    if(!req.session.username){
+        res.redirect('/dashboard');
+    }else{
+    const data = await Register.findOne({'Email':req.session.username});
+   if(data){
+     const mentor = await Mentor.find();
+     if(mentor){
+       console.log(mentor);
+         res.render('studentdashboard/mentors',{
+             Student : data,
+             Startup : mentor
+         });
+     }
+   }
+}
+});
+
+router.get('/enquire/:id', async(req,res) =>{
+  if(!req.session.username){
+      res.redirect('/dashboard');
+  }
+  else
+  {
+    const student = await Register.findOne({'Email':req.session.username});
+
+    if(student)
+    {
+      const mentor = await Mentor.findOne({'_id': req.params.id});
+      if(mentor){
+          res.render('studentdashboard/enquiry',{
+              Student : student,
+              Students : mentor
+          });
+      }
+    }
+ }
+});
+
+router.post('/enquire/:id', async(req,res) =>{
+  if(!req.session.username){
+      res.redirect('/dashboard');
+  }
+
+    else
+    {
+      const student = await Register.findOne({'Email':req.session.username});
+
+          if(student)
+          {
+            Mentor.findOne({'_id': req.params.id}, (err, mentor) =>{
+            if(err)
+            console.log(err);
+
+            else
+            {
+
+                req.body.StudentId = student.id;
+                req.body.Status = "Not Resolved";
+                req.body.MentorId = req.params.id;
+
+                console.log(req.body);
+                StudentQuery.create(req.body);
+                console.log(("success"));
+
+                res.render('studentdashboard/conf_message',{
+                    Student: mentor,
+                    Message : 'Your query has been submitted and sent to the mentor. They will get back to you shortly.'
+                });
+            }
+
+
+          });
+        }
+
+    }
+});
+
 
 module.exports = router;
