@@ -4,7 +4,8 @@ const schema = mongoose.Schema;
 const ProjectSchema = new schema({
     ProjectTitle : String,
     ProjectDescription : String,
-    Student : String
+    Student : String,
+    StudentId: String
 
 });
 

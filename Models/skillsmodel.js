@@ -4,7 +4,8 @@ const schema = mongoose.Schema;
 const SkillSchema = new schema({
     SkillTitle : String,
     SelectLevel : String,
-    Student : String
+    Student : String,
+    StudentId: String
 
 });
 

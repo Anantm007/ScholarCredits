@@ -1050,33 +1050,6 @@ router.get('/idcard/download',async(req,res,next)=>{
             const interest = await Interest.find({'Student':data.Name});
             try{
             const challenge = await Submission.find({'Username':data.Name});
-            // var html = ejs.renderFile('../Views/studentdashboard/idcard.ejs',
-            //     {
-
-            //     Student : data,
-            //     Objective : objective,
-            //     Project : project,
-            //     Education : education,
-            //     Skill : skill,
-            //     Interest : interest,
-            //     Challenge : challenge,
-            //      function(err, result) {
-            //     // render on success
-            //     if (result) {
-            //        html = result;
-            //     }
-            //     // render or error
-            //     else {
-            //        res.end('An error occurred');
-            //        console.log(err);
-            //     }
-            // }});
-            // var options = { filename: 'idcard.pdf', format: 'A4', orientation: 'portrait', directory: './phantomScripts/',type: "pdf" };
-
-            // pdf.create(html, options).toFile(function(err, res) {
-            //     if (err) return console.log(err);
-            //         console.log(res);
-            //     });
 
             console.log(data.Name);
             const invoiceName = 'idcard.pdf';
@@ -1193,17 +1166,17 @@ router.get('/idcard',async(req,res,next)=>{
         const data = await Register.findOne({'Email':req.session.username});
         if(data){
             try{
-            const objective = await Objective.find({'Student':data.Name});
+            const objective = await Objective.find({'StudentId':data.id});
             try{
-            const project = await Project.find({'Student':data.Name});
+            const project = await Project.find({'StudentId':data.id});
             try{
-            const education = await Education.find({'Student':data.Name});
+            const education = await Education.find({'StudentId':data.id});
             try{
-            const skill = await Skill.find({'Student':data.Name});
+            const skill = await Skill.find({'StudentId':data.id});
             try{
-            const interest = await Interest.find({'Student':data.Name});
+            const interest = await Interest.find({'StudentId':data.id});
             try{
-            const challenge = await Submission.find({'Username':data.Name});
+            const challenge = await Submission.find({'Username':data.id});
 
 
             res.render('studentdashboard/idcard',{
@@ -1248,6 +1221,8 @@ router.post('/addproject',async(req,res,next)=>{
    const data = await Register.findOne({'Email':req.session.username});
    try{
        req.body.Student = data.Name;
+req.body.StudentId = data.id;
+
    const result = await Project.create(req.body);
    if(result){
        res.redirect('/idcardform');
@@ -1264,6 +1239,7 @@ router.post('/addskills',async(req,res,next)=>{
     try{
     const data = await Register.findOne({'Email':req.session.username});
     req.body.Student = data.Name;
+req.body.StudentId = data.id;
     try{
     const result = await Skill.create(req.body);
     if(result){
@@ -1281,6 +1257,7 @@ router.post('/addeducation',async(req,res,next)=>{
     try{
     const data = await Register.findOne({'Email':req.session.username});
     req.body.Student = data.Name;
+req.body.StudentId = data.id;
     try{
     const result = await Education.create(req.body);
     if(result){
@@ -1298,6 +1275,7 @@ router.post('/addinterest',async(req,res,next)=>{
     try{
     const data = await Register.findOne({'Email':req.session.username});
     req.body.Student = data.Name;
+req.body.StudentId = data.id;
     try{
     const result = await Interest.create(req.body);
     if(result){
@@ -1315,6 +1293,7 @@ router.post('/addobjective',async(req,res,next)=>{
     try{
     const data = await Register.findOne({'Email':req.session.username});
     req.body.Student = data.Name;
+req.body.StudentId = data.id;
     try{
     const result = await Objective.create(req.body);
     if(result){

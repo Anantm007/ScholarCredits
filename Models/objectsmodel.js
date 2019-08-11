@@ -3,7 +3,8 @@ const schema = mongoose.Schema;
 
 const ObjectiveSchema = new schema({
     Objective : String,
-    Student : String
+    Student : String,
+    StudentId: String
 
 });
 

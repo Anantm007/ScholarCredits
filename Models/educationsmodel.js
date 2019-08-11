@@ -6,7 +6,8 @@ const EducationSchema = new schema({
     Instname : String,
     Marks : String,
     Duration : String,
-    Student : String
+    Student : String,
+    StudentId: String
 
 });
 
