@@ -64,6 +64,10 @@ router.get('/Sdashboard',async(req,res,next)=>{
     res.render('startupdashboard/startupdashboard');
 });
 
+
+router.get('/startupregister',(req,res)=>{
+    res.render('startupdashboard/register');
+});
 router.post('/Sregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
 console.log(req.body);
     const otp = Math.floor(1000 + Math.random() * 9000);

@@ -115,26 +115,55 @@
 				<div class="avatar">
 					<img src="assests/img/sclogo.png" alt="Avatar">
 				</div><br>
-				<h1 style="text-align: auto;" class="modal-title">Company Login</h1>
+				<h1 style="text-align: auto;" class="modal-title">Mentor Signup</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 
-				<form action="/Slogin" method="POST">
-					<div class="form-group">
-						<input type="email" class="form-control" name="Email" placeholder="Email" required="required">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" name="Password" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-					</div>
-				</form>
+        <form role="form" method="POST" action="/Mregister" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="Name" value="" placeholder="Mentor Name" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Profile Image:</label>
+                      <small>For best upload <strong> 75 X 75 </strong>Dimensions image</small>
+                        <input type="file" class="form-control" name="ProfileImage"  required>
+                      </div>
+                      <div class="form-group">
+                      <label>Full LinkedIn Profile Link:</label>
+                        <input type="text" class="form-control" name="LinkedIn"  required>
+                      </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control"  name="Email" value="" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="password"  name="Password" value=""placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control"  id="cpassword" name="CPassword" value="" placeholder="Confirm Password" required>
+                    </div>
+                    <div id="show" style="color:red;display:none">
+                        <small id="show">Password Does Not Match</small>
+                    </div>
+                    <div class="form-group">
+                      <input type="number" class="form-control"  name="Phone" value="" placeholder="Your 10 Digit Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                      <textarea name="Company" class="form-control" placeholder="Your Current Company and Designation"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-center">Submit Form</button>
+                     <p class="change_link">
+                        Already a member ?
+                        <a href="#tologin" class="to_register"> Go and log in </a>
+                      </p>
+                  </form>
+                          </div>
+                            <!-- <form  action="mysuperscript.php" autocomplete="on">
 			</div>
 			<div class="modal-footer">
 
-												<a href="/startupregister" class="to_register">Join us</a><br><br>
+          <a href="/register" class="to_register">Join us</a>
         <a id="pass" style="cursor:pointer">Forgot Password?</a>
 											<div id="divpass" style="display:none;">
 													<form action="/reset" method="POST">
@@ -142,6 +171,7 @@
 														 <input type="submit" class="btn btn-primary" value="Send Mail">
                           </form>
 			</div>
+
 		</div>
 	</div>
 </div>

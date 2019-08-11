@@ -62,6 +62,11 @@ router.get('/dashboard',(req,res)=>{
     res.render('studentdashboard/index');
 });
 
+router.get('/studentregister',(req,res)=>{
+    res.render('studentdashboard/register');
+});
+
+
 router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
   const otp = Math.floor(1000 + Math.random() * 9000);
 

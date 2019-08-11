@@ -68,6 +68,10 @@ router.get('/Mdashboard',async(req,res,next)=>{
 });
 
 
+router.get('/mentorregister',(req,res)=>{
+    res.render('mentordashboard/register');
+});
+
 router.post('/Mregister',multer(multerConf).single('ProfileImage'),(req,res)=>{
   const otp = Math.floor(1000 + Math.random() * 9000);
 
