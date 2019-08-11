@@ -115,7 +115,6 @@ router.post('/register',multer(multerConf).single('ProfileImage'),(req,res)=>{
                    console.log(x);
 
                    http.get(x, (res) => {
-                     console.log(res.statusCode);
                      console.log('OTP sent to ' + req.body.Phone);
                      });
 
@@ -459,7 +458,7 @@ router.get('/viewchallenge/:code',(req,res)=>{
 
 
 router.get('/viewstartup/:code',(req,res)=>{
-  console.log("hello");
+
         Startup.findOne({ '_id' : req.params.code },(err,startup)=>{
 
           res.render('studentdashboard/view-startup-details',{
@@ -1691,7 +1690,6 @@ router.post('/enquire/:id', async(req,res) =>{
                 req.body.StudentEmail = student.Email;
                 console.log(req.body);
                 StudentQuery.create(req.body);
-                console.log(("success"));
 
                 res.render('studentdashboard/conf_message',{
                     Student: mentor,
