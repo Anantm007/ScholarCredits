@@ -196,6 +196,7 @@ router.get('/register',(req,res)=>{
 });
 
 router.post('/login',(req,res)=>{
+
    const email = req.body.Email;
    const password = req.body.Password;
    Register.findOne({'Email': email},(err,data)=>{
