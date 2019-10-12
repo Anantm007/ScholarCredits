@@ -1,5 +1,5 @@
 {
-  "name": "mainedu",
+  "name": "Scholar Credits",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "dev": "npm run server"
   },
-  "author": "",
+  "author": "Anant Mathur",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
